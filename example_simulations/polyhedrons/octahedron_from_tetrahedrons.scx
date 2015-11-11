@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Author: Joep Bos-Coenraad, jbos@scientrace.org -->
+<ScientraceConfig ConfigID="@CONFIGKEY@" ConfigDescription="@CONFIG_DESCRIPTION@">
+
+<PreProcess>
+
+
+<Import Key="OCTAHEDRON_FROM_TETRAHEDRON_PLANES">
+	<!-- A Tetrahedron is created using rotations for a single TOP_LOC. 
+	   - When two (opposing) TOP_LOC's are used, the opposing tetrahedron-planes
+	   - combined enclose an octahedron. -->
+	<For Key="TOPLOC_TOP" From="-1" To="1" Step="2" />
+	<Replace Key="TOP_LOC" Value="0;@TOPLOC_TOP@;0" />
+
+	<Replace Key="HOR_ANGLE" Value="1;0;0" />
+
+	<Replace Key="ANGLE_1_STEP" Value="109.471220634" />
+	<Replace Key="ANGLE_1_FROM" Value="70.528779366" />
+	<Replace Key="ANGLE_2_STEP" Value="120" />
+
+	<!-- TOP ANGLE: 90 - 19.471220634 (=90-acos(sqrt(2/3)/sqrt(3/4))) -->
+	<Replace Key="VECTOR_ROTATION"><Value>
+		<Rotate><AboutAxis xyz="@HOR_ANGLE@" /><Angle Degrees="@ANGLE_1@" Tag="rot1"/></Rotate>
+		<Rotate><AboutAxis xyz="@TOP_LOC@" /><Angle Degrees="@ANGLE_2@" Tag="rot2"/></Rotate>
+	</Value></Replace>
+
+	<For Key="ANGLE_1" From="@ANGLE_1_FROM@" To="180" Step="@ANGLE_1_STEP@" />
+	<For Key="ANGLE_2" From="0" To="360" Step="@ANGLE_2_STEP@" />
+	<!-- The value below is assigned to the Import Key above -->
+	<Value>
+		<Plane Tag="Top">
+			<Location xyz="@TOP_LOC@">@VECTOR_ROTATION@</Location>
+			<AllowedNormal xyz="@TOP_LOC@">@VECTOR_ROTATION@<Multiply Factor="-1" /></AllowedNormal>
+		</Plane>
+	</Value>
+</Import>
+
+
+</PreProcess>
+
+<!-- START OF 3D SETUP -->
+<Output Path="./">
+	<X3D Filename="3dview_@READABLE_CONFIGKEY@.x3d" Export="yes" />
+	<YieldData ExportHTML="no" ExportCSV="no" />
+	<SVG Export="no" />
+	<PhotonDump Export="no" />
+	<XML ExportPreProcessed="no" />
+</Output>
+
+<ObjectEnvironment Environment="air" Radius="1.5" DrawAxes="yes" MinIntensity="0.001" Tag="">
+
+    <CameraViewpoint x="-2" y="0.4" z="6" />
+    <CameraRotation>
+		<Vector xyz="0;1;0" />
+		<Angle Degrees="-20" />
+	</CameraRotation>
+
+
+<BorderedVolume>
+	<Material Class="StaticNTransparent" RefractiveIndex="1.75" Reflects="true" />
+	<SubVolume>
+	@OCTAHEDRON_FROM_TETRAHEDRON_PLANES@
+	</SubVolume>
+</BorderedVolume>
+
+</ObjectEnvironment>
+</ScientraceConfig>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Tests>
+    <TestRecord Name="ScientraceTesting">
+      <Tests>
+        <TestRecord Name="VectorTest">
+          <Tests>
+            <TestRecord Name="TestRotateAboutVector">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:03:30</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.09ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:05:40</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[-1, 1, 0]&gt;
+  But was:  &lt;[1.11022302462516E-16, 1.41421356237309, 0]&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] in &lt;filename unknown&gt;:0 
+  at ScientraceTesting.VectorTest.TestRotateAboutVector () [0x0005e] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTest.cs:71 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in &lt;filename unknown&gt;:0 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:06:20</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[-1, 1, 0]&gt;
+  But was:  &lt;[1.11022302462516E-16, 1.41421356237309, 0]&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] in &lt;filename unknown&gt;:0 
+  at ScientraceTesting.VectorTest.TestRotateAboutVector () [0x0005e] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTest.cs:71 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in &lt;filename unknown&gt;:0 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:06:38</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[-1, 1, 0]&gt;
+  But was:  &lt;[-1, 1, 0]&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] in &lt;filename unknown&gt;:0 
+  at ScientraceTesting.VectorTest.TestRotateAboutVector () [0x0005e] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTest.cs:71 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in &lt;filename unknown&gt;:0 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:08:10</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[0, 1, -1]&gt;
+  But was:  &lt;[6.12303176911189E-17, 1, -1]&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] in &lt;filename unknown&gt;:0 
+  at ScientraceTesting.VectorTest.TestRotateAboutVector () [0x0005e] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTest.cs:71 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in &lt;filename unknown&gt;:0 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:09:08</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[1, 1, -1]&gt;
+  But was:  &lt;[1, 1, -1]&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] in &lt;filename unknown&gt;:0 
+  at ScientraceTesting.VectorTest.TestRotateAboutVector () [0x0005e] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTest.cs:71 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in &lt;filename unknown&gt;:0 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:09:57</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[1, -1, 1]&gt;
+  But was:  &lt;[1, -1, 1]&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] in &lt;filename unknown&gt;:0 
+  at ScientraceTesting.VectorTest.TestRotateAboutVector () [0x0005e] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTest.cs:71 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in &lt;filename unknown&gt;:0 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:10:29</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[-1, 1, 1]&gt;
+  But was:  &lt;[1, 1, -1]&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] in &lt;filename unknown&gt;:0 
+  at ScientraceTesting.VectorTest.TestRotateAboutVector () [0x0005e] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTest.cs:74 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in &lt;filename unknown&gt;:0 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:11:39</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[-1, 1, 1]&gt;
+  But was:  &lt;[1, 1, -1]&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] in &lt;filename unknown&gt;:0 
+  at ScientraceTesting.VectorTest.TestRotateAboutVector () [0x0005e] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTest.cs:74 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in &lt;filename unknown&gt;:0 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:12:00</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[-1, 1, 1]&gt;
+  But was:  &lt;[1, 1, -1]&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] in &lt;filename unknown&gt;:0 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] in &lt;filename unknown&gt;:0 
+  at ScientraceTesting.VectorTest.TestRotateAboutVector () [0x0005e] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTest.cs:74 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] in &lt;filename unknown&gt;:0 </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:12:16</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.03ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2011-09-13T09:16:10</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.03ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>

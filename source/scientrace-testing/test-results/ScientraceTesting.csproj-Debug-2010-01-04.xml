@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <UnitTestResult>
+      <TestDate>2010-01-04T12:09:22</TestDate>
+      <Status>Success Failure</Status>
+      <TotalFailures>1</TotalFailures>
+      <TotalSuccess>10</TotalSuccess>
+      <TotalIgnored>0</TotalIgnored>
+      <Time />
+      <Message>Child test failed</Message>
+    </UnitTestResult>
+  </Results>
+  <Tests>
+    <TestRecord Name="ScientraceTesting">
+      <Results>
+        <UnitTestResult>
+          <TestDate>2010-01-04T12:09:22</TestDate>
+          <Status>Success Failure</Status>
+          <TotalFailures>1</TotalFailures>
+          <TotalSuccess>10</TotalSuccess>
+          <TotalIgnored>0</TotalIgnored>
+          <Time />
+          <Message>Child test failed</Message>
+        </UnitTestResult>
+      </Results>
+      <Tests>
+        <TestRecord Name="DefaultBogusTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2010-01-04T12:09:22</TestDate>
+              <Status>Success</Status>
+              <TotalFailures>0</TotalFailures>
+              <TotalSuccess>1</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="mathOrder">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:22</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="LocationTest">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2010-01-04T12:09:22</TestDate>
+              <Status>Success</Status>
+              <TotalFailures>0</TotalFailures>
+              <TotalSuccess>1</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="TestDistance">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:22</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="ParallelogramTest">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2010-01-04T12:09:22</TestDate>
+              <Status>Success</Status>
+              <TotalFailures>0</TotalFailures>
+              <TotalSuccess>4</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="PGramDiagonalSurfacePerformanceTest">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:22</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.06ms</Message>
+                  <ConsoleOutput>4979 siginificance failures
+</ConsoleOutput>
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="PGramDiagonalSurfaceTest1">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:22</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="PGramDiagonalSurfaceTest2">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:22</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="PGramSquareSurfaceTest">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:22</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="ScientraceTests">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2010-01-04T12:09:22</TestDate>
+              <Status>Success</Status>
+              <TotalFailures>0</TotalFailures>
+              <TotalSuccess>1</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="TestCollectionAdd3Cubes">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:22</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="UnitvectorTest">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2010-01-04T12:09:22</TestDate>
+              <Status>Success</Status>
+              <TotalFailures>0</TotalFailures>
+              <TotalSuccess>2</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="ExpectAZeroUnitvectorException">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:22</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                  <ConsoleOutput>A unitvector with length 0 as been assigned and cannot be normalized. length = 0 for new unitvector
+</ConsoleOutput>
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="UnitvectorLength">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:22</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.00ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+        <TestRecord Name="VectorTransformTest">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2010-01-04T12:09:22</TestDate>
+              <Status>Success Failure</Status>
+              <TotalFailures>1</TotalFailures>
+              <TotalSuccess>1</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+              <Message>Child test failed</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="CreateOrtho3rdVector">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:22</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.03ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+            <TestRecord Name="TransformMatrixTest">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:22</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: 2.6925824035672514d
+  But was:  0.5d
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] 
+  at ScientraceTesting.VectorTransformTest.TransformMatrixTest () [0x00071] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTransformTest.cs:36 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2010-01-04T12:09:27</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: 2.6925824035672514d
+  But was:  0.5d
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] 
+  at ScientraceTesting.VectorTransformTest.TransformMatrixTest () [0x00071] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTransformTest.cs:36 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>

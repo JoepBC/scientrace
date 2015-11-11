@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Tests>
+    <TestRecord Name="ScientraceTesting">
+      <Tests>
+        <TestRecord Name="ParabolicMirrorTest">
+          <Results>
+            <UnitTestResult>
+              <TestDate>2010-03-11T12:07:27</TestDate>
+              <Status>Failure</Status>
+              <TotalFailures>1</TotalFailures>
+              <TotalSuccess>0</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+              <Message>Child test failed</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2010-03-11T12:12:23</TestDate>
+              <Status>Failure</Status>
+              <TotalFailures>1</TotalFailures>
+              <TotalSuccess>0</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+              <Message>Child test failed</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2010-03-11T12:13:48</TestDate>
+              <Status>Failure</Status>
+              <TotalFailures>1</TotalFailures>
+              <TotalSuccess>0</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+              <Message>Child test failed</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2010-03-11T12:14:09</TestDate>
+              <Status>Failure</Status>
+              <TotalFailures>1</TotalFailures>
+              <TotalSuccess>0</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+              <Message>Child test failed</Message>
+            </UnitTestResult>
+            <UnitTestResult>
+              <TestDate>2010-03-11T12:16:07</TestDate>
+              <Status>Failure</Status>
+              <TotalFailures>1</TotalFailures>
+              <TotalSuccess>0</TotalSuccess>
+              <TotalIgnored>0</TotalIgnored>
+              <Time />
+              <Message>Child test failed</Message>
+            </UnitTestResult>
+          </Results>
+          <Tests>
+            <TestRecord Name="Testbaseintersections">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2010-03-11T12:07:27</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[0, 0, 0]
+%length: 0&gt;
+  But was:  &lt;[-1.70710678118655, -1.70710678118655, 1]
+%length: 2.61312592975275&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] 
+  at ScientraceTesting.ParabolicMirrorTest.Testbaseintersections () [0x000a8] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/ParabolicMirrorTest.cs:26 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2010-03-11T12:12:23</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[0, 0, 0]
+%length: 0&gt;
+  But was:  &lt;[-1.70710678118655, -1.70710678118655, 1]
+%length: 2.61312592975275&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] 
+  at ScientraceTesting.ParabolicMirrorTest.Testbaseintersections () [0x000a8] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/ParabolicMirrorTest.cs:26 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2010-03-11T12:13:48</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[0, 0, 0]
+%length: 0&gt;
+  But was:  &lt;[-1.70710678118655, -1.70710678118655, 1]
+%length: 2.61312592975275&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] 
+  at ScientraceTesting.ParabolicMirrorTest.Testbaseintersections () [0x000a8] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/ParabolicMirrorTest.cs:26 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2010-03-11T12:14:09</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[0, 0, 0]
+%length: 0&gt;
+  But was:  &lt;[-1.70710678118655, -1.70710678118655, 1]
+%length: 2.61312592975275&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] 
+  at ScientraceTesting.ParabolicMirrorTest.Testbaseintersections () [0x000a8] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/ParabolicMirrorTest.cs:26 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2010-03-11T12:16:07</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>  Expected: &lt;[0, 0, 0]
+%length: 0&gt;
+  But was:  &lt;[1, -2.82842712474619, 3.82842712474619]
+%length: 4.86383123160049&gt;
+</Message>
+                  <StackTrace>  at NUnit.Framework.Assert.That (System.Object actual, NUnit.Framework.Constraints.Constraint constraint, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual, System.String message, System.Object[] args) [0x00000] 
+  at NUnit.Framework.Assert.AreEqual (System.Object expected, System.Object actual) [0x00000] 
+  at ScientraceTesting.ParabolicMirrorTest.Testbaseintersections () [0x000a8] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/ParabolicMirrorTest.cs:26 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>

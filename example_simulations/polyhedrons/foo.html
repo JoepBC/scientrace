@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Polyhedron (and alike) examples</title>
+
+<!-- showhide-content code from: http://www.cssnewbie.com/example/showhide-content/ -->
+<script language="javascript" type="text/javascript">
+function showHide(shID) {
+   if (document.getElementById(shID)) {
+      if (document.getElementById(shID+'-show').style.display != 'none') {
+         document.getElementById(shID+'-show').style.display = 'none';
+         document.getElementById(shID).style.display = 'block';
+      	} 
+      else {
+         document.getElementById(shID+'-show').style.display = 'inline';
+         document.getElementById(shID).style.display = 'none';
+      	}}}
+</script>
+
+<style type="text/css">
+
+td {vertical-align: top; }
+
+   /* This CSS is used for the Show/Hide functionality, source: http://www.cssnewbie.com/example/showhide-content/ */
+   .more {
+      display: none;
+      border-top: 1px solid #666;
+      border-bottom: 1px solid #666; }
+   a.showLink::before { content: "↓" }
+   a.showLink::after{ content: "↓" }
+   a.hideLink::before { content: "↑" }
+   a.hideLink::after { content: "↑" }
+   a.showLink, a.hideLink { 
+      text-decoration: none;
+      color: #36f;
+      padding-left: 2px;
+      background: transparent no-repeat left; }
+   a.hideLink {
+      background: transparent no-repeat left; }
+   a.showLink:hover, a.hideLink:hover {
+      border-bottom: 1px dotted #36f; }
+</style>
+
+</head>
+<body>
+
+
+
+<table>
+	<tr><td>Filename:</td>
+		<td>
+		cube.scx
+		<a href="#" id="cube-show" class="showLink" onclick="showHide('cube');return false;" >view source</a> 		
+		<div id="cube" class="more">
+			cube.scx-source
+
+			<font color="#0000FF"><font color="#800000">&lt;?xml <font color="#880000"><strong>version</strong></font>=<font color="#006622"><em>&quot;1.0&quot;</em></font> <font color="#880000"><strong>encoding</strong></font>=<font color="#006622"><em>&quot;utf-8&quot;</em></font>?&gt;</font></font><br />
+<font color="#0000FF">&lt;<font color="#0000CC"><strong>!--</strong></font> Author: Joep Bos-Coenraad, jbos@scientrace.org --&gt;</font><br />
+<font color="#0000FF">&lt;<font color="#0000CC"><strong>ScientraceConfig</strong></font> <font color="#880000"><strong>ConfigID</strong></font>=<font color="#006622"><em>&quot;@CONFIGKEY@&quot;</em></font> <font color="#880000"><strong>ConfigDescription</strong></font>=<font color="#006622"><em>&quot;@CONFIG_DESCRIPTION@&quot;</em></font>&gt;</font><br />
+<br />
+<font color="#0000FF">&lt;<font color="#0000CC"><strong>PreProcess</strong></font>&gt;</font><br />
+<font color="#0000FF">&lt;<font color="#0000CC"><strong>Replace</strong></font> <font color="#880000"><strong>Key</strong></font>=<font color="#006622"><em>&quot;TOP_LOC&quot;</em></font> <font color="#880000"><strong>Value</strong></font>=<font color="#006622"><em>&quot;0;0;1&quot;</em></font> /&gt;</font><br />
+<br />
+<font color="#0000FF">&lt;<font color="#0000CC"><strong>Import</strong></font> <font color="#880000"><strong>Key</strong></font>=<font color="#006622"><em>&quot;CUBE_PLANES&quot;</em></font>&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>Replace</strong></font> <font color="#880000"><strong>Key</strong></font>=<font color="#006622"><em>&quot;TOP_LOC&quot;</em></font> <font color="#880000"><strong>Value</strong></font>=<font color="#006622"><em>&quot;0;0;1&quot;</em></font> /&gt;</font><br />
+<br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>Replace</strong></font> <font color="#880000"><strong>Key</strong></font>=<font color="#006622"><em>&quot;ANGLE_1_STEP&quot;</em></font> <font color="#880000"><strong>Value</strong></font>=<font color="#006622"><em>&quot;90&quot;</em></font> /&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>Replace</strong></font> <font color="#880000"><strong>Key</strong></font>=<font color="#006622"><em>&quot;ANGLE_1_FROM&quot;</em></font> <font color="#880000"><strong>Value</strong></font>=<font color="#006622"><em>&quot;0&quot;</em></font> /&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>Replace</strong></font> <font color="#880000"><strong>Key</strong></font>=<font color="#006622"><em>&quot;ANGLE_2_STEP&quot;</em></font> <font color="#880000"><strong>Value</strong></font>=<font color="#006622"><em>&quot;90&quot;</em></font> /&gt;</font><br />
+<br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>Replace</strong></font> <font color="#880000"><strong>Key</strong></font>=<font color="#006622"><em>&quot;VECTOR_ROTATION&quot;</em></font>&gt;</font><font color="#0000FF">&lt;<font color="#0000CC"><strong>Value</strong></font>&gt;</font><br />
+		<font color="#0000FF">&lt;<font color="#0000CC"><strong>Rotate</strong></font>&gt;</font><font color="#0000FF">&lt;<font color="#0000CC"><strong>AboutAxis</strong></font> <font color="#880000"><strong>xyz</strong></font>=<font color="#006622"><em>&quot;1;0;0&quot;</em></font> /&gt;</font><font color="#0000FF">&lt;<font color="#0000CC"><strong>Angle</strong></font> <font color="#880000"><strong>Degrees</strong></font>=<font color="#006622"><em>&quot;@ANGLE_1@&quot;</em></font> <font color="#880000"><strong>Tag</strong></font>=<font color="#006622"><em>&quot;rotation1&quot;</em></font>/&gt;</font><font color="#0000FF">&lt;/<font color="#0000CC"><strong>Rotate</strong></font>&gt;</font><br />
+		<font color="#0000FF">&lt;<font color="#0000CC"><strong>Rotate</strong></font>&gt;</font><font color="#0000FF">&lt;<font color="#0000CC"><strong>AboutAxis</strong></font> <font color="#880000"><strong>xyz</strong></font>=<font color="#006622"><em>&quot;0;0;1&quot;</em></font> /&gt;</font><font color="#0000FF">&lt;<font color="#0000CC"><strong>Angle</strong></font> <font color="#880000"><strong>Degrees</strong></font>=<font color="#006622"><em>&quot;@ANGLE_2@&quot;</em></font> <font color="#880000"><strong>Tag</strong></font>=<font color="#006622"><em>&quot;rotation2&quot;</em></font>/&gt;</font><font color="#0000FF">&lt;/<font color="#0000CC"><strong>Rotate</strong></font>&gt;</font><br />
+	<font color="#0000FF">&lt;/<font color="#0000CC"><strong>Value</strong></font>&gt;</font><font color="#0000FF">&lt;/<font color="#0000CC"><strong>Replace</strong></font>&gt;</font><br />
+<br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>For</strong></font> <font color="#880000"><strong>Key</strong></font>=<font color="#006622"><em>&quot;ANGLE_1&quot;</em></font> <font color="#880000"><strong>From</strong></font>=<font color="#006622"><em>&quot;@ANGLE_1_FROM@&quot;</em></font> <font color="#880000"><strong>To</strong></font>=<font color="#006622"><em>&quot;180&quot;</em></font> <font color="#880000"><strong>Step</strong></font>=<font color="#006622"><em>&quot;@ANGLE_1_STEP@&quot;</em></font> /&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>For</strong></font> <font color="#880000"><strong>Key</strong></font>=<font color="#006622"><em>&quot;ANGLE_2&quot;</em></font> <font color="#880000"><strong>From</strong></font>=<font color="#006622"><em>&quot;0&quot;</em></font> <font color="#880000"><strong>To</strong></font>=<font color="#006622"><em>&quot;360&quot;</em></font> <font color="#880000"><strong>Step</strong></font>=<font color="#006622"><em>&quot;@ANGLE_2_STEP@&quot;</em></font> /&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>!--</strong></font> The value below is assigned to the Import Key above --&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>Value</strong></font>&gt;</font><br />
+		<font color="#0000FF">&lt;<font color="#0000CC"><strong>Plane</strong></font> <font color="#880000"><strong>Tag</strong></font>=<font color="#006622"><em>&quot;Top&quot;</em></font>&gt;</font><br />
+			<font color="#0000FF">&lt;<font color="#0000CC"><strong>Location</strong></font> <font color="#880000"><strong>xyz</strong></font>=<font color="#006622"><em>&quot;@TOP_LOC@&quot;</em></font>&gt;</font>@VECTOR_ROTATION@<font color="#0000FF">&lt;/<font color="#0000CC"><strong>Location</strong></font>&gt;</font><br />
+			<font color="#0000FF">&lt;<font color="#0000CC"><strong>AllowedNormal</strong></font> <font color="#880000"><strong>xyz</strong></font>=<font color="#006622"><em>&quot;@TOP_LOC@&quot;</em></font>&gt;</font>@VECTOR_ROTATION@<font color="#0000FF">&lt;<font color="#0000CC"><strong>Multiply</strong></font> <font color="#880000"><strong>Factor</strong></font>=<font color="#006622"><em>&quot;-1&quot;</em></font> /&gt;</font><font color="#0000FF">&lt;/<font color="#0000CC"><strong>AllowedNormal</strong></font>&gt;</font><br />
+		<font color="#0000FF">&lt;/<font color="#0000CC"><strong>Plane</strong></font>&gt;</font><br />
+	<font color="#0000FF">&lt;/<font color="#0000CC"><strong>Value</strong></font>&gt;</font><br />
+<font color="#0000FF">&lt;/<font color="#0000CC"><strong>Import</strong></font>&gt;</font><br />
+<br />
+<font color="#0000FF">&lt;/<font color="#0000CC"><strong>PreProcess</strong></font>&gt;</font><br />
+<br />
+<font color="#0000FF">&lt;<font color="#0000CC"><strong>!--</strong></font> START OF 3D SETUP --&gt;</font><br />
+<font color="#0000FF">&lt;<font color="#0000CC"><strong>Output</strong></font> <font color="#880000"><strong>Path</strong></font>=<font color="#006622"><em>&quot;./&quot;</em></font>&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>X3D</strong></font> <font color="#880000"><strong>Filename</strong></font>=<font color="#006622"><em>&quot;3dview_@READABLE_CONFIGKEY@.x3d&quot;</em></font> <font color="#880000"><strong>Export</strong></font>=<font color="#006622"><em>&quot;yes&quot;</em></font> /&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>YieldData</strong></font> <font color="#880000"><strong>ExportHTML</strong></font>=<font color="#006622"><em>&quot;no&quot;</em></font> <font color="#880000"><strong>ExportCSV</strong></font>=<font color="#006622"><em>&quot;no&quot;</em></font> /&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>SVG</strong></font> <font color="#880000"><strong>Export</strong></font>=<font color="#006622"><em>&quot;no&quot;</em></font> /&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>PhotonDump</strong></font> <font color="#880000"><strong>Export</strong></font>=<font color="#006622"><em>&quot;no&quot;</em></font> /&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>XML</strong></font> <font color="#880000"><strong>ExportPreProcessed</strong></font>=<font color="#006622"><em>&quot;no&quot;</em></font> /&gt;</font><br />
+<font color="#0000FF">&lt;/<font color="#0000CC"><strong>Output</strong></font>&gt;</font><br />
+<br />
+<font color="#0000FF">&lt;<font color="#0000CC"><strong>ObjectEnvironment</strong></font> <font color="#880000"><strong>Environment</strong></font>=<font color="#006622"><em>&quot;air&quot;</em></font> <font color="#880000"><strong>Radius</strong></font>=<font color="#006622"><em>&quot;1.5&quot;</em></font> <font color="#880000"><strong>DrawAxes</strong></font>=<font color="#006622"><em>&quot;yes&quot;</em></font> <font color="#880000"><strong>MinIntensity</strong></font>=<font color="#006622"><em>&quot;0.001&quot;</em></font> <font color="#880000"><strong>Tag</strong></font>=<font color="#006622"><em>&quot;&quot;</em></font>&gt;</font><br />
+<br />
+<font color="#0000FF">&lt;<font color="#0000CC"><strong>CameraViewpoint</strong></font> <font color="#880000"><strong>x</strong></font>=<font color="#006622"><em>&quot;-2&quot;</em></font> <font color="#880000"><strong>y</strong></font>=<font color="#006622"><em>&quot;0.4&quot;</em></font> <font color="#880000"><strong>z</strong></font>=<font color="#006622"><em>&quot;6&quot;</em></font> /&gt;</font><br />
+<font color="#0000FF">&lt;<font color="#0000CC"><strong>CameraRotation</strong></font>&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>Vector</strong></font> <font color="#880000"><strong>xyz</strong></font>=<font color="#006622"><em>&quot;0;1;0&quot;</em></font> /&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>Angle</strong></font> <font color="#880000"><strong>Degrees</strong></font>=<font color="#006622"><em>&quot;-20&quot;</em></font> /&gt;</font><br />
+<font color="#0000FF">&lt;/<font color="#0000CC"><strong>CameraRotation</strong></font>&gt;</font><br />
+<br />
+<br />
+<font color="#0000FF">&lt;<font color="#0000CC"><strong>BorderedVolume</strong></font>&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>Material</strong></font> <font color="#880000"><strong>Class</strong></font>=<font color="#006622"><em>&quot;StaticNTransparent&quot;</em></font> <font color="#880000"><strong>RefractiveIndex</strong></font>=<font color="#006622"><em>&quot;1.75&quot;</em></font> <font color="#880000"><strong>Reflects</strong></font>=<font color="#006622"><em>&quot;true&quot;</em></font> /&gt;</font><br />
+	<font color="#0000FF">&lt;<font color="#0000CC"><strong>SubVolume</strong></font> <font color="#880000"><strong>Tag</strong></font>=<font color="#006622"><em>&quot;a grid finger&quot;</em></font>&gt;</font><br />
+		@CUBE_PLANES@<br />
+	<font color="#0000FF">&lt;/<font color="#0000CC"><strong>SubVolume</strong></font>&gt;</font><br />
+<font color="#0000FF">&lt;/<font color="#0000CC"><strong>BorderedVolume</strong></font>&gt;</font><br />
+<br />
+<font color="#0000FF">&lt;/<font color="#0000CC"><strong>ObjectEnvironment</strong></font>&gt;</font><br />
+<font color="#0000FF">&lt;/<font color="#0000CC"><strong>ScientraceConfig</strong></font>&gt;</font><br />
+			<hr />
+			<a href="#" id="cube-hide" class="hideLink" onclick="showHide('cube');return true;">hide source</a>
+      </div>
+		</td></tr>
+	<tr><td></td><td></td></tr>
+	<tr><td></td><td></td></tr>
+</table>
+
+  <div id="wrap">
+      <h1>Show/Hide Content</h1>
+      <p>Go back to the main article. This example shows you how to create a show/hide container using a couple of links, a div, a few lines of CSS, 
+      	and some JavaScript to manipulate our CSS. 
+      		Just click on the "see more" link at the end of this paragraph to see the technique in action, and be sure to view the source to see how it all works together. 
+      		<a href="#" id="example-show" class="showLink" onclick="showHide('example');return false;" >meer</a></p>
+      <div id="example" class="more">
+         <p>Congratulations! You've found the magic hidden text! Clicking the link below will hide this content again.</p>
+         <p><a href="#" id="example-hide" class="hideLink" onclick="showHide('example');return false;">minder</a></p>
+      </div>
+   </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D975D296-5F29-44CD-ABAC-D4297351DA0B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>ScientraceXMLParser</RootNamespace>
+    <AssemblyName>scientrace-xml-parser</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="scientrace-lib">
+      <HintPath>..\scientrace-lib\bin\Debug\scientrace-lib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="AngleDerivation.cs" />
+    <Compile Include="ScientraceEnvironmentSetup.cs" />
+    <Compile Include="XMLException.cs" />
+    <Compile Include="CustomXMLDocumentOperations.cs" />
+    <Compile Include="ScientraceXMLParser.cs" />
+    <Compile Include="XMLOutputParser.cs" />
+    <Compile Include="XMLLightSourceParser.cs" />
+    <Compile Include="ScientraceXMLAbstractParser.cs" />
+    <Compile Include="XMLObject3dParser.cs" />
+    <Compile Include="XMLBorderParser.cs" />
+    <Compile Include="XMLTraceModifierParser.cs" />
+    <Compile Include="ShadowClassConstruct.cs" />
+    <Compile Include="ShadowLightSourceConstruct.cs" />
+    <Compile Include="XMLSpectrumParser.cs" />
+    <Compile Include="XMLEfficiencyCharacteristicsParser.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

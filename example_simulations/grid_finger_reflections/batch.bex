@@ -1,0 +1,28 @@
+<BatchConfig XMLSource="grid_fingers_vary_angle.scx" ID="trapezoidoffset_lightangle_beamcount" OutputDir="xml" Key="@TRAPEZOID_OFFSET@%@LIGHT_ANGLE@%@RAY_COUNT@">
+	
+<!-- When introducing the XML subdir, an extra parent level is mandatory to refer to the bitmap files. -->
+<Replace Key="BITMAPS_DIR" Value="../../bitmaps/" />
+
+<Explode Key="TRAPEZOID_OFFSET" From="0" To="5" Step="0.25" PreDecimals="1" Decimals="2" />
+
+<Explode Key="LIGHT_ANGLE" From="0" To="89" Step="1" PreDecimals="2" Decimals="0" />
+
+<SubBatch Tag="a SubBatch Description">
+  <ValueSet Tag="Viewable">
+	<Replace Key="RAY_COUNT" Value="512" />
+	<Replace Key="EXPORT_SVG" Value="yes" />
+	<Replace Key="EXPORT_X3D" Value="yes" />
+	<Replace Key="EXPORT_XML" Value="no" />
+	<Replace Key="EXPORT_HISTOGRAM" Value="no" />
+  </ValueSet>
+  <ValueSet Tag="Statisticle">
+   	<Replace Key="RAY_COUNT" Value="65536" />
+	<Replace Key="EXPORT_SVG" Value="no" />
+	<Replace Key="EXPORT_X3D" Value="no" />
+	<Replace Key="EXPORT_XML" Value="no" />
+	<Replace Key="EXPORT_HISTOGRAM" Value="yes" />
+  </ValueSet>
+</SubBatch>
+
+</BatchConfig>
+

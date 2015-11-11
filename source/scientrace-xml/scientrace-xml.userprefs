@@ -1,0 +1,32 @@
+﻿<Properties StartupItem="scientrace-xml.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Main.cs">
+    <Files>
+      <File FileName="ShadowLightSourceConstruct.cs" Line="1" Column="1" />
+      <File FileName="XMLSpectrumParser.cs" Line="1" Column="1" />
+      <File FileName="XMLEfficiencyCharacteristicsParser.cs" Line="1" Column="1" />
+      <File FileName="ScientraceEnvironmentSetup.cs" Line="21" Column="2" />
+      <File FileName="Main.cs" Line="13" Column="7" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.scientrace-xml>
+    <MonoDevelop.Ide.CustomExecutionModes>
+      <Data Name="testplanoconvexlens" Id="d94dae33-cef8-464d-87d4-390fe047ab1a" ModeId="Default" PromptForParameters="True">
+        <CommandData>
+          <Item Key="MonoDevelop.Ide.Execution.CustomArgsCustomizer">
+            <Value Arguments="testlens.scx" WorkingDirectory="/home/jbos/Development/simulations_b/Scientrace/testplanoconvex" ctype="CustomArgsExecutionModeData">
+              <EnvironmentVariables />
+            </Value>
+          </Item>
+          <Item Key="MonoDevelop.Ide.Execution.MonoExecutionCustomizer">
+            <Value ctype="MonoExecutionParameters" />
+          </Item>
+        </CommandData>
+      </Data>
+    </MonoDevelop.Ide.CustomExecutionModes>
+  </MonoDevelop.Ide.ItemProperties.scientrace-xml>
+</Properties>

@@ -1,0 +1,6 @@
+/home/jbos/Development/applications/scientrace/scientrace-lib/scientrace-testing/bin/Debug/ScientraceTesting.dll.mdb
+/home/jbos/Development/applications/scientrace/scientrace-lib/scientrace-testing/bin/Debug/ScientraceTesting.dll
+/home/jbos/Development/applications/scientrace/scientrace-lib/scientrace-testing/obj/Debug/ScientraceTesting.dll
+/home/jbos/Development/applications/scientrace/scientrace-lib/scientrace-testing/obj/Debug/ScientraceTesting.dll.mdb
+/home/jbos/Development/applications/scientrace/scientrace-lib/scientrace-testing/bin/Debug/scientrace-lib.dll
+/home/jbos/Development/applications/scientrace/scientrace-lib/scientrace-testing/bin/Debug/OpenTK.dll

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A12671E2-3FB6-4598-BC32-C11BD3827EEF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Scientrace</RootNamespace>
+    <AssemblyName>scientrace-lib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.5</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="nunit.framework">
+      <Package>nunit</Package>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\references\OpenTK.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Object3d.cs" />
+    <Compile Include="PhysicalObject3d.cs" />
+    <Compile Include="Object3dCollection.cs" />
+    <Compile Include="Object3dEnvironment.cs" />
+    <Compile Include="Location.cs" />
+    <Compile Include="UnitVector.cs" />
+    <Compile Include="ZeroUnitvectorException.cs" />
+    <Compile Include="Line.cs" />
+    <Compile Include="Vector.cs" />
+    <Compile Include="NonzeroVector.cs" />
+    <Compile Include="Parallelogram.cs" />
+    <Compile Include="VectorTransform.cs" />
+    <Compile Include="Triangle.cs" />
+    <Compile Include="Trace.cs" />
+    <Compile Include="LightSource.cs" />
+    <Compile Include="EnclosedVolume.cs" />
+    <Compile Include="SubclassResponsibilityException.cs" />
+    <Compile Include="Prism.cs" />
+    <Compile Include="RectangularPrism.cs" />
+    <Compile Include="AttachedObject3dCollection.cs" />
+    <Compile Include="TriangularPrism.cs" />
+    <Compile Include="CircularPrism.cs" />
+    <Compile Include="SingleRaySource.cs" />
+    <Compile Include="AbstractBorder.cs" />
+    <Compile Include="BoxBorder.cs" />
+    <Compile Include="TraceJournal.cs" />
+    <Compile Include="Spot.cs" />
+    <Compile Include="Intersection.cs" />
+    <Compile Include="Plane.cs" />
+    <Compile Include="Circle2d.cs" />
+    <Compile Include="MaterialProperties.cs" />
+    <Compile Include="PMMAProperties.cs" />
+    <Compile Include="AirProperties.cs" />
+    <Compile Include="ParallelLightSource.cs" />
+    <Compile Include="ParallelSquareLightSource.cs" />
+    <Compile Include="ParallelRandomSquareLightSource.cs" />
+    <Compile Include="Angle.cs" />
+    <Compile Include="ParabolicMirror.cs" />
+    <Compile Include="PerfectMirror.cs" />
+    <Compile Include="IntersectionPoint.cs" />
+    <Compile Include="X3DGridPoint.cs" />
+    <Compile Include="ParallelRandomCylindricalLightSource.cs" />
+    <Compile Include="VectorTransformOrthonormal.cs" />
+    <Compile Include="ScientraceBatch.cs" />
+    <Compile Include="GaAsSurface.cs" />
+    <Compile Include="DistributionSquare.cs" />
+    <Compile Include="CombinedBorder.cs" />
+    <Compile Include="SpiralLightSource.cs" />
+    <Compile Include="LightSpectrum.cs" />
+    <Compile Include="TestSpectrum.cs" />
+    <Compile Include="RangeSpectrum.cs" />
+    <Compile Include="AM15Spectrum.cs" />
+    <Compile Include="CircularFresnelPrism.cs" />
+    <Compile Include="Object3dBoxedCollection.cs" />
+    <Compile Include="PurdyBlue.cs" />
+    <Compile Include="BlackBodySurface.cs" />
+    <Compile Include="UserLightSource.cs" />
+    <Compile Include="SuncyclePMMAProperties.cs" />
+    <Compile Include="SurfaceMarker.cs" />
+    <Compile Include="GridSurfaceMarker.cs" />
+    <Compile Include="HorizontalGridSurfaceMarker.cs" />
+    <Compile Include="RandomRangeSpectrum.cs" />
+    <Compile Include="CustomTracesLightSource.cs" />
+    <Compile Include="LegendBuilder.cs" />
+    <Compile Include="WavelengthLegendBuilder.cs" />
+    <Compile Include="VerticalGridSurfaceMarker.cs" />
+    <Compile Include="TraceModifier.cs" />
+    <Compile Include="TraceModifyStandardDeviate.cs" />
+    <Compile Include="NumDistribute.cs" />
+    <Compile Include="Vec2d.cs" />
+    <Compile Include="UniformTraceModifier.cs" />
+    <Compile Include="TestLight.cs" />
+    <Compile Include="ParallelVectorException.cs" />
+    <Compile Include="StaticNTransparentMaterial.cs" />
+    <Compile Include="Shape2d.cs" />
+    <Compile Include="FlatShape2d.cs" />
+    <Compile Include="SurfaceProperties.cs" />
+    <Compile Include="FlatSurfaceObject3d.cs" />
+    <Compile Include="PlanoConvexLens.cs" />
+    <Compile Include="Sphere.cs" />
+    <Compile Include="QuadraticEquation.cs" />
+    <Compile Include="IBorder3d.cs" />
+    <Compile Include="PlaneBorder.cs" />
+    <Compile Include="ThickLens.cs" />
+    <Compile Include="DoubleConvexLens.cs" />
+    <Compile Include="PlaneBorderEnclosedVolume.cs" />
+    <Compile Include="Edge.cs" />
+    <Compile Include="ComplexBorderedVolume.cs" />
+    <Compile Include="LinePiece.cs" />
+    <Compile Include="SingleWavelengthSpectrum.cs" />
+    <Compile Include="SpectralUnit.cs" />
+    <Compile Include="ActivityStatusBar.cs" />
+    <Compile Include="X3DShapeDrawer.cs" />
+    <Compile Include="CylindricalBorder.cs" />
+    <Compile Include="InfiniteCylinderBorder.cs" />
+    <Compile Include="FresnelLensRing.cs" />
+    <Compile Include="FresnelLens.cs" />
+    <Compile Include="RandomToSurfaceLightSource.cs" />
+    <Compile Include="StaticReflectingAbsorberMaterial.cs" />
+    <Compile Include="OpticalEfficiencyCharacteristics.cs" />
+    <Compile Include="Rectangle.cs" />
+    <Compile Include="RGBColor.cs" />
+    <Compile Include="Trace-Polarisation_Support.cs" />
+    <Compile Include="DielectricSurfaceInteraction.cs" />
+    <Compile Include="Trace-Obsolete_No_Polarisation_Support.cs" />
+    <Compile Include="TraceJournal-Image_Data_Export.cs" />
+    <Compile Include="Tracejournal-Textual_Data_Export.cs" />
+    <Compile Include="TraceJournal-Obsolete.cs" />
+    <Compile Include="ShadowClasses.cs" />
+    <Compile Include="PlaneBorderEnclosedVolume-3D_Drawing.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <StandardHeader Text="/*&#xA; * Scientrace by Joep Bos-Coenraad&#xA; * primarily designed for researching concentrator systems&#xA; * at the Applied Material Science (AMS) department&#xA; * at the Radboud University Nijmegen, @see http://www.ru.nl/ams .&#xA; */" IncludeInNewFiles="True" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+</Project>

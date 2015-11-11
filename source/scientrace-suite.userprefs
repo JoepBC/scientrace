@@ -1,0 +1,31 @@
+﻿<Properties StartupItem="scientrace-lib/scientrace-lib.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.DebuggingService>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService>
+  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-xml/XMLOutputParser.cs">
+    <Files>
+      <File FileName="scientrace-lib/TraceJournal.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Tracejournal-Textual_Data_Export.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Trace.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/ParallelRandomSquareLightSource.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Trace-Obsolete_No_Polarisation_Support.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Trace-Polarisation_Support.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/ScientraceXMLParser.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/XMLOutputParser.cs" Line="37" Column="65" />
+      <File FileName="scientrace-xml/ScientraceEnvironmentSetup.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/ComplexBorderedVolume.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/XMLObject3dParser.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/PlaneBorderEnclosedVolume-3D_Drawing.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/PlaneBorderEnclosedVolume.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Rectangle.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/ShadowClassConstruct.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/CustomXMLDocumentOperations.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <AuthorInfo Name="Joep Bos-Coenraad" Email="jbos@scientrace.org" Copyright="Joep Bos-Coenraad" Company="Radboud University Nijmegen" Trademark="" />
+</Properties>

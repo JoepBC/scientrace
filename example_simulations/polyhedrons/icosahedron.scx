@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Author: Joep Bos-Coenraad, jbos@scientrace.org -->
+<ScientraceConfig ConfigID="@CONFIGKEY@" ConfigDescription="@CONFIG_DESCRIPTION@">
+
+<PreProcess>
+<Replace Key="TOP_LOC" Value="0;0;1" />
+<Replace Key="BOTTOM_LOC" Value="0;0;-1" />
+
+
+<Import Key="ICOSAHEDRON_PLANES">
+<!-- a bit help on the angles that will now follow:
+Some help from: http://www.sbebuilders.com/pdf/Platonic-Solids.pdf
+Face to Face angle is according to https://theory.org/geotopo/tt/html/face-to-face.html : a = 138.189685104
+180 - a = 41.810314896
+
+When a pentagon is drawn, the distance from the corners to the center can be calculated by:
+h = 0.5 / sin(36) = 0.850650808
+The distance from the middle of the line surrounding the pentagon to its center is:
+m^2 = h^2 + 0.5^2 = 0.473606798
+m = 0.68819096
+The line through the middle /|\ of a icosahedron triangle has length: sqrt(1-0.5^2) = sqrt(0.75)
+The angle from the top of the icosahedron to the center of the side of the underlying pentagon is:
+sin t = 0.68819096 / sqrt(0.75) = 0.794654472
+t = 52.622631834
+90-t = 37.377368166
+
+Have fun now ;) jbos@scientrace.org
+-->
+	<Replace Key="TOP_LOC" Value="0;0;1" />
+	<Replace Key="BOTTOM_LOC" Value="0;0;-1" />
+
+	<Replace Key="ANGLE_1_STEP" Value="41.810314896" />
+	<Replace Key="ANGLE_1_FROM" Value="37.377368166" />
+	<Replace Key="ANGLE_2_STEP" Value="72" />
+
+	<Replace Key="VECTOR_ROTATION"><Value>
+			<Rotate><AboutAxis xyz="1;0;0" /><Angle Degrees="@ANGLE_1@" Tag="rotation1"/></Rotate>
+			<Rotate><AboutAxis xyz="0;0;1" /><Angle Degrees="@ANGLE_2@" Tag="rotation2"/></Rotate>
+	</Value></Replace>
+
+	<For Key="ANGLE_1" From="@ANGLE_1_FROM@" xFrom="@ANGLE_1_STEP@" To="90" Step="@ANGLE_1_STEP@" />
+	<For Key="ANGLE_2" From="0" xFrom="@ANGLE_2_STEP@" To="360" Step="@ANGLE_2_STEP@" />
+	<!-- The value below is assigned to the Import Key above -->
+	<Value>
+		<Plane Tag="Top">
+			<Location xyz="@TOP_LOC@">@VECTOR_ROTATION@</Location>
+			<AllowedNormal xyz="@TOP_LOC@">@VECTOR_ROTATION@<Multiply Factor="-1" /></AllowedNormal>
+		</Plane>
+		<Plane Tag="Floor">
+			<Location xyz="@BOTTOM_LOC@">@VECTOR_ROTATION@</Location>
+			<AllowedNormal xyz="@BOTTOM_LOC@">@VECTOR_ROTATION@<Multiply Factor="-1" /></AllowedNormal>
+		</Plane>
+	</Value>
+</Import>
+
+
+
+</PreProcess>
+
+<!-- START OF 3D SETUP -->
+<Output Path="./">
+	<X3D Filename="3dview_@READABLE_CONFIGKEY@.x3d" Export="yes" />
+	<YieldData ExportHTML="no" ExportCSV="no" />
+	<SVG Export="no" />
+	<PhotonDump Export="no" />
+	<XML ExportPreProcessed="no" />
+</Output>
+
+<ObjectEnvironment Environment="air" Radius="1.5" DrawAxes="yes" MinIntensity="0.001" Tag="">
+
+<CameraViewpoint x="-2" y="0.4" z="6" />
+<CameraRotation>
+	<Vector xyz="0;1;0" />
+	<Angle Degrees="-20" />
+</CameraRotation>
+
+
+<BorderedVolume>
+	<Material Class="StaticNTransparent" RefractiveIndex="1.75" Reflects="true" />
+	<SubVolume Tag="a grid finger">
+		@ICOSAHEDRON_PLANES@
+	</SubVolume>
+</BorderedVolume>
+
+</ObjectEnvironment>
+</ScientraceConfig>

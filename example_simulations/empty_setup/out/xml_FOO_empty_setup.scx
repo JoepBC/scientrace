@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Author: Joep Bos-Coenraad, jbos@scientrace.org -->
+<ScientraceConfig ConfigID="FOO" ConfigDescription="@CONFIG_DESCRIPTION@">
+
+<!-- Set your variables here -->
+<PreProcess>
+	<!-- This variable is typically used to be overwritten by the BatchExploder. 
+	   - By Default its value is unique for the set of (exploded) parameters. 
+	   - Define it directly in your ScientraceConfig (SCX) file when you don't use the BatchExploder 
+	-->
+	<Replace Key="CONFIGKEY" Value="FOO" />
+	<!-- The BATCH_ID is also to be set by the BatchExploder. It describes the entire batch, and allows
+	   - the same table-filesnames to be used for the whole batch.
+	-->
+	<Replace Key="BATCH_ID" Value="empty_setup" />
+</PreProcess>
+
+<!-- modify your output settings here -->
+<Output Path="out">
+        <X3D Filename="3dview_%o_empty_setup.x3d" Export="true" />
+        <YieldData Filename="data_empty_setup_%o" HTMLWriteMode="append" ExportHTML="true" ExportCSV="true" CVSWriteMode="append" /> <!-- alternative writemode is "write" -->
+        <Histogram Export="yes" Filename="histogram_empty_setup_%o.csv" Resolution="0.5" />
+        <SVG Filename="pdp_%o_empty_setup.svg" Export="yes" Grid="true" SpotSizeFraction="0.02" Legends="true" PhotonCloud="false" ExportAngles="true" ExportWavelengths="true" />
+        <PhotonDump Filename="dump_%o_empty_setup.csv" Export="no" />
+        <XML ExportCustomTraces="true" ExportPreProcessed="true" Filename="xml_%o_empty_setup.scx" DisplayCustomTraces="false" DisplayPreProcessed="false" />
+</Output>
+
+<!-- Place your objects here -->
+<ObjectEnvironment Environment="air" Radius="1.5" DrawAxes="yes" MinIntensity="0.001" Tag="">
+
+	<!-- Change the 3D viewpoint here -->
+    <CameraViewpoint x="0.50" y="-2.83" z="0.90" />
+    <CameraRotation>
+		<Vector xyz="1;0.2;0.2" />
+		<Angle Degrees="75" />
+	</CameraRotation>
+
+
+</ObjectEnvironment>
+</ScientraceConfig>

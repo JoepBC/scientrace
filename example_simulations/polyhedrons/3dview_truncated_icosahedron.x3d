@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE X3D PUBLIC 'ISO//Web3D//DTD X3D 3.0//EN' 'http://www.web3d.org/specifications/x3d-3.0.dtd'>
+<X3D profile='Immersive' version='3.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.0.xsd'>
+  <Scene>
+<Viewpoint description='LineSet cube close up' position='-2 0.4 6' orientation='0 1 0 -0.349065850398866'/>
+ <Shape>
+        <LineSet vertexCount='9 9 9'>
+          <Coordinate point='
+-1.5 0 0
+1.5 0 0
+1.425 0.03 0.03
+1.5 0 0
+1.425 -0.03 -0.03
+1.5 0 0
+1.425 0.03 -0.03
+1.5 0 0
+1.425 -0.03 0.03
+
+0 -1.5 0
+0 1.5 0
+0.03 1.425 0.03
+0 1.5 0
+-0.03 1.425 -0.03 
+0 1.5 0
+-0.03 1.425 0.03 
+0 1.5 0
+0.03 1.425 -0.03
+
+0 0 -1.5
+0 0 1.5
+0.03 0.03 1.425
+0 0 1.5
+-0.03 -0.03 1.425
+0 0 1.5
+0.03 -0.03 1.425 
+0 0 1.5
+-0.03 0.03 1.425 
+'/>
+<Color color='
+1 1 1 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 
+1 1 1 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 
+1 1 1 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0
+' />
+</LineSet>
+          
+</Shape>
+     <Transform scale='0.15 0.15 0.15' translation='1.5 0 0'>
+		<Transform rotation='0 1 0 -1.5707963267949'>
+        <Shape>
+          <Text solid='true' string='"X"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+        <Shape>
+          <Text solid='false' string='"X"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+
+	<Transform scale='0.15 0.15 0.15' translation='0 1.5 0'>
+		<Transform rotation='0 1 0 -1.5707963267949'>
+        <Shape>
+          <Text solid='true' string='"Y"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+        <Shape>
+          <Text solid='false' string='"Y"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+
+     <Transform scale='0.15 0.15 0.15' translation='0 0 1.5'>
+		<Transform rotation='0 1 0 -1.5707963267949'>
+        <Shape>
+          <Text solid='true' string='"Z"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+		<Shape>
+          <Text solid='true' string='"Z"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+<!-- ComplexVolume: Scientrace.ComplexBorderedVolume --><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.797896977204638 -0.491066448837398 0.562777421851007 	0.934153830841211 -0.0717109735728191 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.356870597975731 0.11595428628873 1.0265 	0.713595671671526 0.231861288872629 0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.441026379317814 -0.607020734943901 0.79468599461959 	0.220558159134501 -0.303572262645132 1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.713595671671526 0.231861288872629 0.794685994619589 	0.934153830841211 -0.0717109735728186 0.562777421851008' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220558159134501 -0.303572262645131 1.0265 	0.356870597975731 0.11595428628873 1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.441026379317814 -0.607020734943901 0.79468599461959 	0.797896977204637 -0.491066448837398 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.797896977204638 0.491066448837398 -0.562777421851007 	-0.934153830841211 0.0717109735728191 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.356870597975731 -0.11595428628873 -1.0265 	-0.713595671671526 -0.231861288872629 -0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.441026379317814 0.607020734943901 -0.79468599461959 	-0.220558159134501 0.303572262645132 -1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.713595671671526 -0.231861288872629 -0.794685994619589 	-0.934153830841211 0.0717109735728186 -0.562777421851008' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220558159134501 0.303572262645131 -1.0265 	-0.356870597975731 -0.11595428628873 -1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.441026379317814 0.607020734943901 -0.79468599461959 	-0.797896977204637 0.491066448837398 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.79789697696606 -0.722975020970136 0.187541470136968 	0.934153830455181 -0.53543355128742 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='1.07046626922803 -0.115907002564026 -0.187541470136969 	1.07046626922803 0.115907002564026 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='1.07046626922803 0.115907002564026 0.187541470136969 	0.934153830841211 -0.0717109735728189 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='1.07046626922803 -0.115907002564026 -0.187541470136969 	0.934153830455181 -0.53543355128742 -0.187541470136968' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.79789697696606 -0.722975020970135 0.187541470136969 	0.797896977204637 -0.491066448837398 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.79789697696606 0.722975020970136 -0.187541470136968 	-0.934153830455181 0.53543355128742 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-1.07046626922803 0.115907002564026 0.187541470136969 	-1.07046626922803 -0.115907002564026 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-1.07046626922803 -0.115907002564026 -0.187541470136969 	-0.934153830841211 0.0717109735728189 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-1.07046626922803 0.115907002564026 0.187541470136969 	-0.934153830455181 0.53543355128742 0.187541470136968' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.79789697696606 0.722975020970135 -0.187541470136969 	-0.797896977204637 0.491066448837398 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.356870597796693 0.86627317852644 0.562777421851007 	0.713595671817361 0.607097241444565 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='1.66971603660035E-16 0.375235952712803 1.0265 	2.7711760604401E-16 0.750318892142543 0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.713595671817361 0.607097241444564 0.562777421851007 	0.713595671671526 0.231861288872629 0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0 0.750318892142543 0.79468599461959 	0.356870597796693 0.86627317852644 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='2.22044604925031E-16 0.375235952712802 1.0265 	0.356870597975731 0.11595428628873 1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.356870597796693 -0.86627317852644 -0.562777421851007 	-0.713595671817361 -0.607097241444565 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-1.66971603660035E-16 -0.375235952712803 -1.0265 	-2.7711760604401E-16 -0.750318892142543 -0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.713595671817361 -0.607097241444564 -0.562777421851007 	-0.713595671671526 -0.231861288872629 -0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0 -0.750318892142543 -0.79468599461959 	-0.356870597796693 -0.86627317852644 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-2.22044604925031E-16 -0.375235952712802 -1.0265 	-0.356870597975731 -0.11595428628873 -1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.797896976966061 0.722975020970135 -0.187541470136968 	0.934153830455181 0.53543355128742 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.441026379169364 0.982256687264132 -0.187541470136969 	0.220558159023852 1.05389115438282 0.187541470136968' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.934153830455181 0.53543355128742 0.187541470136969 	0.713595671817361 0.607097241444564 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220558159023852 1.05389115438282 0.187541470136969 	0.356870597796693 0.86627317852644 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.46657969637788 0.963691115580533 -0.187541470136969 	0.79789697696606 0.722975020970136 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.441026379169364 0.982256687264131 -0.187541470136969 	0.46657969637788 0.963691115580533 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.797896976966061 -0.722975020970135 0.187541470136968 	-0.934153830455181 -0.53543355128742 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.441026379169364 -0.982256687264132 0.187541470136969 	-0.220558159023852 -1.05389115438282 -0.187541470136968' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.934153830455181 -0.53543355128742 -0.187541470136969 	-0.713595671817361 -0.607097241444564 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220558159023852 -1.05389115438282 -0.187541470136969 	-0.356870597796693 -0.86627317852644 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.46657969637788 -0.963691115580533 0.187541470136969 	-0.79789697696606 -0.722975020970136 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.441026379169364 -0.982256687264131 0.187541470136969 	-0.46657969637788 -0.963691115580533 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.713595671817361 0.607097241444564 0.562777421851007 	-0.356870597796693 0.86627317852644 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.356870597975731 0.11595428628873 1.0265 	-0.713595671671526 0.231861288872629 0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.356870597796693 0.86627317852644 0.562777421851007 	1.66533453693773E-16 0.750318892142543 0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.713595671671526 0.23186128887263 0.79468599461959 	-0.713595671817361 0.607097241444564 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.356870597975731 0.11595428628873 1.0265 	-5.55111512312578E-17 0.375235952712803 1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.713595671817361 -0.607097241444564 -0.562777421851007 	0.356870597796693 -0.86627317852644 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.356870597975731 -0.11595428628873 -1.0265 	0.713595671671526 -0.231861288872629 -0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.356870597796693 -0.86627317852644 -0.562777421851007 	-1.66533453693773E-16 -0.750318892142543 -0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.713595671671526 -0.23186128887263 -0.79468599461959 	0.713595671817361 -0.607097241444564 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.356870597975731 -0.11595428628873 -1.0265 	5.55111512312578E-17 -0.375235952712803 -1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.441026379169364 0.982256687264132 -0.187541470136968 	-0.220558159023852 1.05389115438282 0.187541470136968' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220558159023852 1.05389115438282 0.187541470136969 	-0.356870597796693 0.86627317852644 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.713595671817361 0.607097241444565 0.562777421851007 	-0.934153830455181 0.535433551287421 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.441026379169364 0.982256687264132 -0.187541470136968 	-0.79789697696606 0.722975020970136 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.441026379169364 -0.982256687264132 0.187541470136968 	0.220558159023852 -1.05389115438282 -0.187541470136968' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220558159023852 -1.05389115438282 -0.187541470136969 	0.356870597796693 -0.86627317852644 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.713595671817361 -0.607097241444565 -0.562777421851007 	0.934153830455181 -0.535433551287421 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.441026379169364 -0.982256687264132 0.187541470136968 	0.79789697696606 -0.722975020970136 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.797896977204637 -0.491066448837398 0.562777421851007 	-0.934153830841211 -0.071710973572819 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220558159134501 -0.303572262645132 1.0265 	-0.441026379317814 -0.607020734943901 0.794685994619589' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.93415383084121 -0.0717109735728187 0.562777421851007 	-0.713595671671526 0.231861288872629 0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.441026379317814 -0.607020734943901 0.79468599461959 	-0.797896977204637 -0.491066448837398 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220558159134501 -0.303572262645131 1.0265 	-0.356870597975731 0.11595428628873 1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.797896977204637 0.491066448837398 -0.562777421851007 	0.934153830841211 0.071710973572819 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220558159134501 0.303572262645132 -1.0265 	0.441026379317814 0.607020734943901 -0.794685994619589' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.93415383084121 0.0717109735728187 -0.562777421851007 	0.713595671671526 -0.231861288872629 -0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.441026379317814 0.607020734943901 -0.79468599461959 	0.797896977204637 0.491066448837398 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220558159134501 0.303572262645131 -1.0265 	0.356870597975731 -0.11595428628873 -1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.966478949136191 -0.43594706568564 -0.187541470136969 	-1.07046626922803 -0.115907002564026 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.953577450710639 -0.475653794994854 -0.187541470136969 	-0.966478949136191 -0.43594706568564 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.934153830455181 -0.53543355128742 -0.187541470136969 	-0.953577450710639 -0.475653794994854 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.978905678382467 -0.0101153395760962 0.439586154041297 	-1.07046626922803 0.115907002564026 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.948885812531463 -0.0514341402777756 0.522223755321405 	-0.978905678382467 -0.0101153395760962 0.439586154041297' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.93415383084121 -0.0717109735728189 0.562777421851007 	-0.948885812531463 -0.0514341402777756 0.522223755321405' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.797896977204637 -0.491066448837398 0.562777421851007 	-0.797896976966061 -0.722975020970135 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.966478949136191 0.43594706568564 0.187541470136969 	1.07046626922803 0.115907002564026 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.953577450710639 0.475653794994854 0.187541470136969 	0.966478949136191 0.43594706568564 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.934153830455181 0.53543355128742 0.187541470136969 	0.953577450710639 0.475653794994854 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.978905678382467 0.0101153395760962 -0.439586154041297 	1.07046626922803 -0.115907002564026 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.948885812531463 0.0514341402777756 -0.522223755321405 	0.978905678382467 0.0101153395760962 -0.439586154041297' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.93415383084121 0.0717109735728189 -0.562777421851007 	0.948885812531463 0.0514341402777756 -0.522223755321405' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.797896977204637 0.491066448837398 -0.562777421851007 	0.797896976966061 0.722975020970135 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220468220384094 -0.910592997560788 0.562777421851007 	-0.220468220384095 -0.910592997560787 0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220468220384095 -0.910592997560787 0.562777421851007 	-0.441026379317814 -0.607020734943901 0.794685994619589' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-1.11022302462516E-16 -0.303572262645131 1.0265 	0.220558159134501 -0.303572262645131 1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220558159134501 -0.303572262645131 1.0265 	-1.11022302462516E-16 -0.303572262645131 1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220468220384095 -0.910592997560787 0.562777421851007 	0.441026379317813 -0.607020734943901 0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220468220384094 0.910592997560788 -0.562777421851007 	0.220468220384095 0.910592997560787 -0.562777421851007' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220468220384095 0.910592997560787 -0.562777421851007 	0.441026379317814 0.607020734943901 -0.794685994619589' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='1.11022302462516E-16 0.303572262645131 -1.0265 	-0.220558159134501 0.303572262645131 -1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220558159134501 0.303572262645131 -1.0265 	1.11022302462516E-16 0.303572262645131 -1.0265' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220468220384095 0.910592997560787 -0.562777421851007 	-0.441026379317813 0.607020734943901 -0.79468599461959' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220558159023852 -1.05389115438282 -0.187541470136968 	-0.220558159023852 -1.05389115438282 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220468220384095 -0.910592997560787 0.562777421851007 	-0.441026379169364 -0.982256687264131 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220468220384095 -0.910592997560788 0.562777421851007 	0.441026379169363 -0.982256687264132 0.187541470136968' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220558159023852 1.05389115438282 0.187541470136968 	0.220558159023852 1.05389115438282 0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='0.220468220384095 0.910592997560787 -0.562777421851007 	0.441026379169364 0.982256687264131 -0.187541470136969' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='-0.220468220384095 0.910592997560788 -0.562777421851007 	-0.441026379169363 0.982256687264132 -0.187541470136968' />
+		<ColorRGBA color='0 0.2 0.5 1 	0 0.2 0.5 1' /></LineSet></Shape><!-- END OF ComplexVolume: Scientrace.ComplexBorderedVolume -->  </Scene>
+</X3D>

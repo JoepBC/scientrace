@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TestRecord xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Tests>
+    <TestRecord Name="ScientraceTesting">
+      <Tests>
+        <TestRecord Name="VectorTransformTest">
+          <Tests>
+            <TestRecord Name="CreateOrtho3rdVector">
+              <Results>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T15:23:37</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>System.NullReferenceException : Object reference not set to an instance of an object</Message>
+                  <StackTrace>  at Scientrace.Vector.to3x3MatrixWith (Scientrace.Vector v2, Scientrace.Vector v3) [0x00021] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/Vector.cs:73 
+  at Scientrace.VectorTransform.initInverseVectors () [0x00000] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:29 
+  at Scientrace.VectorTransform..ctor (Scientrace.UnitVector u, Scientrace.UnitVector v) [0x00026] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:24 
+  at ScientraceTesting.VectorTransformTest.CreateOrtho3rdVector () [0x00042] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTransformTest.cs:22 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T15:31:21</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>System.NullReferenceException : Object reference not set to an instance of an object</Message>
+                  <StackTrace>  at Scientrace.Vector.to3x3MatrixWith (Scientrace.Vector v2, Scientrace.Vector v3) [0x00021] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/Vector.cs:73 
+  at Scientrace.VectorTransform.initInverseVectors () [0x00000] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:29 
+  at Scientrace.VectorTransform..ctor (Scientrace.UnitVector u, Scientrace.UnitVector v) [0x00026] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:24 
+  at ScientraceTesting.VectorTransformTest.CreateOrtho3rdVector () [0x00042] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTransformTest.cs:22 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T15:31:35</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T15:36:10</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T15:36:20</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T15:40:55</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>System.NullReferenceException : Object reference not set to an instance of an object</Message>
+                  <StackTrace>  at Scientrace.Vector.to3x3MatrixWith (Scientrace.Vector v2, Scientrace.Vector v3) [0x00021] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/Vector.cs:73 
+  at Scientrace.VectorTransform.initInverseVectors () [0x00000] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:29 
+  at Scientrace.VectorTransform..ctor (Scientrace.UnitVector u, Scientrace.UnitVector v) [0x00026] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:24 
+  at ScientraceTesting.VectorTransformTest.CreateOrtho3rdVector () [0x00042] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTransformTest.cs:22 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T15:41:17</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T15:41:33</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.01ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T15:42:00</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>System.NullReferenceException : Object reference not set to an instance of an object</Message>
+                  <StackTrace>  at Scientrace.Vector.to3x3MatrixWith (Scientrace.Vector v2, Scientrace.Vector v3) [0x00021] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/Vector.cs:73 
+  at Scientrace.VectorTransform.initInverseVectors () [0x00000] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:29 
+  at Scientrace.VectorTransform..ctor (Scientrace.UnitVector u, Scientrace.UnitVector v) [0x00026] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:24 
+  at ScientraceTesting.VectorTransformTest.CreateOrtho3rdVector () [0x00042] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTransformTest.cs:22 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T15:46:59</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>System.NullReferenceException : Object reference not set to an instance of an object</Message>
+                  <StackTrace>  at Scientrace.Vector.to3x3MatrixWith (Scientrace.Vector v2, Scientrace.Vector v3) [0x00021] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/Vector.cs:73 
+  at Scientrace.VectorTransform.initInverseVectors () [0x00000] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:29 
+  at Scientrace.VectorTransform..ctor (Scientrace.UnitVector u, Scientrace.UnitVector v) [0x00026] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:24 
+  at ScientraceTesting.VectorTransformTest.CreateOrtho3rdVector () [0x00042] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTransformTest.cs:22 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T15:53:26</TestDate>
+                  <Status>Failure</Status>
+                  <TotalFailures>1</TotalFailures>
+                  <TotalSuccess>0</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>System.IndexOutOfRangeException : Array index is out of range.</Message>
+                  <StackTrace>  at Scientrace.Vector.to3x3MatrixWith (Scientrace.Vector v2, Scientrace.Vector v3) [0x00056] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/Vector.cs:78 
+  at Scientrace.VectorTransform.initInverseVectors () [0x00000] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:29 
+  at Scientrace.VectorTransform..ctor (Scientrace.UnitVector u, Scientrace.UnitVector v) [0x00026] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/scientrace/VectorTransform.cs:24 
+  at ScientraceTesting.VectorTransformTest.CreateOrtho3rdVector () [0x00042] in /home/jbos/stage/raytracer/scientrace/code/Scientrace/ScientraceTesting/VectorTransformTest.cs:22 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod:InternalInvoke (object,object[],System.Exception&amp;)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00000] </StackTrace>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+                <UnitTestResult>
+                  <TestDate>2009-12-04T16:11:39</TestDate>
+                  <Status>Success</Status>
+                  <TotalFailures>0</TotalFailures>
+                  <TotalSuccess>1</TotalSuccess>
+                  <TotalIgnored>0</TotalIgnored>
+                  <Time />
+                  <Message>Test successful
+
+Execution time: 0.02ms</Message>
+                  <ConsoleOutput />
+                  <ConsoleError />
+                </UnitTestResult>
+              </Results>
+            </TestRecord>
+          </Tests>
+        </TestRecord>
+      </Tests>
+    </TestRecord>
+  </Tests>
+</TestRecord>

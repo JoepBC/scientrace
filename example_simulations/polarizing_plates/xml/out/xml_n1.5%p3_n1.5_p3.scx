@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScientraceConfig ConfigID="n1.5%p3" PolarisationSupport="yes" ConfigDescription="nREFRACTIVE_INDEX%pPLATE_COUNT">
+
+	<!-- Setting some variables -->
+	<PreProcess>
+		<Replace Key="READABLE_CONFIGKEY" Value="_p-3_" />
+		<Replace Key="BEAMCOUNT" Value="1" />
+		<Replace Key="PLATE_COUNT" Value="5" />
+
+		<Replace Key="SCREEN_X" Value="0.50" />
+		<Replace Key="REFRACTIVE_INDEX" Value="1.5" />
+		<Replace Key="POLARISATION_ANGLE" Value="56.31" />
+
+	<Import Key="PLATES_CODE">
+		<For Key="PLATE" From="1" To="3" Step="1" />
+		<Value>
+			<RectangularPrism>
+				<Material Class="StaticNTransparent" RefractiveIndex="1.5" Reflects="yes" />
+				<Center xyz="0;0;-0.010">
+					<Multiply Factor="@PLATE@" />
+				</Center>
+				<Width xyz="1;0;0" />
+				<Length xyz="0;1;0" />
+				<Height xyz="0;0;0.003" />
+			</RectangularPrism>
+		</Value>
+	</Import>
+	</PreProcess>
+
+
+	<!-- Describe what data to export -->
+	<Output Path="out">
+		<X3D Filename="3dview_%o_n1.5_p3.x3d" Export="yes" />
+		<YieldData Filename="data_%o" HTMLWriteMode="append" ExportHTML="yes" CVSWriteMode="append" />
+		<SVG Filename="%o_n1.5_p3.svg" Export="yes" Grid="yes" SpotSizeFraction="0.075" PhotonCloud="true" />
+		<PhotonDump Filename="photons_%o_n1.5_p3.csv" Export="yes" />
+		<XML ExportCustomTraces="true" ExportPreProcessed="true" Filename="xml_%o_n1.5_p3.scx" DisplayCustomTraces="false" DisplayPreProcessed="false" />
+	</Output>
+
+<ObjectEnvironment Environment="air" Radius="1" DrawAxes="yes">
+
+    <!-- Camera properties -->
+    <CameraViewpoint x="0" y="-1.45" z="0.39" />
+    <CameraRotation>
+		<Vector xyz="1;0;0" />
+		<Angle Degrees="75" />
+	</CameraRotation>
+
+	<LightSource Class="Spiral" BeamCount="1" MaxInteractions="80" MinIntensity="0.0010" Radius="0.004" Distance="0.004" Intensity="100">	
+		<Location xyz="0;0;0E-2" />
+		<SpiralAxis xyz="0;0;-1" />
+		<Direction x="0" y="0" z="-1">
+			<Rotate>
+				<AboutAxis xyz="0;-1;0" />
+				<Angle Degrees="56.31" />
+			</Rotate>
+		</Direction>
+		<Spectrum Class="range" From="400" To="500" ModuloMultiplier="13" />
+		<REMSpectrum Class="am15" />
+	</LightSource>
+
+<!-- PLATES_CODE inserts the repeated stack of piles as described in the PreProcess section -->	
+<RectangularPrism>
+  <Material Class="StaticNTransparent" RefractiveIndex="1.5" Reflects="yes" />
+  <Center xyz="0;0;-0.010">
+    <Multiply Factor="1" />
+  </Center>
+  <Width xyz="1;0;0" />
+  <Length xyz="0;1;0" />
+  <Height xyz="0;0;0.003" />
+</RectangularPrism><RectangularPrism>
+  <Material Class="StaticNTransparent" RefractiveIndex="1.5" Reflects="yes" />
+  <Center xyz="0;0;-0.010">
+    <Multiply Factor="2" />
+  </Center>
+  <Width xyz="1;0;0" />
+  <Length xyz="0;1;0" />
+  <Height xyz="0;0;0.003" />
+</RectangularPrism><RectangularPrism>
+  <Material Class="StaticNTransparent" RefractiveIndex="1.5" Reflects="yes" />
+  <Center xyz="0;0;-0.010">
+    <Multiply Factor="3" />
+  </Center>
+  <Width xyz="1;0;0" />
+  <Length xyz="0;1;0" />
+  <Height xyz="0;0;0.003" />
+</RectangularPrism>
+
+<!-- We need two receivers to analyse both the tranmitted and the reflected fractions -->
+	<Rectangle Material="black" SideLength="0.5" Tag="reflection">
+		<Center xyz="0.5;0;0.2" />
+		<Normal xyz="0;0;1" />
+		<OrthogonalDirection xyz="0;1;0" />
+		<Register SolarCell="yes" />
+	</Rectangle>
+
+	<Rectangle Material="black" SideLength="0.5" Tag="transmission">
+		<Center Tag="Center location for angle ~56 deg" xyz="0.5;0;-0.3" />
+		<REMCenter Tag="Center location for angle ~68 deg" xyz="0.75;0;-0.3" />
+		<Normal xyz="0;0;1" />
+		<OrthogonalDirection xyz="0;1;0" />
+		<Register SolarCell="yes" />
+	</Rectangle>
+
+  </ObjectEnvironment>
+</ScientraceConfig>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Author: Joep Bos-Coenraad, jbos@scientrace.org -->
+<ScientraceConfig ConfigID="@CONFIGKEY@" ConfigDescription="@CONFIG_DESCRIPTION@">
+
+<PreProcess>
+<Replace Key="TOP_LOC" Value="0;0;1" />
+
+
+<Import Key="OCTAHEDRON_PLANES">
+	<Replace Key="TOP_LOC" Value="0;0;1" />
+
+	<Replace Key="ANGLE_1_STEP" Value="70.528779366" />
+	<Replace Key="ANGLE_1_FROM" Value="54.735610317" />
+	<Replace Key="ANGLE_2_STEP" Value="90" />
+
+	<Replace Key="VECTOR_ROTATION"><Value>
+		<Rotate><AboutAxis xyz="1;0;0" /><Angle Degrees="@ANGLE_1@" Tag="rotation1"/></Rotate>
+		<Rotate><AboutAxis xyz="0;0;1" /><Angle Degrees="@ANGLE_2@" Tag="rotation2"/></Rotate>
+	</Value></Replace>
+
+	<For Key="ANGLE_1" From="@ANGLE_1_FROM@" To="180" Step="@ANGLE_1_STEP@" />
+	<For Key="ANGLE_2" From="45" To="360" Step="@ANGLE_2_STEP@" />
+	<!-- The value below is assigned to the Import Key above -->
+	<Value>
+		<Plane Tag="Top">
+			<Location xyz="@TOP_LOC@">@VECTOR_ROTATION@</Location>
+			<AllowedNormal xyz="@TOP_LOC@">@VECTOR_ROTATION@<Multiply Factor="-1" /></AllowedNormal>
+		</Plane>
+	</Value>
+</Import>
+
+
+
+</PreProcess>
+
+<!-- START OF 3D SETUP -->
+<Output Path="./">
+	<X3D Filename="3dview_@READABLE_CONFIGKEY@.x3d" Export="yes" />
+	<YieldData ExportHTML="no" ExportCSV="no" />
+	<SVG Export="no" />
+	<PhotonDump Export="no" />
+	<XML ExportPreProcessed="no" />
+</Output>
+
+<ObjectEnvironment Environment="air" Radius="1.5" DrawAxes="yes" MinIntensity="0.001" Tag="">
+
+<CameraViewpoint x="-2" y="0.4" z="6" />
+<CameraRotation>
+	<Vector xyz="0;1;0" />
+	<Angle Degrees="-20" />
+</CameraRotation>
+
+
+<BorderedVolume>
+	<Material Class="StaticNTransparent" RefractiveIndex="1.75" Reflects="true" />
+	<SubVolume Tag="a grid finger">
+		@OCTAHEDRON_PLANES@
+	</SubVolume>
+</BorderedVolume>
+
+</ObjectEnvironment>
+</ScientraceConfig>

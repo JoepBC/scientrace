@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EF9EC5AE-EBB3-4833-B741-6AFE66F91F03}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ScientraceTesting</RootNamespace>
+    <AssemblyName>scientrace-unittests</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ReleaseVersion>0.5</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="scientrace-lib">
+      <HintPath>..\scientrace-lib\bin\Debug\scientrace-lib.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\..\..\..\..\usr\lib\monodevelop\AddIns\NUnit\nunit.framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Test.cs" />
+    <Compile Include="LocationTest.cs" />
+    <Compile Include="UnitvectorTest.cs" />
+    <Compile Include="ParallelogramTest.cs" />
+    <Compile Include="VectorTransformTest.cs" />
+    <Compile Include="VectorTest.cs" />
+    <Compile Include="TriangleTest.cs" />
+    <Compile Include="TestTraceJournal.cs" />
+    <Compile Include="PMMAPropertiesTest.cs" />
+    <Compile Include="ParabolicMirrorTest.cs" />
+    <Compile Include="IntersectionTest.cs" />
+    <Compile Include="DummySources.cs" />
+    <Compile Include="BoxBorderTest.cs" />
+    <Compile Include="MiscTests.cs" />
+    <Compile Include="TraceModifierTest.cs" />
+    <Compile Include="PlaneBorderTest.cs" />
+    <Compile Include="EllipticCylindricalBorderTest.cs" />
+    <Compile Include="TestInfiniteCylinderBorder.cs" />
+    <Compile Include="OpticalEfficiencyCharacteristicsTest.cs" />
+    <Compile Include="TestSurfaceInteraction.cs" />
+    <Compile Include="DummyObjects.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

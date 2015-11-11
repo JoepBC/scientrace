@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE X3D PUBLIC 'ISO//Web3D//DTD X3D 3.0//EN' 'http://www.web3d.org/specifications/x3d-3.0.dtd'>
+<X3D profile='Immersive' version='3.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.0.xsd'>
+  <Scene>
+<Viewpoint description='LineSet cube close up' position='0 -1.45 0.39' orientation='1 0 0 1.30899693899575'/>
+ <Shape>
+        <LineSet vertexCount='9 9 9'>
+          <Coordinate point='
+-1 0 0
+1 0 0
+0.95 0.02 0.02
+1 0 0
+0.95 -0.02 -0.02
+1 0 0
+0.95 0.02 -0.02
+1 0 0
+0.95 -0.02 0.02
+
+0 -1 0
+0 1 0
+0.02 0.95 0.02
+0 1 0
+-0.02 0.95 -0.02 
+0 1 0
+-0.02 0.95 0.02 
+0 1 0
+0.02 0.95 -0.02
+
+0 0 -1
+0 0 1
+0.02 0.02 0.95
+0 0 1
+-0.02 -0.02 0.95
+0 0 1
+0.02 -0.02 0.95 
+0 0 1
+-0.02 0.02 0.95 
+'/>
+<Color color='
+1 1 1 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 
+1 1 1 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 
+1 1 1 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0
+' />
+</LineSet>
+          
+</Shape>
+     <Transform scale='0.1 0.1 0.1' translation='1 0 0'>
+		<Transform rotation='0 1 0 -1.5707963267949'>
+        <Shape>
+          <Text solid='true' string='"X"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+        <Shape>
+          <Text solid='false' string='"X"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+
+	<Transform scale='0.1 0.1 0.1' translation='0 1 0'>
+		<Transform rotation='0 1 0 -1.5707963267949'>
+        <Shape>
+          <Text solid='true' string='"Y"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+        <Shape>
+          <Text solid='false' string='"Y"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+
+     <Transform scale='0.1 0.1 0.1' translation='0 0 1'>
+		<Transform rotation='0 1 0 -1.5707963267949'>
+        <Shape>
+          <Text solid='true' string='"Z"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+		<Shape>
+          <Text solid='true' string='"Z"' />
+          <Appearance>
+            <Material diffuseColor='1 0 0'/>
+          </Appearance>
+        </Shape>
+      </Transform>
+<!-- Start Rectangle instance -->\n<Transform translation='0.25 -0.25 0.2'>
+<Shape>
+<!-- Coordinate rectangle sequence (matches coordIndex actually) 0 1 2 3 0 -->
+<LineSet vertexCount='5'>
+<Coordinate point='
+0 0 0, 0.5 0 0, 0.5 0.5 0, 0 0.5 0, 0 0 0'/><ColorRGBA color='0 1 0 1, 0 1 0 1, 
+						0 1 0 1, 0 1 0 1, 
+						0 1 0 1, 0 1 0 1, 
+						0 1 0 1, 0 1 0 1' />	
+</LineSet>      </Shape>\    </Transform>\n<!-- End Rectangle instance --><!-- Start Rectangle instance -->\n<Transform translation='0.25 -0.25 -0.3'>
+<Shape>
+<!-- Coordinate rectangle sequence (matches coordIndex actually) 0 1 2 3 0 -->
+<LineSet vertexCount='5'>
+<Coordinate point='
+0 0 0, 0.5 0 0, 0.5 0.5 0, 0 0.5 0, 0 0 0'/><ColorRGBA color='0 1 0 1, 0 1 0 1, 
+						0 1 0 1, 0 1 0 1, 
+						0 1 0 1, 0 1 0 1, 
+						0 1 0 1, 0 1 0 1' />	
+</LineSet>      </Shape>\    </Transform>\n<!-- End Rectangle instance -->	<Shape>
+		<LineSet vertexCount='2'>
+			<Coordinate point='
+-0.00268626885031303 -0.0027546178555714 0.00221879686244562
+0.450643084030948 -0.00275461785557141 -0.3
+
+			'/>
+		<ColorRGBA color='0.09 0 0.3 1 0.3 0 1 1' />	
+		</LineSet>
+	</Shape>  </Scene>
+</X3D>
