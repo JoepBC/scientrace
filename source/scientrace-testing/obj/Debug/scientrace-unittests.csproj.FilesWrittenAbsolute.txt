@@ -1,7 +1,0 @@
-/home/jbos/Development/applications/scientrace/scientrace-testing/bin/Debug/scientrace-unittests.dll.mdb
-/home/jbos/Development/applications/scientrace/scientrace-testing/bin/Debug/scientrace-unittests.dll
-/home/jbos/Development/applications/scientrace/scientrace-testing/obj/Debug/scientrace-unittests.dll
-/home/jbos/Development/applications/scientrace/scientrace-testing/obj/Debug/scientrace-unittests.dll.mdb
-/home/jbos/Development/applications/scientrace/scientrace-testing/bin/Debug/scientrace-lib.dll
-/home/jbos/Development/applications/scientrace/scientrace-testing/bin/Debug/nunit.framework.dll
-/home/jbos/Development/applications/scientrace/scientrace-testing/bin/Debug/OpenTK.dll

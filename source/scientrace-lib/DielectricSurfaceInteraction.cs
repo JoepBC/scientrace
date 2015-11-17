@@ -97,7 +97,7 @@ public class DielectricSurfaceInteraction {
 		public double static_surface_absorption;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Scientrace.DielectricSurfaceInteraction
+		/// Initializes a new instance of the <see cref="Scientrace.DielectricSurfaceInteraction"/> class.
 		/// </summary>
 		/// <param name="incoming_trace">Incoming trace.</param>
 		/// <param name="interaction_loc">Interaction location.</param>
