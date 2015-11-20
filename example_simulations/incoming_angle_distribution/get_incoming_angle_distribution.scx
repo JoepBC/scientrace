@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Author: Joep Bos-Coenraad, jbos@scientrace.org -->
+<ScientraceConfig ConfigID="@CONFIGKEY@" ConfigDescription="@CONFIG_DESCRIPTION@">
+
+<!-- Set your variables here -->
+<PreProcess>
+	<!-- This variable is typically used to be overwritten by the BatchExploder. 
+	   - By Default its value is unique for the set of (exploded) parameters. 
+	   - Define it directly in your ScientraceConfig (SCX) file when you don't use the BatchExploder 
+	-->
+	<Replace Key="CONFIGKEY" Value="FOO" />
+	<!-- The BATCH_ID is also to be set by the BatchExploder. It describes the entire batch, and allows
+	   - the same table-filesnames to be used for the whole batch.
+	-->
+	<Replace Key="BATCH_ID" Value="empty_setup" />
+</PreProcess>
+
+<!-- modify your output settings here -->
+<Output Path="out">
+        <X3D Filename="3dview_%o_@READABLE_CONFIGKEY@.x3d" Export="true" />
+        <YieldData Filename="data_@BATCH_ID@_%o" HTMLWriteMode="append" ExportHTML="true" ExportCSV="true" CVSWriteMode="append" /> <!-- alternative writemode is "write" -->
+        <Histogram Export="yes" Filename="histogram_@BATCH_ID@_%o.csv" Resolution="0.5" />
+        <SVG Filename="pdp_%o_@READABLE_CONFIGKEY@.svg" Export="yes" Grid="true" SpotSizeFraction="0.02" Legends="true" PhotonCloud="false" ExportAngles="true" ExportWavelengths="true" />
+        <PhotonDump Filename="dump_%o_@READABLE_CONFIGKEY@.csv" Export="no" />
+        <XML ExportCustomTraces="true" ExportPreProcessed="true" Filename="xml_%o_@READABLE_CONFIGKEY@.scx" DisplayCustomTraces="false" DisplayPreProcessed="false" />
+</Output>
+
+<!-- Place your objects here -->
+<ObjectEnvironment Environment="air" Radius="50" DrawAxes="yes" MinIntensity="0.001" Tag="">
+
+	<!-- Change the 3D viewpoint here -->
+	<CameraViewpoint x="-2" y="0.4" z="6" />
+	<CameraRotation>
+		<Vector xyz="0;1;0" />
+		<Angle Degrees="-20" />
+	</CameraRotation>
+
+	<LightSource Class="RandomCircle" Radius="10" RandomSeed="1" Distance="20" eRayCount="64">
+		<Location xyz="0;0.1;0" />	
+		<Normal xyz="0;-1;0" />
+		<Direction xyz="0;-1;0" />
+		<Spectrum Class="am15" />
+	</LightSource>	
+
+	<Rectangle Material="black" Tag="solar cell" Register="true">
+		<Location xyz="0;0;0" />
+		<Height xyz="0;0;1" />
+		<Width xyz="1;0;0" />
+	</Rectangle>
+
+
+</ObjectEnvironment>
+</ScientraceConfig>

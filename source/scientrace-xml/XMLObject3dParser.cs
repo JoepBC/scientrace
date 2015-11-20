@@ -292,8 +292,8 @@ public class XMLObject3dParser : ScientraceXMLAbstractParser {
 			if (xer == null) { return; }
 			// This one has some history which is still backwards compatible. Early versions
 			// of Scientrace demanded an element called "Register" and an attribute called
-			// "SolarCell" (later "Register") to be set. Nowadays, a simple "Register" attribute
-			// to the object will do.
+			// "SolarCell" (later replaced by "Performace") to be set. 
+			// Nowadays, a simple "Register" attribute to the object main element will do.
 			if (this.X.getXBool(xer,"SolarCell", 
 					(this.X.getXBool(xer, "Performance", 
 								(this.X.getXBool(xe, "Register", false))

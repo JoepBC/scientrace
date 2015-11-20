@@ -53,6 +53,8 @@ public class ShadowLightSourceConstruct : ScientraceXMLAbstractParser{
 	public void setClassInfo(XElement xel, ShadowScientrace.ShadowLightSource shadowLS) {
 		shadowLS.class_name = this.X.getXStringByName(xel, "Class");
 		shadowLS.class_type = this.getClass(shadowLS.class_name);
+		if (shadowLS.class_type == null)
+			throw new XMLException("LightSource Class {"+shadowLS.class_name+"} is not recognized.");
 		}
 		
 
@@ -70,8 +72,11 @@ public class ShadowLightSourceConstruct : ScientraceXMLAbstractParser{
 			case "RandomSquare":
 				return typeof(Scientrace.ParallelRandomSquareLightSource);
 				//unreachable break;
+			case "RandomCircle":
+				return typeof(Scientrace.RandomCircleLightSource);
+				//unreachable break;
 			default:
-				throw new XMLException("LightSource Class {"+class_name+"} is not recognized.");
+				return null;
 			}	
 		}
 		
@@ -114,10 +119,11 @@ public class ShadowLightSourceConstruct : ScientraceXMLAbstractParser{
 		/* "ray count"
 		 * The number of traces that will be initiated by the light source, 
 		 		some of the rays may be split or absorbed during simulation
+		 * Previously called: BeamCount, but renamed to RayCount.
 		 * used at: SpiralLightSource
 		 * nullable: no
 		 */
-		int? ray_count = this.X.getXNullInt(xel, "BeamCount");
+		int ray_count = this.X.getXInt(xel, "RayCount", this.X.getXInt(xel, "BeamCount", 1));
 		shadowLS.arguments.Add("ray_count", ray_count);
 	
 		/* "loops"
@@ -177,6 +183,13 @@ public class ShadowLightSourceConstruct : ScientraceXMLAbstractParser{
 		 */
 		shadowLS.arguments.Add("direction", this.X.getXUnitVectorByName(xel, "Direction", null));
 		
+
+		/* "orthogonal to plane in which the "circle of light" is created"
+		 * used at: RandomCircleLightSource
+		 * nullable: yes
+		 */
+		shadowLS.arguments.Add("normal", this.X.getXUnitVectorByName(xel, "Normal", null));
+
 			
 		/* "orthogonal to plane about which spiral is created"
 		 * sued at: SpiralLightSource

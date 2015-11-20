@@ -42,14 +42,6 @@ public class XMLLightSourceParser : ScientraceXMLAbstractParser {
 			case "CustomTraces":
 				//retlight = this.setCustomTracesLightFromXData(xlight, env);
 				//break;
-		    case "Spiral": 
-			case "RandomSquare":
-				retlight = slsc.constructLightSource(xlight, env);
-				//this.setRandomSquareLightFromXData(xlight, xlightclass);
-		        //break;
-		        //Console.WriteLine("Spiral Lightsource");
-				//retlight = this.setSpiralLightFromXData(xlight, utms, env);
-		        break;
 		    case "TestLight":
 		        //Console.WriteLine("TESTLightsource");
 		        retlight = this.setTestLightFromXData(xlight, env);
@@ -58,8 +50,15 @@ public class XMLLightSourceParser : ScientraceXMLAbstractParser {
 		        Console.WriteLine("Random Cylinder Lightsource");
 				retlight = this.setRandomCylinderLightFromXData(xlight, env);
 		        break;
+//		    case "Spiral": 
+//			case "RandomSquare":
 		    default:
-				throw new XMLException("unknown light class type");
+				if (slsc.getClass(lightclass)!=null)  {
+					retlight = slsc.constructLightSource(xlight, env);
+		        	break;
+					} 
+				else
+					throw new XMLException("unknown light class type");
 			}
 		this.addLightSourceTag(retlight, xlight);
 		/* Generic (not lightsource-subclass specific) behaviour */
@@ -143,7 +142,7 @@ public class XMLLightSourceParser : ScientraceXMLAbstractParser {
 				XMLSpectrumParser xsp = new XMLSpectrumParser();
 			Scientrace.LightSpectrum spectrum = xsp.parseLightSpectrum(xlight.Element("Spectrum"));
 				
-			Scientrace.LightSource retlight = new Scientrace.ParallelRandomCylindricalLightSource(env, 
+			Scientrace.LightSource retlight = new Scientrace.RandomCircleLightSource(env, 
 				loc, light_direction.tryToUnitVector(),
 				new Scientrace.Plane(new Scientrace.Location(0,0,0),new Scientrace.NonzeroVector(1, 0, 0), new Scientrace.NonzeroVector(0,0,1)), 
 				radius, beamcount, spectrum);

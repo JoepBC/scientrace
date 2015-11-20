@@ -33,6 +33,8 @@ public abstract class LightSource {
 	public double max_interactions = 10;
 	public double weighted_intensity;
 
+	public bool mandatory_spectrum = true;
+
 	public Dictionary<Object3d,double> objectRevenues = new Dictionary<Object3d, double>();
 
 
@@ -59,7 +61,9 @@ public abstract class LightSource {
 
 		//AND it was put back like a normal ShadowClass object...
 		//this.spectrum = aShadowLightSource.spectrum;
-		this.spectrum = (Scientrace.LightSpectrum)aShadowLightSource.getObject("spectrum", true); 
+		this.spectrum = (Scientrace.LightSpectrum)aShadowLightSource.getObject("spectrum", !this.mandatory_spectrum);
+		if (spectrum == null)
+			Console.WriteLine("WARNING: No spectrum given.");
 		this.efficiency_characteristics = (Scientrace.OpticalEfficiencyCharacteristics)aShadowLightSource.getObject("efficiency_characteristics");
 		
 		this.weighted_intensity = (double)(aShadowLightSource.getNDouble("weighted_intensity") ?? this.spectrum.total_intensity);

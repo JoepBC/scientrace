@@ -138,7 +138,7 @@ public class ShadowClass {
 	public object getObject(string varname, bool nullable) {
 		if (this.arguments.ContainsKey(varname)) {
 			if (!nullable && this.arguments[varname] == null)
-								throw new ArgumentNullException("Parameter {"+varname+"} is not set for Shadowtype "+this.typeString()+" and Factory Method "+this.factory_method+"\n\nDebugdata: \n"+this.getDebugData());
+					throw new ArgumentNullException("Parameter {"+varname+"} is not set for Shadowtype "+this.typeString()+" and Factory Method "+this.factory_method+"\n\nDebugdata: \n"+this.getDebugData());
 			return this.arguments[varname];
 			}
 		if (nullable) { return null; }

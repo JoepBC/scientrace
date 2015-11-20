@@ -87,7 +87,6 @@
     <Compile Include="PerfectMirror.cs" />
     <Compile Include="IntersectionPoint.cs" />
     <Compile Include="X3DGridPoint.cs" />
-    <Compile Include="ParallelRandomCylindricalLightSource.cs" />
     <Compile Include="VectorTransformOrthonormal.cs" />
     <Compile Include="ScientraceBatch.cs" />
     <Compile Include="GaAsSurface.cs" />
@@ -156,6 +155,7 @@
     <Compile Include="TraceJournal-Obsolete.cs" />
     <Compile Include="ShadowClasses.cs" />
     <Compile Include="PlaneBorderEnclosedVolume-3D_Drawing.cs" />
+    <Compile Include="RandomCircleLightSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

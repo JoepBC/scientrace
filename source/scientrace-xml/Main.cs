@@ -1,6 +1,8 @@
 using System;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
 using Scientrace;
 
 
@@ -54,10 +56,25 @@ class MainClass {
 			throw new ArgumentException("No arguments were given! Must have at least a filename for a Scientrace XML Configfile to parse! \n Consult https://wiki.scientrace.org/Scientrace_Configuration_XML for more information.");
 			}
 		string configfilename = argumentDictionary["0"];
-		setup = new ScientraceEnvironmentSetup(configfilename); // build environment based on configfile contents.
+		bool crash = false;
+		if (argumentDictionary.ContainsKey("debug"))
+			crash = Convert.ToInt32(argumentDictionary["debug"])>0;
 		
-		setup.simulate(argumentDictionary); //run simulation on environment
+		try {
+			setup = new ScientraceEnvironmentSetup(configfilename); // build environment based on configfile contents.
+			setup.simulate(argumentDictionary); //run simulation on environment
+			} catch (Exception ex) {
+			if (crash) {
+				throw ex;
+				}
+			else {
+				//if (ex is TargetInvocationException)
+				ex = ex.GetBaseException();
 
+				Console.WriteLine("!!!\n"+ex.ToString());
+				Console.WriteLine("\n\n If you feel like this error is caused by a bug, run the experiment again with the addition parameter: -debug 1\nSend the output to the scientrace developers.");
+				}
+			}
 		Console.WriteLine("[Done] .");
 		Environment.Exit(0);
 	}
