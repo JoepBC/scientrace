@@ -69,7 +69,8 @@ public class ShadowLightSourceConstruct : ScientraceXMLAbstractParser{
 			case "Spiral":
 				return typeof(Scientrace.SpiralLightSource);
 				//unreachable break;
-			case "RandomSquare":
+			case "RandomSquare": //Fallthrough
+			case "RandomRectangle":
 				return typeof(Scientrace.ParallelRandomSquareLightSource);
 				//unreachable break;
 			case "RandomCircle":
@@ -123,7 +124,7 @@ public class ShadowLightSourceConstruct : ScientraceXMLAbstractParser{
 		 * used at: SpiralLightSource
 		 * nullable: no
 		 */
-		int ray_count = this.X.getXInt(xel, "RayCount", this.X.getXInt(xel, "BeamCount", 1));
+		int ray_count = this.X.getXInt(xel, "RayCount", this.X.getXInt(xel, "BeamCount", 256));
 		shadowLS.arguments.Add("ray_count", ray_count);
 	
 		/* "loops"

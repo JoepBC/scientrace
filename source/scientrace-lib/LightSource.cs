@@ -98,7 +98,7 @@ public abstract class LightSource {
 		
 		// No modifiers present? Add normal trace
 		if (this.lightsource_modifiers.Count < 1) {
-			aTrace.traceline.reverse(this.distance);
+			aTrace.traceline.rewind(this.distance);
 			this.traces.Add(aTrace);
 			return;
 			}
@@ -109,7 +109,7 @@ public abstract class LightSource {
 			outTraces.AddRange(this.modifiedTraces(inTraces, aModifier));
 			}
 		foreach (Scientrace.Trace tTrace in outTraces) {
-			tTrace.traceline.reverse(this.distance);
+			tTrace.traceline.rewind(this.distance);
 			}
 		this.traces.AddRange(outTraces);
 		}
@@ -142,63 +142,6 @@ public abstract class LightSource {
 	public int traceCount() {
 		return this.traces.Count;
 		}
-
-/*
-	/// <summary>
-	/// In order to examine the effects of divergence of the solar cell the option "addsplit4traces" was added. Instead
-	/// of calling the this.traces.Add() method for adding a single trace, this method is called which adds 4 traces
-	/// surrounding the original beam (NOT including the original beam). The introduction of TraceModifiers has rendered
-	/// this functionality obsolete and it has therefor been removed.
-	/// </summary>
-	/// <param name="centerTrace">
-	/// The <see cref="Trace"/> around which the 4 new beams are created. Add (a copy of) this beam if you also
-	/// want to trace the center beam.
-	/// </param>
-	/// <param name="angle">
-	/// A <see cref="System.Double"/>: the angle between "centerTrace" and its individual surrounding traces. Not the entire
-	/// divergence will be TWICE this value (similar to the difference between the radius and the diameter).
-	/// </param>
-	/// <param name="relvec">
-	/// A <see cref="Scientrace.Vector"/> to "pinpoint" the surrounding traces in an orientation. The actual directions
-	/// will be calculated by taking the cross-product with the trace direction and this vector.
-	/// </param>
-	/// <param name="distance">
-	/// A distance (<see cref="System.Double"/>) at which the traces "cross". Set this value zero if they should start at
-	/// the starting point of the trace. Set this value to the distance to the first optical object for most tracing purposes.
-	/// </param>
-	public void addSplit4Traces(Trace centerTrace, double angle, Scientrace.NonzeroVector relvec, double distance) {
-		//Console.WriteLine("adding 4 traces instead");
-		Scientrace.UnitVector u,v, centerdir;
-		Scientrace.NonzeroVector tracedir1, tracedir2, tracedir3, tracedir4;
-		centerdir = centerTrace.traceline.direction;
-		try { 
-			Vector cosatrace = centerdir * Math.Cos(angle);
-			u = centerdir.crossProduct(relvec).tryToUnitVector(); 
-			v = centerdir.crossProduct(u).tryToUnitVector();
-			tracedir1 = (cosatrace + u*Math.Sin(angle)).tryToNonzeroVector();
-			tracedir2 = (cosatrace - u*Math.Sin(angle)).tryToNonzeroVector();
-			tracedir3 = (cosatrace + v*Math.Sin(angle)).tryToNonzeroVector();
-			tracedir4 = (cosatrace - v*Math.Sin(angle)).tryToNonzeroVector();
-			if (tracedir1.length*tracedir2.length*tracedir3.length*tracedir4.length > 1.0000001) {
-				throw new Exception("Product of tracedirs lengths > 1 @ LightSource::addSplit4Traces");
-				}
-			if (tracedir1.length*tracedir2.length*tracedir3.length*tracedir4.length < 0.9999999) {
-				throw new Exception("Product of tracedirs lengths < 1 @ LightSource::addSplit4Traces");
-				}
-			this.addNewdirTraceClone(centerTrace, tracedir1, distance);
-			this.addNewdirTraceClone(centerTrace, tracedir2, distance);
-			this.addNewdirTraceClone(centerTrace, tracedir3, distance);
-			this.addNewdirTraceClone(centerTrace, tracedir4, distance);
-			}
-		catch (ZeroNonzeroVectorException zne)	{
-			Console.WriteLine("ERROR: Cannot split traces [LightSource::addSplit4Traces] with relvec = "+relvec.trico());
-			throw (zne); 
-			}
-		catch (Exception e) {
-			throw(e);
-			}
-		}
-*/
 
 
 	/// <summary>

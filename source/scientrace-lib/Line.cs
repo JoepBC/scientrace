@@ -54,7 +54,8 @@ public class Line {
 		return "[line @"+this.startingpoint.ToString()+" ^"+this.direction.ToString()+"]";
 		}
 
-	public void reverse(double distance) {
+	// Place the startingpiont "distance" back in space along the direction of the line.
+	public void rewind(double distance) {
 		this.startingpoint = this.startingpoint - (this.direction.toVector()*distance);
 		}
 

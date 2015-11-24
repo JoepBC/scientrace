@@ -53,11 +53,12 @@ public class XMLLightSourceParser : ScientraceXMLAbstractParser {
 //		    case "Spiral": 
 //			case "RandomSquare":
 		    default:
+				// No old style LightSource parsing class found? Good, let's hope there's a prettier ShadowClass constructor to do this.
 				if (slsc.getClass(lightclass)!=null)  {
 					retlight = slsc.constructLightSource(xlight, env);
 		        	break;
 					} 
-				else
+				else //damnit, there wasn't a ShadowClass constructor either.
 					throw new XMLException("unknown light class type");
 			}
 		this.addLightSourceTag(retlight, xlight);
@@ -131,7 +132,7 @@ public class XMLLightSourceParser : ScientraceXMLAbstractParser {
 			double radius = this.X.getXDouble(xlight.Attribute("Radius"));
 				if (radius <= 0) {throw new ArgumentOutOfRangeException("Radius "+radius+" out of range");}
 			double distance = this.X.getXDouble(xlight.Attribute("Distance"), 0);
-			int beamcount = this.X.getXInt(xlight.Attribute("BeamCount"));
+			int beamcount = this.X.getXInt(xlight.Attribute("RayCount"), this.X.getXInt(xlight.Attribute("BeamCount")));
 			//int maxinteractions = this.X.getXInt(xlight.Attribute("MaxInteractions"), 8); //default value max_interactions -> 8
 			double minintensity = this.X.getXDouble(xlight.Attribute("MinIntensity"), 0.01); //default minimum intensity for tracing set to 1%
 			
@@ -155,7 +156,7 @@ public class XMLLightSourceParser : ScientraceXMLAbstractParser {
 		public Scientrace.SingleRaySource setSingleRayFromXData(XElement xlight, List<Scientrace.UniformTraceModifier> utms,
 				Scientrace.Object3dEnvironment env) {
 			double distance = this.X.getXDouble(xlight.Attribute("Distance"), 0);
-			int beamcount = this.X.getXInt(xlight, "BeamCount");
+			int beamcount = this.X.getXInt(xlight.Attribute("RayCount"), this.X.getXInt(xlight.Attribute("BeamCount")));
 			double minintensity = this.X.getXDouble(xlight, "MinIntensity", 0.01); //default minimum intensity for tracing set to 1%
 			
 			Scientrace.NonzeroVector light_direction = this.X.getXNzVector(xlight.Element("Direction"));
@@ -186,7 +187,7 @@ public class XMLLightSourceParser : ScientraceXMLAbstractParser {
 			double radius = this.X.getXDouble(xlight.Attribute("Radius"));
 				if (radius < 0) {throw new ArgumentOutOfRangeException("Radius "+radius+" out of range");}
 			double distance = this.X.getXDouble(xlight.Attribute("Distance"), 0);
-			int beamcount = this.X.getXInt(xlight, "BeamCount");
+			int beamcount = this.X.getXInt(xlight.Attribute("RayCount"), this.X.getXInt(xlight.Attribute("BeamCount")));
 			//int maxinteractions = this.X.getXInt(xlight, "MaxInteractions", 8); //default value max_interactions -> 8
 			double minintensity = this.X.getXDouble(xlight, "MinIntensity", 0.2); //default minimum intensity for tracing set to 1%
 			//Spiralspecific

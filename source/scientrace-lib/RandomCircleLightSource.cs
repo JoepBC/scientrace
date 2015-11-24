@@ -47,7 +47,7 @@ public class RandomCircleLightSource : ParallelLightSource {
 			r2 = 1-randNum.NextDouble()*2;
 			if (Math.Pow(r1,2)+Math.Pow(r2,2)<1) {
 				line = new Scientrace.Line(location+((urange*r1*radius)+(vrange*r2*radius)).toLocation(),direction);
-				line.startingpoint = line.startingpoint - (direction.toLocation()*distance);
+				// THIS IS BEING DONE BY THE PARENT LIGHTSOURCE CLASS ALREADY: line.startingpoint = line.startingpoint - (direction.toLocation()*distance);
 				} else {
 				iline--;
 				continue;

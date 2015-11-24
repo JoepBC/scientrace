@@ -29,14 +29,15 @@ namespace ScientraceXMLParser {
 		int modifycount = this.X.getXInt(xutm, "ModifyCount", 1);
 		int? randomseed = this.X.getXInt(xutm, "RandomSeed", -1);
 		//cannot set default value "null" for double so use -1 workaround (which can also be used as an integer value in the XML)
-			if (randomseed == -1) { randomseed = null; }
+		if (randomseed == -1) { randomseed = null; }
 		double maxangle = this.X.getXAngleByName(xutm, "MaxAngle", Math.PI*0.25);
+		
 		
 		Scientrace.UniformTraceModifier retutm = new Scientrace.UniformTraceModifier(dispat, spadis);
 
 		retutm.add_self = addself;
 		retutm.setMaxAngle(maxangle);
-		//Console.WriteLine("Maxangle read: "+maxangle+" result: "+retutm.maxangle);
+		Console.WriteLine("Maxangle read: "+maxangle+" result: "+retutm.maxangle);
 		retutm.modify_traces_count = modifycount;
 		retutm.randomSeed = randomseed;
 		

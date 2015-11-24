@@ -33,7 +33,7 @@ public class ParallelRandomSquareLightSource : ParallelLightSource {
 
 		for (int iline = 0; iline < ray_count; iline++) {
 			Scientrace.Line line = new Scientrace.Line(location+(width*randNum.NextDouble()+(height*randNum.NextDouble())).toLocation(), direction);
-			line.startingpoint = line.startingpoint - (direction.toLocation()*distance);
+			// THIS IS BEING DONE BY THE PARENT LIGHTSOURCE CLASS ALREADY: line.startingpoint = line.startingpoint - (direction.toLocation()*distance);
 			Scientrace.Trace newtrace = new Scientrace.Trace(spectrum.wl(iline), this, line, env, spectrum.it(iline), spectrum.it(iline));
 			newtrace.traceid = "RS"+(random_seed==null?"r":random_seed.ToString())+"-"+iline;
 			this.addTrace(newtrace);

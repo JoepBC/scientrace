@@ -13,7 +13,7 @@ namespace Scientrace {
 public class RangeSpectrum : LightSpectrum {
 
 /*	public override string identifier() {
-		return "range";
+		return "nmrange";
 		}*/
 		
 

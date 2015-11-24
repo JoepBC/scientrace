@@ -13,7 +13,7 @@ namespace Scientrace {
 public class RandomRangeSpectrum : LightSpectrum {
 
 /*	public override string identifier() {
-		return "range";
+		return "randomnmrange";
 		}*/
 		
 	public int min, max, points;
@@ -30,11 +30,17 @@ public class RandomRangeSpectrum : LightSpectrum {
 	/// <param name="points"> the resolution/number of wavelengths within the range
 	/// A <see cref="System.Int32"/>
 	/// </param>
-	public RandomRangeSpectrum(int mod_multip, int min_nm, int max_nm, int points) : base (mod_multip) {
+		public RandomRangeSpectrum(int min_nm, int max_nm, int points, int? random_seed) : base (1) {
 		this.min = min_nm;
 		this.max = max_nm;
 		this.points = points;
-		Random rnd = new Random();
+
+		Random rnd;
+		if (random_seed == null || random_seed== -1)
+			rnd = new Random();
+			else
+			rnd = new Random((int)random_seed);
+
 		for (int i = 0; i < this.points; i++) {
 			//translate nanometers to meters... *1E-9
 			this.addWavelength(rnd.Next(this.min, this.max)*1E-9, 1);

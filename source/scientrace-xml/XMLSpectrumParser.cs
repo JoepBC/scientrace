@@ -12,7 +12,7 @@ public class XMLSpectrumParser : ScientraceXMLAbstractParser{
 	
 	
 	public Scientrace.LightSpectrum parseLightSpectrum(XElement xspec) {
-		if (xspec == null) return null;
+		if (xspec == null) return this.visibleSpectrum();;
 
 		string spectrum_id = this.X.getXString(xspec.Attribute("Class"));
 		//Chosen to replace line below to give error at erroneous values when given.
@@ -34,30 +34,49 @@ public class XMLSpectrumParser : ScientraceXMLAbstractParser{
 			case "testspectrum":
 				return new Scientrace.TestSpectrum(mod_multip);
 				//break;
-			case "randomrange":
+			case "randomrange":  //DEPRECATED IDENTIFIER, RENAMED TO nmrange FOR CLARITY REASONS.
+			case "randomnmrange":
 				int rnd_min_nm = this.X.getXInt(xspec, "From");
 				int rnd_max_nm = this.X.getXInt(xspec, "To");
-				int rnd_res = this.X.getXInt(xspec, "Resolution", 1);
-				return new Scientrace.RandomRangeSpectrum(mod_multip, rnd_min_nm, rnd_max_nm, rnd_res);
+				int rnd_entrycount = this.X.getXInt(xspec, "EntryCount", rnd_max_nm - rnd_min_nm);
+				int? rnd_seed = this.X.getXNullInt(xspec, "RandomSeed");
+				return new Scientrace.RandomRangeSpectrum(rnd_min_nm, rnd_max_nm, rnd_entrycount, rnd_seed);
 				//break;
 			case "static":
 				double wavelength = this.X.getXDouble(xspec, "Wavelength");
 				return new Scientrace.SingleWavelengthSpectrum(mod_multip, wavelength);
 				//break;
-			case "range":
+			case "range": //DEPRECATED IDENTIFIER, RENAMED TO nmrange FOR CLARITY REASONS.
+			case "nmrange":
 				int min_nm = this.X.getXInt(xspec, "From");
 				int max_nm = this.X.getXInt(xspec, "To");
-				int res = this.X.getXInt(xspec, "Resolution", max_nm-min_nm);
+				int entrycount = this.X.getXInt(xspec, "EntryCount", this.X.getXInt(xspec, "Resolution", max_nm-min_nm));
 				//Console.WriteLine("RANGESPEC: "+mod_multip+"/"+min_nm+"/"+ max_nm+"/"+ res);
-				return new Scientrace.RangeSpectrum(mod_multip, min_nm, max_nm, res);
+				return new Scientrace.RangeSpectrum(mod_multip, min_nm, max_nm, entrycount);
 				//break;
 			case "purdyblue":
 				return new Scientrace.PurdyBlue(mod_multip);
 				//break;
+			case "visible":
+				return this.visibleSpectrum();
+				//break;
 			default:
-				throw new Exception("Spectrum class "+spectrum_id+" unknown");
+				Console.WriteLine("Spectrum class "+spectrum_id+" unknown. Throwing default {visible} spectrum.");
+				return this.visibleSpectrum();
 			}
 		}	//end parseLightSpectrum	
+
+	public Scientrace.LightSpectrum defaultSpectrum() {
+		return visibleSpectrum();
+		}
+
+	public Scientrace.RandomRangeSpectrum visibleSpectrum() {
+		int min_nm = 380;
+		int max_nm = 750;
+		// Keep the default spectrum seeded for reproducability purposes.
+		int? seed = 1;
+		return new Scientrace.RandomRangeSpectrum(min_nm, max_nm, max_nm-min_nm, seed);
+		}
 
 	public Scientrace.UserLightSpectrum getUserLightSpectrum(XElement xspec) {
 		string tag = this.X.getXString(xspec, "Tag");

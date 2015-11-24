@@ -3,23 +3,24 @@
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-lib/RandomCircleLightSource.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-lib/UniformTraceModifier.cs">
     <Files>
-      <File FileName="scientrace-lib/DielectricSurfaceInteraction.cs" Line="95" Column="58" />
-      <File FileName="scientrace-xml/XMLLightSourceParser.cs" Line="136" Column="78" />
-      <File FileName="scientrace-lib/RandomCircleLightSource.cs" Line="38" Column="4" />
-      <File FileName="scientrace-lib/ParallelRandomSquareLightSource.cs" Line="19" Column="41" />
-      <File FileName="scientrace-lib/ParallelLightSource.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/UniformTraceModifier.cs" Line="454" Column="64" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="scientrace-suite" expanded="True">
             <Node name="scientrace-lib" expanded="True">
-              <Node name="RandomCircleLightSource.cs" selected="True" />
+              <Node name="UniformTraceModifier.cs" selected="True" />
             </Node>
             <Node name="scientrace-xml" expanded="True" />
           </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State name="__root__">
+          <Node name="scientrace-suite" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>

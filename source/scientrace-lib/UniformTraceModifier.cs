@@ -236,7 +236,7 @@ public class UniformTraceModifier : TraceModifier {
 			case DistributionPattern.PeriodicRing:
 				t2dVector = this.getPeriodicRingNode(nodenumber, nodetotal);
 				break;
-				case DistributionPattern.RandomRing:
+			case DistributionPattern.RandomRing:
 				t2dVector = this.getRandomRingNode();
 				break;
 			default:
@@ -451,8 +451,9 @@ public class UniformTraceModifier : TraceModifier {
 		}
 		
 	public Vec2d getProjectedSpiralNode(double nodenumber, double nodetotal, double looptotal) {
-		double phi = Math.Sqrt(((double)nodenumber-0.5)/nodetotal);
-		double orient = 2*Math.PI*looptotal*phi;
+		//double phi = Math.Sqrt(((double)nodenumber-0.5)/nodetotal);
+		double phi = Math.Sqrt(((double)nodenumber-0.5)/nodetotal)*this.radius2dForAngle3d(this.maxangle);
+		double orient = 2.0*Math.PI*looptotal*phi;
 		return new Vec2d(phi*Math.Sin(orient), phi*Math.Cos(orient));
 		}
 
