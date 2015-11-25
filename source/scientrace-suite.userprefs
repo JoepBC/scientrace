@@ -3,27 +3,19 @@
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-lib/UniformTraceModifier.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-lib/FresnelLens.cs">
     <Files>
-      <File FileName="scientrace-lib/UniformTraceModifier.cs" Line="454" Column="64" />
+      <File FileName="scientrace-lib/FresnelLens.cs" Line="135" Column="33" />
+      <File FileName="scientrace-xml/ShadowClassConstruct.cs" Line="137" Column="47" />
+      <File FileName="scientrace-lib/FresnelLensRing.cs" Line="9" Column="1" />
+      <File FileName="scientrace-lib/DoubleConvexLens.cs" Line="8" Column="34" />
+      <File FileName="scientrace-lib/Object3d.cs" Line="9" Column="1" />
+      <File FileName="scientrace-lib/Rectangle.cs" Line="35" Column="84" />
+      <File FileName="scientrace-lib/TriangularPrism.cs" Line="71" Column="54" />
+      <File FileName="scientrace-lib/ShadowClasses.cs" Line="252" Column="1" />
+      <File FileName="scientrace-xml/ShadowLightSourceConstruct.cs" Line="49" Column="31" />
+      <File FileName="scientrace-xml/XMLLightSourceParser.cs" Line="58" Column="22" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="scientrace-suite" expanded="True">
-            <Node name="scientrace-lib" expanded="True">
-              <Node name="UniformTraceModifier.cs" selected="True" />
-            </Node>
-            <Node name="scientrace-xml" expanded="True" />
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State name="__root__">
-          <Node name="scientrace-suite" expanded="True" selected="True" />
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

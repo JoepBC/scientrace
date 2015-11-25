@@ -19,7 +19,7 @@ namespace ShadowScientrace {
 
 public class ShadowClass {
 
-	public int? factory_method;
+	public string factory_id = null; // this should replace the factory method, to get rid of all too complex overdone enums I used to use.
 	public Type class_type;
 	public string tag = null;
 	public string debug_data = null;
@@ -138,7 +138,7 @@ public class ShadowClass {
 	public object getObject(string varname, bool nullable) {
 		if (this.arguments.ContainsKey(varname)) {
 			if (!nullable && this.arguments[varname] == null)
-					throw new ArgumentNullException("Parameter {"+varname+"} is not set for Shadowtype "+this.typeString()+" and Factory Method "+this.factory_method+"\n\nDebugdata: \n"+this.getDebugData());
+					throw new ArgumentNullException("Parameter {"+varname+"} is not set for Shadowtype {"+this.typeString()+"} and Factory ID {"+this.factory_id+"}\n\nDebugdata: \n"+this.getDebugData());
 			return this.arguments[varname];
 			}
 		if (nullable) { return null; }
@@ -157,14 +157,14 @@ public class ShadowClass {
 		return this.class_type.ToString();
 		}
 	
-	public object factory(int fac_meth) {
-		this.factory_method = fac_meth;
+	public object factory(string fac_id) {
+		this.factory_id = fac_id;
 		return this.factory();
 		}
 	
 	public object factory() {
-		if (this.factory_method == null) {
-			throw new ArgumentNullException("A ShadowClass cannot be factorized when the objects factory_method==null for Shadowtype "+this.typeString());
+		if (this.factory_id == null) {
+			throw new ArgumentNullException("A ShadowClass cannot be factorized when the objects factory_id==null for Shadowtype "+this.typeString());
 			}
 		object a = Activator.CreateInstance(this.class_type, new ShadowClass[]{this});
 		return a;
@@ -193,15 +193,15 @@ public class ShadowLightSource : ShadowClass {
 	public ShadowLightSource(ShadowLightSource copyObject) {
 		//Special property removed at 20151021 this.spectrum = copyObject.spectrum;
 		this.class_type = copyObject.class_type;
-		this.factory_method = copyObject.factory_method;
+		this.factory_id = copyObject.factory_id;
 		this.arguments = new Dictionary<string, object>(copyObject.arguments);
 		}
 	
-	public new Scientrace.LightSource factory(int fac_meth) {
-		this.factory_method = fac_meth;
+	public new Scientrace.LightSource factory(string fac_id) {
+		this.factory_id = fac_id;
 		return this.factory();
 		}
-	
+
 	public new Scientrace.LightSource factory() {	
 		/* NO LONGER TRUE DUE TO ADDITION OF CUSTOMTRACES
 		//Special property removed at 20151021 
@@ -241,14 +241,15 @@ public class ShadowObject3d : ShadowClass {
 		this.parent = copyObject.parent;
 		this.materialprops = copyObject.materialprops;
 		this.class_type = copyObject.class_type;
-		this.factory_method = copyObject.factory_method;
+		this.factory_id = copyObject.factory_id;
 		this.arguments = new Dictionary<string, object>(copyObject.arguments);
 		}
 	
-	public new Scientrace.Object3d factory(int fac_meth) {
-		this.factory_method = fac_meth;
+	public new Scientrace.Object3d factory(string fac_id) {
+		this.factory_id = fac_id;
 		return this.factory();
 		}
+
 
 	public bool hasParseOrder() {
 		return this.parseorder != null;

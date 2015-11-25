@@ -8,28 +8,6 @@ using System;
 using System.Collections.Generic;
 
 
-/*
-namespace ShadowScientrace {
-
-	public class ShObject3d : ShadowScientraceObject {
-	
-	public int factory_method;
-	
-	public List<object> factory_parameters = new List<object>();
-	
-	public virtual Type getBaseType() {
-		return typeof(Scientrace.Object3d);
-		}
-	
-	public virtual Scientrace.Object3d factory() {
-		//return new Scientrace.Object3d();
-		return (Scientrace.Object3d)this.getBaseType().GetMethod("").Invoke(null, this.factory_parameters.ToArray());
-		}
-	
-	}
-}//end namespace ShadowScientrace	
-*/
-
 namespace Scientrace {
 
 /// <summary>

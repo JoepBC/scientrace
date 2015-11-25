@@ -8,14 +8,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ShadowScientrace {
-public enum triangularPrismFactoryMethod {
-		WidthHeightAndLength = 1,
-		//B = 2,
-		}}
-
 namespace Scientrace {
-
 
 public class TriangularPrism : Scientrace.Prism {
 
@@ -70,11 +63,12 @@ public class TriangularPrism : Scientrace.Prism {
 
 	/* ShadowClass constructor */
 	public TriangularPrism(ShadowScientrace.ShadowObject3d shadowObject): base(shadowObject) {
-		switch (shadowObject.factory_method??(int)ShadowScientrace.triangularPrismFactoryMethod.WidthHeightAndLength) {
-			case (int)ShadowScientrace.triangularPrismFactoryMethod.WidthHeightAndLength: this.shadowFac_Width_Height_And_Length(shadowObject);
+		switch (shadowObject.factory_id??"WidthHeightAndLength") { // ?? provides a "default method" when null
+			case "WidthHeightAndLength": 
+				this.shadowFac_Width_Height_And_Length(shadowObject);
 				break;
 			default:
-				throw new ArgumentOutOfRangeException("Factory method "+shadowObject.factory_method+" not found for "+shadowObject.typeString());
+				throw new ArgumentOutOfRangeException("Factory id {"+shadowObject.factory_id+"} not found for "+shadowObject.typeString());
 			}
 		}
 

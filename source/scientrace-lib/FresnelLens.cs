@@ -6,18 +6,6 @@
 //  */
 using System;
 
-namespace ShadowScientrace {
-public enum fresnelLensFactoryMethod {
-		EqualHeightRings = 1,
-		EqualWidthRings = 2,
-		EqualAngleRings = 3,
-	/*	FocalLength_and_EqualHeightRings = 4,
-		FocalLength_and_EqualWidthRings = 5,
-		FocalLength_and_EqualAngleRings = 6,*/
-		}}
-
-
-
 namespace Scientrace {
 public class FresnelLens : Object3dCollection {
 
@@ -49,23 +37,23 @@ public class FresnelLens : Object3dCollection {
 			ringTemplateSO3D.arguments["lens_sphere_radians_max"] = lens_sphere_radians_max;
 			}
 
-		switch (ringTemplateSO3D.factory_method) {
-			case (int)ShadowScientrace.fresnelLensFactoryMethod.EqualHeightRings: this.shadowFac_SphereRadius_and_EqualHeightRings(ringTemplateSO3D);
+		switch (ringTemplateSO3D.factory_id) {
+			case "EqualHeightRings": 
+				this.shadowFac_SphereRadius_and_EqualHeightRings(ringTemplateSO3D);
 				break;
-			case (int)ShadowScientrace.fresnelLensFactoryMethod.EqualWidthRings: this.shadowFac_SphereRadius_and_EqualWidthRings(ringTemplateSO3D);
+			case "EqualWidthRings": 
+				this.shadowFac_SphereRadius_and_EqualWidthRings(ringTemplateSO3D);
 				break;
-			case (int)ShadowScientrace.fresnelLensFactoryMethod.EqualAngleRings: this.shadowFac_SphereRadius_and_EqualAngleRings(ringTemplateSO3D);
+			case "NonSphericalApproxEqualWidthRings": 
+				this.shadowFac_NonSphericalApprox_and_EqualWidthRings(ringTemplateSO3D);
 				break;
-/*			case (int)ShadowScientrace.fresnelLensFactoryMethod.FocalLength_and_EqualHeightRings: this.shadowFac_FocalLength_and_EqualHeightRings(shadowObject);
+			case "EqualAngleRings": 
+				this.shadowFac_SphereRadius_and_EqualAngleRings(ringTemplateSO3D);
 				break;
-			case (int)ShadowScientrace.fresnelLensFactoryMethod.FocalLength_and_EqualWidthRings: this.shadowFac_FocalLength_and_EqualWidthRings(shadowObject);
-				break;
-			case (int)ShadowScientrace.fresnelLensFactoryMethod.FocalLength_and_EqualAngleRings: this.shadowFac_FocalLength_and_EqualAngleRings(shadowObject);
-				break;*/
-
 			default:
-				throw new ArgumentOutOfRangeException("Factory method "+ringTemplateSO3D.factory_method+" not found for "+ringTemplateSO3D.typeString());
+				throw new ArgumentOutOfRangeException("Factory id {"+ringTemplateSO3D.factory_id+"} not found for "+ringTemplateSO3D.typeString());
 			}
+
 		}
 
 /*
@@ -117,7 +105,7 @@ public class FresnelLens : Object3dCollection {
 		//construct by creating FresnelLensRing Object3D instances and adding them to collection
 		for (double iring = 0; iring <= ringcount - 1; iring += 1) {
 			ShadowScientrace.ShadowObject3d so3d = new ShadowScientrace.ShadowObject3d(shadowObject);
-			so3d.factory_method = (int?)ShadowScientrace.fresnelLensRingFactoryMethod.PlanoCenterAndRadians;
+			so3d.factory_id = "PlanoCenterAndRadians";
 			double dcos = Math.Cos(lens_sphere_radians_max)-Math.Cos(lens_sphere_radians_min);
 			so3d.arguments["lens_sphere_radians_min"] = Math.Acos((dcos*(iring/ringcount))+Math.Cos(lens_sphere_radians_min));
 			so3d.arguments["lens_sphere_radians_max"] = Math.Acos((dcos*Math.Min((iring+1)/ringcount,1))+Math.Cos(lens_sphere_radians_min));
@@ -126,6 +114,62 @@ public class FresnelLens : Object3dCollection {
 			new FresnelLensRing(so3d);
 			}
 		}
+
+
+
+
+
+
+
+
+//WORK IN PROGRESS *********************************
+//TODO: FIX THIS 20151125
+	/// <summary>
+	/// Required parameters:
+	/// (Location) lens_plano_center, 
+	/// (double) lens_sphere_radius
+	/// (double) width_rings_count   double value instead of int, so the ring may end in a ring-fraction
+	/// (NonzeroVector) focal_vector
+	/// (double) refractive_index derived from SO3D at a given wavelength (600E-9 by default)
+	/// </summary>
+	/// <param name='shadowObject'>
+	/// Shadow object containing parameters from summary.
+	/// </param>
+	protected void shadowFac_NonSphericalApprox_and_EqualWidthRings(ShadowScientrace.ShadowObject3d shadowObject) {
+		//Console.WriteLine("CREATING EQUAL WIDTH RINGS");
+		//User values(s)
+		//NOT USED: Scientrace.Location lens_plano_center = (Scientrace.Location)shadowObject.getObject("lens_plano_center");
+		//NOT USED: double lens_sphere_radius = (double)shadowObject.getObject("lens_sphere_radius");
+		double lens_sphere_radians_min = (double)shadowObject.getObject("lens_sphere_radians_min");
+		double lens_sphere_radians_max = (double)shadowObject.getObject("lens_sphere_radians_max");
+		//NOT USED: Scientrace.UnitVector orientation_from_sphere_center = (Scientrace.UnitVector)shadowObject.getObject("orientation_from_sphere_center");
+
+		double ringcount = (double)shadowObject.getObject("width_rings_count");
+		//construct by creating FresnelLensRing Object3D instances and adding them to collection
+		for (double iring = 0; iring <= ringcount - 1; iring += 1) {
+			ShadowScientrace.ShadowObject3d so3d = new ShadowScientrace.ShadowObject3d(shadowObject);
+			so3d.factory_id = "PlanoCenterAndRadians";
+			double dsin = Math.Sin(lens_sphere_radians_max)-Math.Sin(lens_sphere_radians_min);
+			so3d.arguments["lens_sphere_radians_min"] = Math.Asin((dsin*(iring/ringcount))+Math.Sin(lens_sphere_radians_min));
+			so3d.arguments["lens_sphere_radians_max"] = Math.Asin((dsin*Math.Min((iring+1)/ringcount,1))+Math.Sin(lens_sphere_radians_min));
+			so3d.parent = this;
+			new FresnelLensRing(so3d);
+			}
+		}		
+		
+//END WORK IN PROGRESS *********************************
+
+
+
+
+
+
+
+
+
+
+
+
 	/// <summary>
 	/// Required parameters:
 	/// (Location) lens_plano_center, 
@@ -152,15 +196,16 @@ public class FresnelLens : Object3dCollection {
 		//construct by creating FresnelLensRing Object3D instances and adding them to collection
 		for (double iring = 0; iring <= ringcount - 1; iring += 1) {
 			ShadowScientrace.ShadowObject3d so3d = new ShadowScientrace.ShadowObject3d(shadowObject);
-			so3d.factory_method = (int?)ShadowScientrace.fresnelLensRingFactoryMethod.PlanoCenterAndRadians;
+			so3d.factory_id = "PlanoCenterAndRadians";
 			double dsin = Math.Sin(lens_sphere_radians_max)-Math.Sin(lens_sphere_radians_min);
 			so3d.arguments["lens_sphere_radians_min"] = Math.Asin((dsin*(iring/ringcount))+Math.Sin(lens_sphere_radians_min));
 			so3d.arguments["lens_sphere_radians_max"] = Math.Asin((dsin*Math.Min((iring+1)/ringcount,1))+Math.Sin(lens_sphere_radians_min));
 			so3d.parent = this;
 			new FresnelLensRing(so3d);
 			}
-		}		
-		
+		}	
+
+
 	/// <summary>
 	/// Required parameters:
 	/// (Location) lens_plano_center, 
@@ -188,7 +233,7 @@ public class FresnelLens : Object3dCollection {
 		//construct by creating FresnelLensRing Object3D instances and adding them to collection
 		for (double iring = 0; iring <= ringcount - 1; iring += 1) {
 			ShadowScientrace.ShadowObject3d so3d = new ShadowScientrace.ShadowObject3d(shadowObject);
-			so3d.factory_method = (int?)ShadowScientrace.fresnelLensRingFactoryMethod.PlanoCenterAndRadians;
+			so3d.factory_id = "PlanoCenterAndRadians";
 			double dradians = lens_sphere_radians_max-lens_sphere_radians_min;
 
 			so3d.arguments["lens_sphere_radians_min"] = (dradians*(iring/ringcount))+lens_sphere_radians_min;

@@ -7,12 +7,6 @@
 using System;
 using System.Text;
 
-namespace ShadowScientrace {
-public enum fresnelLensRingFactoryMethod {
-		SphereCenterAndRadians = 1,
-		PlanoCenterAndRadians = 2,
-		}}
-
 
 namespace Scientrace {
 public class FresnelLensRing : EnclosedVolume, IBorder3d {
@@ -69,13 +63,13 @@ public class FresnelLensRing : EnclosedVolume, IBorder3d {
 		} */
 		
 	public FresnelLensRing(ShadowScientrace.ShadowObject3d shadowObject): base(shadowObject) {
-		switch (shadowObject.factory_method) {
-			case (int)ShadowScientrace.fresnelLensRingFactoryMethod.SphereCenterAndRadians: this.shadowFac_SphereCenter_And_Radians(shadowObject);
+		switch (shadowObject.factory_id) {
+			case "SphereCenterAndRadians": this.shadowFac_SphereCenter_And_Radians(shadowObject);
 				break;
-			case (int)ShadowScientrace.fresnelLensRingFactoryMethod.PlanoCenterAndRadians: this.shadowFac_PlanoCenter_And_Radians(shadowObject);
+			case "PlanoCenterAndRadians": this.shadowFac_PlanoCenter_And_Radians(shadowObject);
 				break;
 			default:
-				throw new ArgumentOutOfRangeException("Factory method "+shadowObject.factory_method+" not found for "+shadowObject.typeString());
+				throw new ArgumentOutOfRangeException("Factory method {"+shadowObject.factory_id+"} not found for "+shadowObject.typeString());
 			}
 
 		//General stuff:

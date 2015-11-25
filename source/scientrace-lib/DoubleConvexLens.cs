@@ -7,14 +7,6 @@
 using System;
 using System.Collections.Generic;
 
-namespace ShadowScientrace {
-
-public enum doubleConvexLensFactoryMethod {
-		FocalLength_and_Diameter = 1,
-		TwoRadii_and_Locations = 2,
-		TwoRadii_and_Diameter = 3,
-		}}
-
 namespace Scientrace {
 public class DoubleConvexLens : Scientrace.EnclosedVolume {
 
@@ -46,15 +38,15 @@ public class DoubleConvexLens : Scientrace.EnclosedVolume {
 	
 	
 	public DoubleConvexLens(ShadowScientrace.ShadowObject3d shadowObject): base(shadowObject) {
-		switch (shadowObject.factory_method) {
-			case (int)ShadowScientrace.doubleConvexLensFactoryMethod.TwoRadii_and_Diameter: this.shadowFac_TwoRadii_and_Diameter(shadowObject);
+		switch (shadowObject.factory_id) {
+			case "TwoRadii_and_Diameter": this.shadowFac_TwoRadii_and_Diameter(shadowObject);
 				break;
-			case (int)ShadowScientrace.doubleConvexLensFactoryMethod.TwoRadii_and_Locations: this.shadowFac_TwoRadii_and_Locations(shadowObject);
+			case "TwoRadii_and_Locations": this.shadowFac_TwoRadii_and_Locations(shadowObject);
 				break;
-			case (int)ShadowScientrace.doubleConvexLensFactoryMethod.FocalLength_and_Diameter: this.shadowFac_FocalLength_and_Diameter(shadowObject);
+			case "FocalLength_and_Diameter": this.shadowFac_FocalLength_and_Diameter(shadowObject);
 				break;
 			default:
-				throw new ArgumentOutOfRangeException("Factory method "+shadowObject.factory_method+" not found for "+shadowObject.typeString());
+				throw new ArgumentOutOfRangeException("Factory method {"+shadowObject.factory_id+"} not found for "+shadowObject.typeString());
 
 			}
 		}

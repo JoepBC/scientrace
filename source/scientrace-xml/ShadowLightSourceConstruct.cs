@@ -46,7 +46,7 @@ public class ShadowLightSourceConstruct : ScientraceXMLAbstractParser{
 		this.setLightSourceConstructorParams(shadowLS, xel);
 		this.setLightSourceSettings(shadowLS, xel);
 
-		return shadowLS.factory(0);
+		return shadowLS.factory("no id");
 		}
 		
 	

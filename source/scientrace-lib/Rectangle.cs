@@ -7,12 +7,14 @@
 
 using System;
 
+/*
 namespace ShadowScientrace {
 
 public enum rectangleFactoryMethod {
 		Center_and_Sidelength = 1,
 		Loc_width_height = 2,
 		}}
+*/
 
 namespace Scientrace {
 
@@ -22,13 +24,15 @@ public class Rectangle : Scientrace.FlatSurfaceObject3d {
 	public Scientrace.Parallelogram parallelogram;
 
 	public Rectangle(ShadowScientrace.ShadowObject3d shadowObject): base(shadowObject) {
-		switch (shadowObject.factory_method) {
-			case (int)ShadowScientrace.rectangleFactoryMethod.Loc_width_height: this.shadowFac_Loc_width_height(shadowObject);
+		switch (shadowObject.factory_id) {
+			case "Loc_width_height": 
+				this.shadowFac_Loc_width_height(shadowObject);
 				break;
-			case (int)ShadowScientrace.rectangleFactoryMethod.Center_and_Sidelength: this.shadowFac_Center_and_Sidelength(shadowObject);
+			case "Center_and_Sidelength": 
+				this.shadowFac_Center_and_Sidelength(shadowObject);
 				break;
 			default:
-				throw new ArgumentOutOfRangeException("Factory method "+shadowObject.factory_method+" not found for "+shadowObject.typeString());
+				throw new ArgumentOutOfRangeException("Factory id {"+shadowObject.factory_id+"} not found for "+shadowObject.typeString());
 			}
 		
 		}

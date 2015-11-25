@@ -92,9 +92,9 @@ namespace ScientraceXMLParser {
 		shRectangle.arguments.Add("orthogonal_direction", this.X.getXUnitVectorByName(xel, "OrthogonalDirection", null));
 		shRectangle.arguments.Add("side_length", this.X.getXNullDouble(xel, "SideLength"));
 		if (shRectangle.hasArgument("center_location"))
-			return shRectangle.factory((int)ShadowScientrace.rectangleFactoryMethod.Center_and_Sidelength);
+			return shRectangle.factory("Center_and_Sidelength");
 		if (shRectangle.hasArgument("corner_location")) 
-			return shRectangle.factory((int)ShadowScientrace.rectangleFactoryMethod.Loc_width_height);
+			return shRectangle.factory("Loc_width_height");
 		throw new XMLException("Cannot create Rectangle for XML:\n"+xel.ToString());
 		}
 
@@ -109,7 +109,7 @@ namespace ScientraceXMLParser {
 		//base parameters
 		shadowO3D.arguments.Add("lens_plano_center", this.X.getXLocation(xel, "LensPlanoCenter", null));
 		shadowO3D.arguments.Add("lens_sphere_location", this.X.getXLocation(xel, "LensSphereCenter", null));
-		shadowO3D.arguments.Add("width_rings", this.X.getXNullDouble(xel, "WidthRings")); 
+		shadowO3D.arguments.Add("width_rings_count", this.X.getXNullDouble(xel, "WidthRings")); 
 		shadowO3D.arguments.Add("height_rings", this.X.getXNullDouble(xel, "HeightRings")); 
 		shadowO3D.arguments.Add("angle_rings", this.X.getXNullDouble(xel, "AngleRings")); 
 		shadowO3D.arguments.Add("orientation_from_sphere_center", this.X.getXNzVectorByName(xel, "OpticalAxis", null).toUnitVector());
@@ -133,11 +133,11 @@ namespace ScientraceXMLParser {
 		
 		//base the constructor method on the parameters submitted by the user
 		if (shadowO3D.hasArgument("angle_rings"))
-			return shadowO3D.factory((int)fresnelLensFactoryMethod.EqualAngleRings);
-		if (shadowO3D.hasArgument("width_rings"))
-			return shadowO3D.factory((int)fresnelLensFactoryMethod.EqualWidthRings);
+			return shadowO3D.factory("EqualHeightRings");
+		if (shadowO3D.hasArgument("width_rings_count"))
+			return shadowO3D.factory("EqualHeightRings");
 		if (shadowO3D.hasArgument("height_rings"))
-			return shadowO3D.factory((int)fresnelLensFactoryMethod.EqualHeightRings);
+			return shadowO3D.factory("EqualHeightRings");
 		throw new Exception("Factory method not set/known");
 		} //end constructClassName		
 		
@@ -159,9 +159,9 @@ namespace ScientraceXMLParser {
 
 		//base the constructor method on the parameters submitted by the user
 		if (shadowO3D.hasArgument("lens_plano_center"))
-			return shadowO3D.factory((int)ShadowScientrace.fresnelLensRingFactoryMethod.PlanoCenterAndRadians);
+			return shadowO3D.factory("PlanoCenterAndRadians");
 		if (shadowO3D.hasArgument("lens_sphere_location"))
-			return shadowO3D.factory((int)ShadowScientrace.fresnelLensRingFactoryMethod.SphereCenterAndRadians);
+			return shadowO3D.factory("SphereCenterAndRadians");
 		/*if (shadowO3D.hasArgument("Z"))
 			return shadowO3D.factory((int)ShadowScientrace.classNameFactoryMethod.ConstructorMethod2);*/
 		throw new Exception("Factory method not set/known");
@@ -183,11 +183,11 @@ namespace ScientraceXMLParser {
 		shDCLens.arguments.Add("sphere2_center_loc", this.X.getXLocation(xel, "Sphere2Center", null));
 		
 		if (shDCLens.hasArgument("focal_length"))
-			return shDCLens.factory((int)ShadowScientrace.doubleConvexLensFactoryMethod.FocalLength_and_Diameter);
+			return shDCLens.factory("FocalLength_and_Diameter");
 		if (shDCLens.hasArgument("lens_diameter")) 
-			return shDCLens.factory((int)ShadowScientrace.doubleConvexLensFactoryMethod.TwoRadii_and_Diameter);
+			return shDCLens.factory("TwoRadii_and_Diameter");
 		if (shDCLens.hasArgument("sphere2_center_loc")) 
-			return shDCLens.factory((int)ShadowScientrace.doubleConvexLensFactoryMethod.TwoRadii_and_Locations);
+			return shDCLens.factory("TwoRadii_and_Locations");
 		throw new Exception("Factory method not set/known");
 		}
 
