@@ -21,6 +21,7 @@ public class FresnelLensRing : EnclosedVolume, IBorder3d {
 	public InfiniteCylinderBorder innerVoid;
 	public IInterSectableBorder3d flatBottomBorder;
 	public Sphere lensSphere;
+
 	public Sphere oppositeSideSphere = null;
 	public bool doubleConvexRing;
 	
@@ -29,7 +30,7 @@ public class FresnelLensRing : EnclosedVolume, IBorder3d {
 	/// When x3dCurvedSegments == 1 (min value) just the top and the bottom is drawn. When x3dCurvedSegments == 2, 
 	/// there is one line dividing the ring in two smaller rings, etc. etc.
 	/// </summary>
-	public int x3dCurvedSegments = 4;
+	public int x3dCurvedSegments = 2;
 
 /*
 	public FresnelLensRing(Object3dCollection parent, MaterialProperties mprops,
@@ -37,10 +38,8 @@ public class FresnelLensRing : EnclosedVolume, IBorder3d {
 			double lens_sphere_radians_min, double lens_sphere_radians_max,
 			Scientrace.UnitVector orientation_from_sphere_center) : base (parent, mprops) {
 		this.paramInit(lens_sphere_location, lens_sphere_radius, lens_sphere_radians_min, lens_sphere_radians_max, orientation_from_sphere_center);
-		}*/
-		
-		
-/*		
+		}
+
 	/// <summary>
 	/// Factory method that creates a new FresnelLensRing based on the properties of another FresnelLensRing
 	/// but mirrored about the flat plane (flatBottomBorder).
@@ -142,6 +141,12 @@ public class FresnelLensRing : EnclosedVolume, IBorder3d {
 		//Derived value(s)
 		Scientrace.Location lens_sphere_location = lens_plano_center -
 					(orientation_from_sphere_center*lens_sphere_radius*Math.Cos(lens_sphere_radians_max));
+
+		/*double rmin = Math.Sin(lens_sphere_radians_min)*lens_sphere_radius;
+		double rmax = Math.Sin(lens_sphere_radians_max)*lens_sphere_radius;
+		Console.WriteLine("Ring got radius "+lens_sphere_radius+" at"+lens_sphere_location+" radmin/max:{"+lens_sphere_radians_min+"}/{"+lens_sphere_radians_max+"}.");
+		Console.WriteLine("Ring got rmin/rmax "+rmin+" / "+rmax); */
+
 						
 		//Console.WriteLine("Lens sphere: "+lens_sphere_location.tricon()+" Plano center: "+lens_plano_center.trico());
 		//construct!
@@ -173,6 +178,10 @@ public class FresnelLensRing : EnclosedVolume, IBorder3d {
 						lens_sphere_radians_max, orientation_from_sphere_center, double_convex_ring);
 		}
 				
+
+	public static double RadiansForRadii(double sphereRadius, double ringRadius) {
+		return Math.Asin(ringRadius/sphereRadius);
+		}
 		
 	public double getDistanceFromSphereCenterToAngle(double radians) {
 		return this.sphereRadius * (Math.Cos(radians));
@@ -209,7 +218,7 @@ public class FresnelLensRing : EnclosedVolume, IBorder3d {
 		}
 	
 	public bool bordersContain(Scientrace.Location aLocation) {
-		if (!this.getBottomBorder().contains(aLocation, 1E-15))
+		if (!this.getBottomBorder().contains(aLocation, 1E-14))
 			return false;
 		if (this.innerVoid == null)
 			return true;
@@ -224,7 +233,7 @@ public class FresnelLensRing : EnclosedVolume, IBorder3d {
 	/// The location to check to be within the borders
 	/// </param>
 	public bool contains(Scientrace.Location aLocation) {
-		return this.lensSphere.contains(aLocation, 1E-15)&&
+		return this.lensSphere.contains(aLocation, 1E-14)&&
 			this.bordersContain(aLocation);
 		}
 	/* end of interface IBorder3D implementation */
@@ -249,12 +258,17 @@ public class FresnelLensRing : EnclosedVolume, IBorder3d {
 		return retsb.ToString();
 		}
 		
+	public override string ToString() {
+		return "FresnelLensRing properties: \n:sphereLoc{"+sphereLoc.ToString()+"}, sphereRadius{"+sphereRadius.ToString()+"}, radiansMin{"+radiansMin.ToString()+"}, radiansMax{"+radiansMax.ToString()+"}, orientation{"+orientation.ToString()+"}";
+		}
+
 	public override Intersection intersects(Trace trace) {
 		//Console.WriteLine("lenssphere:"+this.getBottomBorder());
 		Intersection flatBottomAndSphereIntersection = 
 			 this.lensSphere.intersects(trace).mergeToNewIntersectionWithinBorder(
 					this.getBottomBorder().intersectsObject(trace, this),
 					this, trace, this);
+		
 		if (this.innerVoid == null) 
 			return flatBottomAndSphereIntersection;
 		return flatBottomAndSphereIntersection.mergeToNewIntersectionWithinBorder(

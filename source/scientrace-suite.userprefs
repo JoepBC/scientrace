@@ -3,18 +3,19 @@
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-lib/FresnelLens.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-xml/ShadowClassConstruct.cs">
     <Files>
-      <File FileName="scientrace-lib/FresnelLens.cs" Line="135" Column="33" />
-      <File FileName="scientrace-xml/ShadowClassConstruct.cs" Line="137" Column="47" />
-      <File FileName="scientrace-lib/FresnelLensRing.cs" Line="9" Column="1" />
-      <File FileName="scientrace-lib/DoubleConvexLens.cs" Line="8" Column="34" />
-      <File FileName="scientrace-lib/Object3d.cs" Line="9" Column="1" />
-      <File FileName="scientrace-lib/Rectangle.cs" Line="35" Column="84" />
-      <File FileName="scientrace-lib/TriangularPrism.cs" Line="71" Column="54" />
-      <File FileName="scientrace-lib/ShadowClasses.cs" Line="252" Column="1" />
-      <File FileName="scientrace-xml/ShadowLightSourceConstruct.cs" Line="49" Column="31" />
-      <File FileName="scientrace-xml/XMLLightSourceParser.cs" Line="58" Column="22" />
+      <File FileName="scientrace-lib/FresnelLens.cs" Line="26" Column="1" />
+      <File FileName="scientrace-xml/ShadowClassConstruct.cs" Line="116" Column="85" />
+      <File FileName="scientrace-lib/FresnelLensRing.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/DoubleConvexLens.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Object3d.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Rectangle.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/TriangularPrism.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/ShadowClasses.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/ShadowLightSourceConstruct.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/XMLLightSourceParser.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/ScientraceXMLParser.cs" Line="146" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

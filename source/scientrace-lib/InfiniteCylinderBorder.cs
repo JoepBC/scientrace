@@ -74,6 +74,8 @@ public class InfiniteCylinderBorder : EnclosedVolume, IBorder3d {
 		if (!qe.hasAnswers) { return ips; }
 		for (int iAns = 1; iAns <= qe.answerCount; iAns++) {
 			double x = qe.getAnswer(iAns);
+			if (Double.IsNaN(x))
+				throw new ArgumentNullException("Answer {"+iAns+"} is NaN.\n\n qe details:"+qe.ToString());			
 			Vector tLoc = s + (l * x);
 			Vector tNormal = new Vector(tLoc.x, tLoc.y, 0);
 			Location oLoc = (trf.transformback(tLoc)+this.loc).toLocation();

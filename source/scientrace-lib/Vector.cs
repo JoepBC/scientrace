@@ -122,10 +122,14 @@ public class Vector {
 		}
 
 	public static Vector operator *(Scientrace.Vector v1, double scalar) {
+		if (Double.IsNaN(scalar))
+			throw new ArgumentNullException("Cannot multiply Vector {"+v1.ToString()+"} with NaN value.");
 		return new Vector(v1.x*scalar, v1.y*scalar, v1.z*scalar);
 		}
 
 	public static Vector operator /(Scientrace.Vector v1, double scalar) {
+		if (Double.IsNaN(scalar))
+			throw new ArgumentNullException("Cannot divide Vector {"+v1.ToString()+"} with NaN value.");
 		return new Vector(v1.x/scalar, v1.y/scalar, v1.z/scalar);
 		}
 

@@ -62,6 +62,7 @@ public abstract class LightSource {
 		//AND it was put back like a normal ShadowClass object...
 		//this.spectrum = aShadowLightSource.spectrum;
 		this.spectrum = (Scientrace.LightSpectrum)aShadowLightSource.getObject("spectrum", !this.mandatory_spectrum);
+
 		if (spectrum == null)
 			Console.WriteLine("WARNING: No spectrum given.");
 		this.efficiency_characteristics = (Scientrace.OpticalEfficiencyCharacteristics)aShadowLightSource.getObject("efficiency_characteristics");

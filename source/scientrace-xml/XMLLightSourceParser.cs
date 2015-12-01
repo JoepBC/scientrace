@@ -39,7 +39,7 @@ public class XMLLightSourceParser : ScientraceXMLAbstractParser {
 				List<Scientrace.UniformTraceModifier> utms = xtmp.getModifiers(xlight);
 				retlight = this.setSingleRayFromXData(xlight, utms, env);
 				break;
-			case "CustomTraces":
+			//case "CustomTraces":
 				//retlight = this.setCustomTracesLightFromXData(xlight, env);
 				//break;
 		    case "TestLight":

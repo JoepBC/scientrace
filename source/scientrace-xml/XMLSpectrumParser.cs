@@ -12,7 +12,10 @@ public class XMLSpectrumParser : ScientraceXMLAbstractParser{
 	
 	
 	public Scientrace.LightSpectrum parseLightSpectrum(XElement xspec) {
-		if (xspec == null) return this.visibleSpectrum();;
+		if (xspec == null) {
+			Console.WriteLine("- no spectrum defined for lightsource. Using random wavelengths of the visible spectrum.");
+			return this.visibleSpectrum();
+			}
 
 		string spectrum_id = this.X.getXString(xspec.Attribute("Class"));
 		//Chosen to replace line below to give error at erroneous values when given.

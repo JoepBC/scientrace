@@ -27,6 +27,7 @@ namespace ScientraceXMLParser {
 
 		this.getX3DBaseProperties(shadowO3D, xel);
 
+		shadowO3D.register_performance = this.X.getXBool(xel, "Register", false);
 		XElement xer = xel.Element("Register");
 		if (xer != null) {
 			if (this.X.getXBool(xer,"SolarCell", (this.X.getXBool(xer, "Performance", false))))
@@ -105,15 +106,51 @@ namespace ScientraceXMLParser {
 		ShadowScientrace.ShadowObject3d shadowO3D = 
 				new ShadowScientrace.ShadowObject3d(typeof(Scientrace.FresnelLens), this.parentcollection,
 				this.parentcollection.materialproperties);
+		shadowO3D.arguments.Add("double_convex", this.X.getXBool(xel, "DoubleConvex", false));
 
 		//base parameters
+		// Both 
+		// Some settings when FocalVector is present
+		if ((xel.Element("FocalVector") != null) || xel.Element("FocalLocation") != null) {
+			//LensPlanoCenter must be defined. Absense will not be tolerated combined with FocalLocation or FocalVector
+			Scientrace.Location planoCenter = this.X.getXLocation(xel, "LensPlanoCenter");
+
+			Scientrace.NonzeroVector focalVec;
+			if (xel.Element("FocalLocation") != null) {
+				// the relative nonzerovector based on two locations must be checked after comparing both, which implies manual error checking/throwing.
+				Scientrace.Vector focalLoc = this.X.getXVectorByName(xel, "FocalLocation");
+				try {
+					focalVec = (focalLoc - planoCenter).tryToNonzeroVector();
+					} catch(Exception e) {
+					Console.WriteLine("ERROR: focal vector ({FocalLocation: "+focalLoc.trico()+"} - {LensPlanoCenter:"+planoCenter.trico()+"}) cannot be zero.");
+					throw(e);
+					}
+				} 
+			else {
+				focalVec = this.X.getXNzVectorByName(xel, "FocalVector");
+				}
+			shadowO3D.arguments.Add("orientation_from_sphere_center", focalVec.toUnitVector());
+			shadowO3D.arguments.Add("focal_length", focalVec.length);
+			}
+		else {
+			//possible options:
+				//or		
+				shadowO3D.arguments.Add("lens_sphere_radius", this.X.getXNullDouble(xel, "LensSphereRadius")); 
+				//or
+				shadowO3D.arguments.Add("focal_length", this.X.getXNullDouble(xel, "FocalLength"));
+			shadowO3D.arguments.Add("orientation_from_sphere_center", this.X.getXNzVectorByName(xel, "OpticalAxis").toUnitVector());
+			shadowO3D.arguments.Add("lens_sphere_location", this.X.getXLocation(xel, "LensSphereCenter", null));
+			}
+
 		shadowO3D.arguments.Add("lens_plano_center", this.X.getXLocation(xel, "LensPlanoCenter", null));
-		shadowO3D.arguments.Add("lens_sphere_location", this.X.getXLocation(xel, "LensSphereCenter", null));
 		shadowO3D.arguments.Add("width_rings_count", this.X.getXNullDouble(xel, "WidthRings")); 
-		shadowO3D.arguments.Add("height_rings", this.X.getXNullDouble(xel, "HeightRings")); 
-		shadowO3D.arguments.Add("angle_rings", this.X.getXNullDouble(xel, "AngleRings")); 
-		shadowO3D.arguments.Add("orientation_from_sphere_center", this.X.getXNzVectorByName(xel, "OpticalAxis", null).toUnitVector());
-		shadowO3D.arguments.Add("double_convex", this.X.getXBool(xel, "DoubleConvex", false));
+		shadowO3D.arguments.Add("height_rings_count", this.X.getXNullDouble(xel, "HeightRings")); 
+		shadowO3D.arguments.Add("angle_rings_count", this.X.getXNullDouble(xel, "AngleRings")); 
+		shadowO3D.arguments.Add("var_rings_count", this.X.getXNullDouble(xel, "VarRings")); 
+
+		shadowO3D.arguments.Add("focus_wavelength", this.X.getXNullDouble(xel, "FocusWavelength")); 
+
+
 		shadowO3D.arguments.Add("lens_material", this.getXMaterial(xel));
 
 		shadowO3D.arguments.Add("draw_3d_segment_linecount", this.X.getXNullInt(xel, "Draw3DLineCount"));
@@ -124,22 +161,18 @@ namespace ScientraceXMLParser {
 			shadowO3D.arguments.Add("lens_sphere_radians_max", this.X.getXNullAngleByName(xel, "MaxAngle")); 
 			//or
 			shadowO3D.arguments.Add("lens_radius", this.X.getXNullDouble(xel, "Radius")); 
-
-		//possible options:
-			//or		
-			shadowO3D.arguments.Add("lens_sphere_radius", this.X.getXNullDouble(xel, "LensSphereRadius")); 
-			//or
-			shadowO3D.arguments.Add("focal_length", this.X.getXNullDouble(xel, "FocalLength"));
 		
 		//base the constructor method on the parameters submitted by the user
-		if (shadowO3D.hasArgument("angle_rings"))
-			return shadowO3D.factory("EqualHeightRings");
+		if (shadowO3D.hasArgument("var_rings_count")) //various radius rings are also equal width
+			return shadowO3D.factory("VarRings");
+		if (shadowO3D.hasArgument("angle_rings_count"))
+			return shadowO3D.factory("EqualAngleRings");
 		if (shadowO3D.hasArgument("width_rings_count"))
-			return shadowO3D.factory("EqualHeightRings");
-		if (shadowO3D.hasArgument("height_rings"))
+			return shadowO3D.factory("EqualWidthRings");
+		if (shadowO3D.hasArgument("height_rings_count"))
 			return shadowO3D.factory("EqualHeightRings");
 		throw new Exception("Factory method not set/known");
-		} //end constructClassName		
+		} //end constructFresnelLens
 		
 		
 	public Scientrace.Object3d constructFresnelLensRing(XElement xel) { //replace ClassName by actuall class name for readability purposes

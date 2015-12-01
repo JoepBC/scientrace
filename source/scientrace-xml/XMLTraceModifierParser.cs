@@ -37,7 +37,7 @@ namespace ScientraceXMLParser {
 
 		retutm.add_self = addself;
 		retutm.setMaxAngle(maxangle);
-		Console.WriteLine("Maxangle read: "+maxangle+" result: "+retutm.maxangle);
+		//Console.WriteLine("Maxangle read: "+maxangle+" result: "+retutm.maxangle);
 		retutm.modify_traces_count = modifycount;
 		retutm.randomSeed = randomseed;
 		

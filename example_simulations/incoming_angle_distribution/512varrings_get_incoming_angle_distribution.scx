@@ -57,7 +57,7 @@
 		<Direction xyz="0;-1.000001;0" />
 	</LightSource>	
 
-	<FresnelLens DoubleConvex="no" FocusWavelength="500E-9" WidthRings="150" REMVarRings="150" Radius="8">
+	<FresnelLens DoubleConvex="no" FocusWavelength="500E-9" REMWidthRings="150" VarRings="512" Radius="8">
 		<LensPlanoCenter xyz="0;16;0" />
 		<FocalVector xyz="0;-16;0" />
 		<Material Class="StaticNTransparant" RefractiveIndex="1.5" Reflects="true" />

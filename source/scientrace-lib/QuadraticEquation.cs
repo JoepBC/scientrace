@@ -26,6 +26,10 @@ public class QuadraticEquation {
 		this.calcValues();
 		}
 
+	public override string ToString() {
+		return "[QuadraticEquation] a: {"+this.a+"}, b: {"+this.b+"}, c: {"+this.c+"}, discriminant: {"+this.discriminant+"} hasAnswers: "+this.hasAnswers.ToString();
+		}
+
 	/// <summary>
 	/// Gets one of the answers for the Quadratic Equation.
 	/// </summary>
@@ -68,19 +72,24 @@ public class QuadraticEquation {
 	/// </returns>
 	public void setDiscriminant() {
 		this.discriminant = (b*b) - (4*a*c);
-		if (this.discriminant < 0) {
+		if ((this.discriminant < 0) || (this.a == 0)) {
 			this.answerCount = 0;
 			this.hasAnswers = false;
-			} else {
+			return;
+			} 
+		else {
 			this.hasAnswers = true;
 			if (this.discriminant == 0) {
 				this.answerCount = 1;
-				} else {
+				} 
+			else {
 				this.answerCount = 2;
-				}}
+				}
+			return;
+			}
 		} //end void setDiscriminant
 						
 		
-	}
-}
+	
+}}
 

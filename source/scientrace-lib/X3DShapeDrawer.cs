@@ -42,7 +42,7 @@ public class X3DShapeDrawer {
 			Math.Acos(toVector.normalized().dotProduct(fromVector.normalized())) // the angle to be rotated
 			* Math.Sign(r.crossProduct(fromVector).dotProduct(toVector));
 		try {
-			return "<Transform rotation='"+r.tryToUnitVector().trico()+" "+angle+" />";
+			return "<Transform rotation='"+r.tryToUnitVector().trico()+" "+angle+"' >";
 			} catch { // if fromVector has the same direction as toVector, the crossProduct is a zerovector which cannot be normalized.
 			return "<Transform>"; //no transformation, just open so it can be closed afterwards
 			}
