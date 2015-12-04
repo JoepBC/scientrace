@@ -15,7 +15,11 @@ public class SubBatchArray : ConfigArray {
 			this.name = SubBatch.Attribute("Tag").Value;
 			}
 		foreach (XElement vs in SubBatch.Elements("ValueSet"))  {
+			string batch_id = "unknown";
+			if (vs.Attribute("Tag")!=null)
+				batch_id = vs.Attribute("Tag").Value;
 			this.createNewSet();
+			this.addEntry(this.name, batch_id);
 			foreach(XElement rxe in vs.Elements("Replace")) {
 				if (rxe.Attribute("Value")!=null) {
 					//value assignment via attribute
