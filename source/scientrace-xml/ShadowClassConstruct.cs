@@ -160,7 +160,7 @@ namespace ScientraceXMLParser {
 			shadowO3D.arguments.Add("lens_sphere_radians_min", this.X.getXNullAngleByName(xel, "MinAngle")); 
 			shadowO3D.arguments.Add("lens_sphere_radians_max", this.X.getXNullAngleByName(xel, "MaxAngle")); 
 			//or
-			shadowO3D.arguments.Add("lens_radius", this.X.getXNullDouble(xel, "Radius")); 
+			shadowO3D.arguments.Add("lens_radius", this.X.getXNullDouble(xel, "Radius", (double?)0.5*this.X.getXNullDouble(xel, "Diameter"))); 
 		
 		//base the constructor method on the parameters submitted by the user
 		if (shadowO3D.hasArgument("var_rings_count")) //various radius rings are also equal width

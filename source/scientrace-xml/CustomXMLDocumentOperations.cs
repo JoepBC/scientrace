@@ -289,33 +289,20 @@ namespace ScientraceXMLParser {
 		return reti;
 		}
 		
-	public Scientrace.Vector oldPerformVectorTransformations(Scientrace.Vector aVector, XElement xe) {
-		//MULTIPLE TRANSFORMATIONS NOW PERMITTED IN ORDER OF APPEARANCE
-/*		if (this.countIElements(xe.Elements("Transformed"))>1) {
-			throw new IndexOutOfRangeException("Number of vectormodifications ("+
-				(this.countIElements(xe.Elements("Transformed")))+
-				" too large!");
-			}*/
-		Scientrace.Vector retvec = aVector;
-		foreach (XElement xel in xe.Elements("Transformed")) {
-			retvec = this.oldTransformVector(retvec, xel);
-			}
-		return retvec;
-		}
 
 		public Scientrace.Vector modifyVectorForSubElements(Scientrace.Vector aVector, XElement xe) {
 		Scientrace.Vector retvec = aVector;
 		foreach (XElement xel in xe.Elements()) {
 			string elementName = xel.Name.ToString();
 			switch (elementName) {
-				case "Transformed":
-					retvec = this.oldPerformVectorTransformations(retvec, xel);
-					break;
 				case "Rotate":
 					retvec = this.rotateVector(retvec, xel);
 					break;
 				case "Translate":
 					retvec = this.translateVector(retvec, xel);
+					break;
+				case "AverageWith":
+					retvec = this.averageVector(retvec, xel);
 					break;
 				case "Multiply":
 					retvec = this.multiplyVector(retvec, xel);
@@ -331,6 +318,11 @@ namespace ScientraceXMLParser {
 	public Scientrace.Vector translateVector(Scientrace.Vector aVector, XElement xtransl) {
 		double factor = this.getXDouble(xtransl,"Factor", 1);
 		return aVector + (this.getXVectorSuggestions(xtransl, Scientrace.Vector.ZeroVector())*factor);
+		}
+
+	public Scientrace.Vector averageVector(Scientrace.Vector aVector, XElement xavg) {
+		double factor = this.getXDouble(xavg,"Factor", 1);
+		return (aVector + (this.getXVectorSuggestions(xavg, Scientrace.Vector.ZeroVector())*factor))/2;
 		}
 
 	public Scientrace.Vector multiplyVector(Scientrace.Vector aVector, XElement xel) {
@@ -362,44 +354,6 @@ namespace ScientraceXMLParser {
 		}
 
 
-	//TODO: this method and its underlying methods (oldWHATEVER) can be removed at some point. Now still here for backwards compatibility.
-	public Scientrace.Vector oldTransformVector(Scientrace.Vector aVector, XElement transformed) {
-		//THIS FUNCTION IS NOW FULLY OBSOLETE. THE ORDER OF OPERATION WAS PRETTY POINTLESS AFTER ALL. NOW SIMPLY IN ORDER OF APPEARANCE.
-		/* ORDER OF OPERATION:
-		 * 1: Multiply
-		 * 2: Rotate
-		 * 3: Translate
-		 */
-		//XElement transformed = xe.Element("Transformed");
-		if (transformed == null) { return aVector; }
-
-		Scientrace.Vector addvec = Scientrace.Vector.ZeroVector();
-		foreach (XElement xtransl in transformed.Elements("Translate")) {
-			double factor = this.getXDouble(xtransl,"Factor", 1);
-			addvec = addvec + 
-				this.getXVectorSuggestions(xtransl, Scientrace.Vector.ZeroVector())*factor;
-			//Console.WriteLine("ADDVEC: "+addvec.trico()+" to "+aVector.trico());
-			}
-		double multiplication = 1;
-		Scientrace.Vector multiplyvec = new Scientrace.Vector(1,1,1);
-		if (transformed.Element("Multiply") != null) {
-			multiplication = this.getXDouble(transformed.Element("Multiply").Attribute("Factor"),1);
-			multiplyvec = this.getXVectorSuggestions(transformed.Element("Multiply"),
-				new Scientrace.Vector(1,1,1));
-			}
-			//Console.WriteLine("-->: "+addvec.trico()+" to "+aVector.trico());
-
-		return this.oldPerformVectorTransformations(		//Fourth (include sub-transformations)
-				addvec +													//Third (add/translate)
-				this.rotateVectorForRotatedElementsIn(											//Second (rotated)
-				(multiplyvec*multiplication).elementWiseProduct(aVector)	//First (multiply)
-				, transformed)//(second argument of rotate-fuction)
-				, transformed);  //(second argument of modify function)
-/*		Scientrace.Vector retvec = ((aVector*multiplication) + addvec);
-		Scientrace.Vector fretvec = this.modifyVector(retvec, translated);
-		return fretvec;*/
-		}		
-		
 	public Scientrace.Vector rotateVectorForRotatedElementsIn(Scientrace.Vector aVector, XElement xe) {
 		Scientrace.Vector retvec = aVector;
 		// foreach(XElement rotated in xe.Elements("Rotated")) { // IN ORDER OF APPEARANCE
@@ -746,6 +700,12 @@ namespace ScientraceXMLParser {
 			}
 		return null;	
 		}
+
+	public double? getXNullDouble(XElement xparent, string xmlkey, double? defval) {
+		double? retval = this.getXNullDouble(xparent, xmlkey);
+		return retval == null ? defval : retval;
+		}
+
 		
 	public double? getXNullDouble(XElement xparent, string xmlkey) {
 		if (xparent==null) return null;
