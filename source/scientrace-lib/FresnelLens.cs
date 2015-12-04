@@ -30,13 +30,16 @@ public class FresnelLens : Object3dCollection {
 			}
 
 		//Setting Sphere Radius (if not provided) from Focal Length
-		if (ringTemplateSO3D.hasArgument("lens_radius") && ringTemplateSO3D.hasArgument("lens_sphere_radius") &&!ringTemplateSO3D.hasArgument("lens_sphere_radians_max")) {
+		if (ringTemplateSO3D.hasArgument("lens_radius") 
+				&& ringTemplateSO3D.hasArgument("lens_sphere_radius") 
+				&&!ringTemplateSO3D.hasArgument("lens_sphere_radians_max")) {
 			double lens_radius = (double)ringTemplateSO3D.getObject("lens_radius");
 			double sphere_radius  = (double)ringTemplateSO3D.getObject("lens_sphere_radius");
 
-			if (sphere_radius < lens_radius)
+			// VarRings can have larger radii. Will throw an error upon calculating the ring sphere radius later on if necessary.
+			if ((ringTemplateSO3D.factory_id != "VarRings") && (sphere_radius < lens_radius))
 				throw new ArgumentOutOfRangeException("Cannot create a lens with radius "+lens_radius+" from sphere with radius: "+sphere_radius+
-					" possibly constructed from focal length: "+ringTemplateSO3D.printArgument("focal_length"));
+					" possibly constructed from focal length: "+ringTemplateSO3D.printArgument("focal_length")+"{"+ringTemplateSO3D.factory_id);
 			
 			double lens_sphere_radians_max = Math.Asin(lens_radius/sphere_radius);
 			//Console.WriteLine("sphere radius: "+sphere_radius+"  lens radius: "+lens_radius);
@@ -128,9 +131,6 @@ public class FresnelLens : Object3dCollection {
 
 
 
-
-//WORK IN PROGRESS *********************************
-//TODO: FIX THIS 20151125
 	/// <summary>
 	/// Required parameters:
 	/// (Location) lens_plano_center, 
@@ -161,21 +161,14 @@ public class FresnelLens : Object3dCollection {
 		double focal_length = ringTemplateSO3D.getDouble("focal_length");
 
 		double focus_wavelength = ringTemplateSO3D.getDouble("focus_wavelength", 600E-9);
-		double n = ringTemplateSO3D.materialprops.refractiveindex(focus_wavelength);
+		double refindex = ringTemplateSO3D.materialprops.refractiveindex(focus_wavelength);
 
 		for (double iring = 0; iring <= ring_count - 1; iring += 1) {
 			double rmin = iring*ring_width;
 			double rmax = Math.Min(iring+1, ring_count)*ring_width;
 			double ravg = (rmin+rmax) / 2;
-			double l = Math.Sqrt((ravg*ravg)+(focal_length*focal_length));
 
-			double xy_ratio = ((n*l)-focal_length)/ravg;
-			/* double sx =   xy_ratio 	/ Math.Sqrt(Math.Pow(xy_ratio,2) + 1);
-			 * double sy =		  1 	/ Math.Sqrt(Math.Pow(xy_ratio,2) + 1); */
-
-			double sh = ravg*xy_ratio;
-			double ring_sphere_radius = Math.Sqrt((sh*sh)+(ravg*ravg));
-
+						double ring_sphere_radius = FresnelLens.GetOptimalRingSphereRadius(focal_length, ravg, refindex, rmax);
 			//Console.WriteLine("Radius "+iring+ ": {"+ring_sphere_radius+"}, rmin: {"+rmin+"}, rmax: {"+rmax+"}, xy_ratio: {"+xy_ratio+"}");
 
 			ShadowScientrace.ShadowObject3d so3d = new ShadowScientrace.ShadowObject3d(ringTemplateSO3D);
@@ -187,10 +180,28 @@ public class FresnelLens : Object3dCollection {
 			new FresnelLensRing(so3d);
 			}
 		}		
-		
-//END WORK IN PROGRESS *********************************
 
 
+		public static double GetOptimalRingSphereRadius(double focal_length, double ring_radius, double refractive_index, double ring_max_radius) {
+			double l = Math.Sqrt((ring_radius*ring_radius)+(focal_length*focal_length));
+
+			double xy_ratio = ((refractive_index*l)-focal_length)/ring_radius;
+			/* double sx =   xy_ratio 	/ Math.Sqrt(Math.Pow(xy_ratio,2) + 1);
+			 * double sy =		  1 	/ Math.Sqrt(Math.Pow(xy_ratio,2) + 1); */
+
+			double sphere_cos = ring_radius*xy_ratio;
+			double ring_sphere_radius = Math.Sqrt((sphere_cos*sphere_cos)+(ring_radius*ring_radius));
+
+			
+
+			/*Console.WriteLine("Attempting to create a lens(ring) up to radius {"+ring_max_radius+"}. Calculated ring sphere has radius: {"+ring_sphere_radius+
+					"} At ring radius:{"+ring_radius+"} and focal distance: {"+focal_length+"}");*/
+
+			if (ring_max_radius > focal_length * xy_ratio)
+				throw new ArgumentOutOfRangeException("Cannot create a lens(ring) up to radius {"+ring_max_radius+"}. Max radius is: {"+(focal_length * xy_ratio)+
+					"} At ring radius:{"+ring_radius+"} and focal distance: {"+focal_length+"}\n\nSUGGESTED SOLUTION: modify your FresnelLens such that it has a SMALLER RADIUS, or a LARGER FOCAL DISTANCE. [good luck]\n\n");
+			return ring_sphere_radius;
+			}
 
 
 

@@ -147,7 +147,7 @@ public partial class TraceJournal {
 
 
 	public string toResString(double aDouble) {
-		return (this.angle_histogram_resolution*Math.Round(aDouble/this.angle_histogram_resolution)).ToString();
+		return (this.angle_histogram_resolution*Math.Floor(aDouble/this.angle_histogram_resolution)).ToString();
 		}
 		
 	public void writeAngleHistogramCSV(Scientrace.PhysicalObject3d anObject) {

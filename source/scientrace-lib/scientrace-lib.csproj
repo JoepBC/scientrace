@@ -77,7 +77,6 @@
     <Compile Include="Plane.cs" />
     <Compile Include="Circle2d.cs" />
     <Compile Include="MaterialProperties.cs" />
-    <Compile Include="PMMAProperties.cs" />
     <Compile Include="AirProperties.cs" />
     <Compile Include="ParallelLightSource.cs" />
     <Compile Include="ParallelSquareLightSource.cs" />
@@ -100,7 +99,6 @@
     <Compile Include="CircularFresnelPrism.cs" />
     <Compile Include="Object3dBoxedCollection.cs" />
     <Compile Include="PurdyBlue.cs" />
-    <Compile Include="BlackBodySurface.cs" />
     <Compile Include="UserLightSource.cs" />
     <Compile Include="SuncyclePMMAProperties.cs" />
     <Compile Include="SurfaceMarker.cs" />
@@ -156,6 +154,7 @@
     <Compile Include="ShadowClasses.cs" />
     <Compile Include="PlaneBorderEnclosedVolume-3D_Drawing.cs" />
     <Compile Include="RandomCircleLightSource.cs" />
+    <Compile Include="MaterialProperties_VariousMaterials.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

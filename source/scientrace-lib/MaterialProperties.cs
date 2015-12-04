@@ -56,6 +56,8 @@ public abstract class MaterialProperties {
 		MaterialProperties.addMaterial(AirProperties.Instance);
 		MaterialProperties.addMaterial(PerfectMirror.Instance);
 		MaterialProperties.addMaterial(GaAsSurface.Instance);
+		MaterialProperties.addMaterial(SodaLimeGlassProperties.Instance);
+		MaterialProperties.addMaterial(SchottBK7Properties.Instance);
 		//MaterialProperties.materialstablebuilt = true;
 		}
 	

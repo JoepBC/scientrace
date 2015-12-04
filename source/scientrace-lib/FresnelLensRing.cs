@@ -218,7 +218,7 @@ public class FresnelLensRing : EnclosedVolume, IBorder3d {
 		}
 	
 	public bool bordersContain(Scientrace.Location aLocation) {
-		if (!this.getBottomBorder().contains(aLocation, 1E-14))
+		if (!this.getBottomBorder().contains(aLocation, 1E-13))
 			return false;
 		if (this.innerVoid == null)
 			return true;
@@ -233,7 +233,7 @@ public class FresnelLensRing : EnclosedVolume, IBorder3d {
 	/// The location to check to be within the borders
 	/// </param>
 	public bool contains(Scientrace.Location aLocation) {
-		return this.lensSphere.contains(aLocation, 1E-14)&&
+		return this.lensSphere.contains(aLocation, 1E-13)&&
 			this.bordersContain(aLocation);
 		}
 	/* end of interface IBorder3D implementation */

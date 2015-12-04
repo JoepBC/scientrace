@@ -159,10 +159,10 @@ public class Rectangle : Scientrace.FlatSurfaceObject3d {
 		vmark.minval = 0;
 		if (this.parallelogram.plane.v.length < 1) {
 			vmark.maxval = this.parallelogram.plane.v.length*1000;
-			vmark.yunits = "mm";
+			vmark.yunits = "E-3"; //"mm";
 			} else {
 			vmark.maxval = this.parallelogram.plane.v.length;
-			vmark.yunits = "m";
+			vmark.yunits = "";//"m";
 			}	
 		this.markers.Add(vmark);
 		//TODO: not add horizontal marker by default but optinally.
@@ -170,10 +170,10 @@ public class Rectangle : Scientrace.FlatSurfaceObject3d {
 		hmark.minval = 0;
 		if (this.parallelogram.plane.u.length < 1) {
 			hmark.maxval = this.parallelogram.plane.u.length*1000;
-			hmark.xunits = "mm";
+			hmark.xunits = "E-3"; //"mm";
 			} else {
 			hmark.maxval = this.parallelogram.plane.u.length;
-			hmark.xunits = "m";
+			hmark.xunits = "";//"m";
 			}	
 		this.markers.Add(hmark);
 		}

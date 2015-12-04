@@ -374,6 +374,7 @@ public class DielectricSurfaceInteraction {
 		public Trace getReflectTrace() {
 			return this.getReflectTrace(0);
 			}
+
 		public Trace getReflectTrace(double offset) {
 			// If the trace has ended due to total absorption, there's no reflection.
 			if (this.total_absorption) return null;
@@ -382,6 +383,12 @@ public class DielectricSurfaceInteraction {
 			Scientrace.Line reflect_line = new Scientrace.Line(this.interaction_loc + (this.dir_r.toVector()*offset), this.dir_r);
 
 			double new_intensity = this.intensity_after_absorption*(this.amp_rs*this.amp_rs + this.amp_rp*this.amp_rp);
+			
+			// Sometimes, this new intensity is to small to care about. Return null.	
+			if (new_intensity <= MainClass.SIGNIFICANTLY_SMALL) {
+				//Console.WriteLine("New intensity is: "+new_intensity+" is:"+this.amp_is+" ip:"+this.amp_ip+" ts:"+this.amp_ts+" tp:"+this.amp_tp);
+				return null;
+				}
 			//TODO: check replaced line below and at getRefractTrace(offset)
 			//Scientrace.Trace reflect_trace = trace_in.fork(reflect_line, (this.dir_s*this.intc_rs), (this.dir_rp*this.intc_rp), new_intensity);
 			Scientrace.Trace reflect_trace = 
