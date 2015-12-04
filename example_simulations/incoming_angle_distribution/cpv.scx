@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Author: Joep Bos-Coenraad, jbos@scientrace.org -->
+<ScientraceConfig ConfigID="@CONFIGKEY@" ConfigDescription="@CONFIG_DESCRIPTION@" PolarisationSupport="true" >
+
+<!-- Set your variables here -->
+<PreProcess>
+	<!-- This variable is typically used to be overwritten by the BatchExploder. 
+	   - By Default its value is unique for the set of (exploded) parameters. 
+	   - Define it directly in your ScientraceConfig (SCX) file when you don't use the BatchExploder 
+	-->
+	<Replace Key="CONFIGKEY" Value="config" />
+	<!-- The BATCH_ID is also to be set by the BatchExploder. It describes the entire batch, and allows
+	   - the same table-filesnames to be used for the whole batch.
+	-->
+
+	<Replace Key="RAY_COUNT" Value="12" />
+
+	<Repalce Key="EXPORT_X3D" Value="yes" />
+
+	<Replace Key="VAR_RINGS" Value="6" />
+	<Replace Key="BATCH_ID" Value="empty_setup" />
+
+	<Replace Key="LENS_DIAMETER" Value="56.57" Tag="40*40 diagonal" />
+
+	<Replace Key="FRESNEL_SIDE" Value="40" />
+	<Replace Key="LIGHT_WIDTH" Value="@FRESNEL_SIDE@;0;0" />
+	<Replace Key="LIGHT_HEIGHT" Value="0;0;@FRESNEL_SIDE@" />
+
+	<Replace Key="CELL_SIDE" Value="2" />	
+	<Replace Key="CELL_WIDTH" Value="@CELL_SIDE@;0;0" />
+	<Replace Key="CELL_HEIGHT" Value="0;0;-@CELL_SIDE@" />
+	<Replace Key="FOCAL_DISTANCE" Value="40" />
+
+<Replace Key="SECOPT_TRUNCATED_OFFSET" Value="0.4" Tag=" (TOP_ZX - BASE_ZX)^2 / TOP_Y, make 0 for flat top" />
+<Replace Key="SECOPT_BASE_ZX" Value="1" Tag="Half of total sidelength of solar cell" />
+<Replace Key="SECOPT_TOP_ZX" Value="3" Tag="Total width of the secondary optics = 6" />
+<Replace Key="SECOPT_TOP_Y" Value="10" Tag="make 0.0001 for effectively only flat glass plate" />
+
+<Replace Key="SECOPT_BASE_Y" Value="-0.0001" />
+
+<Replace Key="SECOPT_A" Value="-@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;@SECOPT_BASE_ZX@" />
+<Replace Key="SECOPT_B" Value="@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;@SECOPT_BASE_ZX@" />
+<Replace Key="SECOPT_C" Value="@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;-@SECOPT_BASE_ZX@" />
+<Replace Key="SECOPT_D" Value="-@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;-@SECOPT_BASE_ZX@" />
+<Replace Key="SECOPT_E" Value="-@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;@SECOPT_TOP_ZX@" />
+<Replace Key="SECOPT_F" Value="@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;@SECOPT_TOP_ZX@" />
+<Replace Key="SECOPT_G" Value="@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;-@SECOPT_TOP_ZX@" />
+<Replace Key="SECOPT_H" Value="-@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;-@SECOPT_TOP_ZX@" />
+
+
+</PreProcess>
+
+<!-- modify your output settings here -->
+<Output Path="out">
+         <X3D Filename="3dview_%o_@READABLE_CONFIGKEY@.x3d" Export="@EXPORT_X3D@" />
+<!--
+        <YieldData Filename="data_@BATCH_ID@_%o" HTMLWriteMode="append" ExportHTML="true" ExportCSV="true" CVSWriteMode="append" />
+        <Histogram Export="yes" Filename="histogram_@BATCH_ID@_%o.csv" Resolution="0.5" />
+        <SVG Filename="pdp_%o_@READABLE_CONFIGKEY@.svg" Export="yes" Grid="true" SpotSizeFraction="0.002" Legends="true" PhotonCloud="false" ExportAngles="true" ExportWavelengths="true" />
+        <PhotonDump Filename="dump_%o_@READABLE_CONFIGKEY@.csv" Export="no" />
+        <XML ExportCustomTraces="true" ExportPreProcessed="true" Filename="xml_%o_@READABLE_CONFIGKEY@.scx" DisplayCustomTraces="false" DisplayPreProcessed="false" /> -->
+</Output>
+
+<!-- Place your objects here -->
+<ObjectEnvironment Environment="air" Radius="500" DrawAxes="yes" Tag="">
+
+	<!-- Change the 3D viewpoint here -->
+	<CameraViewpoint x="-160" y="32" z="480" />
+	<CameraRotation>
+		<Vector xyz="0;1;0" />
+		<Angle Degrees="-20" />
+	</CameraRotation>
+
+	<LightSource Class="RandomRectangle" Radius="1" RandomSeed="1" Distance="2" RayCount="@RAY_COUNT@" MinIntensity="0.4">
+
+		<REMSpectrum Class="nmrange" From="350" To="1800" EntryCount="24" />
+		<REMSpectrum Class="visible" />
+		<Spectrum Class="static" Wavelength="@WAVELENGTH@" />
+
+		<Location xyz="0;@FOCAL_DISTANCE@;0">
+			<Translate xyz="@LIGHT_HEIGHT@" Factor="-0.5" />
+			<Translate xyz="@LIGHT_WIDTH@" Factor="-0.5" />
+			<Translate y="@SECOPT_TOP_Y@" Factor="1" />
+		</Location>
+		<Height xyz="@LIGHT_HEIGHT@" />
+		<Width xyz="@LIGHT_WIDTH@" />
+		<Direction xyz="0;-1;0" />
+	</LightSource>	
+
+	<FresnelLens DoubleConvex="no" FocusWavelength="450E-9" VarRings="@VAR_RINGS@" Diameter="@LENS_DIAMETER@">
+		<LensPlanoCenter xyz="0;@FOCAL_DISTANCE@;0">
+			<Translate y="@SECOPT_TOP_Y@" Factor="1" />
+		</LensPlanoCenter>
+		<FocalVector xyz="0;-@FOCAL_DISTANCE@;0" />
+		<Material Class="pmma" RefractiveIndex="1.5" Reflects="true" />
+	</FresnelLens>
+
+	<Rectangle Material="black" Tag="solar_cell" Register="true">
+		<Location xyz="0;0;0">
+			<Translate xyz="@CELL_WIDTH@" Factor="-0.5" />
+			<Translate xyz="@CELL_HEIGHT@" Factor="-0.5" />
+		</Location>
+		<Height xyz="@CELL_HEIGHT@"/>
+		<Width xyz="@CELL_WIDTH@"/>
+
+	</Rectangle>
+
+	<BorderedVolume>
+    <Material Class="bk7" />
+    <SubVolume Tag="secoptics">
+<!--  Flat Top -->
+        <Plane Tag="TopTrunc">
+            <Location xyz="0;@SECOPT_TOP_Y@;0">
+				<Translate y="@SECOPT_TRUNCATED_OFFSET@" Factor="1" />
+			</Location>
+            <AllowedNormal xyz="0;-1;0" />
+        </Plane>
+<!-- -->
+<!-- The truncated pyramid top -->
+		<Plane Tag="TopLeft">
+			<Location xyz="@SECOPT_E@"><AverageWith xyz="@SECOPT_H@" /></Location>
+			<AllowedNormal xyz="@SECOPT_A@">
+				<AverageWith xyz="@SECOPT_D@" />
+				<Translate xyz="@SECOPT_E@">
+					<AverageWith xyz="@SECOPT_H@" />
+					<Multiply Factor="-1" />
+				</Translate>
+			</AllowedNormal>
+		</Plane>
+		<Plane Tag="TopFront">
+			<Location xyz="@SECOPT_F@"><AverageWith xyz="@SECOPT_E@" /></Location>
+			<AllowedNormal xyz="@SECOPT_B@">
+				<AverageWith xyz="@SECOPT_A@" />
+				<Translate xyz="@SECOPT_F@">
+					<AverageWith xyz="@SECOPT_E@" />
+					<Multiply Factor="-1" />
+				</Translate>
+			</AllowedNormal>
+		</Plane>
+		<Plane Tag="TopRight">
+			<Location xyz="@SECOPT_G@"><AverageWith xyz="@SECOPT_F@" /></Location>
+			<AllowedNormal xyz="@SECOPT_C@">
+				<AverageWith xyz="@SECOPT_B@" />
+				<Translate xyz="@SECOPT_G@">
+					<AverageWith xyz="@SECOPT_F@" />
+					<Multiply Factor="-1" />
+				</Translate>
+			</AllowedNormal>
+		</Plane>
+		<Plane Tag="TopBack">
+			<Location xyz="@SECOPT_H@"><AverageWith xyz="@SECOPT_G@" /></Location>
+			<AllowedNormal xyz="@SECOPT_D@">
+				<AverageWith xyz="@SECOPT_C@" />
+				<Translate xyz="@SECOPT_H@">
+					<AverageWith xyz="@SECOPT_G@" />
+					<Multiply Factor="-1" />
+				</Translate>
+			</AllowedNormal>
+		</Plane>
+
+        <Plane Tag="Base">
+            <Location xyz="0;@SECOPT_BASE_Y@;0" />
+            <AllowedNormal xyz="0;1;0" />
+        </Plane>
+        <Plane Tag="Left">
+            <Loc1 xyz="@SECOPT_A@" />
+            <Loc2 xyz="@SECOPT_D@" />
+            <Loc3 xyz="@SECOPT_E@" />
+            <IncludeLoc xyz="0;0;0" />
+        </Plane>
+        <Plane Tag="Front">
+            <Loc1 xyz="@SECOPT_A@" />
+            <Loc2 xyz="@SECOPT_B@" />
+            <Loc3 xyz="@SECOPT_E@" />
+            <IncludeLoc xyz="0;0;0" />
+        </Plane>
+        <Plane Tag="RIGHT">
+            <Loc1 xyz="@SECOPT_B@" />
+            <Loc2 xyz="@SECOPT_C@" />
+            <Loc3 xyz="@SECOPT_F@" />
+            <IncludeLoc xyz="0;0;0" />
+        </Plane>
+        <Plane Tag="Back">
+            <Loc1 xyz="@SECOPT_C@" />
+            <Loc2 xyz="@SECOPT_D@" />
+            <Loc3 xyz="@SECOPT_G@" />
+            <IncludeLoc xyz="0;0;0" />
+        </Plane>
+    </SubVolume>
+</BorderedVolume>
+
+
+</ObjectEnvironment>
+</ScientraceConfig>
