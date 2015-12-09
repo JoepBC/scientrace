@@ -26,10 +26,24 @@ public class Spot {
 		this.intensity = intensity;
 		this.intensityFraction = intensityFraction;
 		this.trace = trace;
-		if (trace != null) {
+		this.fillPolVecs();
+		}
+
+	private void fillPolVecs() {
+		if (this.trace != null) {
 			this.pol_vec_1 = trace.getPolarisationVec1();
 			this.pol_vec_2 = trace.getPolarisationVec2();
 			}
+		}
+
+	public Spot(Scientrace.Spot copyFromSpot) {
+		this.loc = new Scientrace.Location(copyFromSpot.loc);
+		this.object3d = copyFromSpot.object3d;
+		// do not spot again, so don't recall spotted from object3d
+		this.intensity = copyFromSpot.intensity;
+		this.trace = copyFromSpot.trace;
+		this.intensityFraction = copyFromSpot.intensityFraction;
+		this.fillPolVecs();
 		}
 
 	}}//end class Spot & namespace Scientrace

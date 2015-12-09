@@ -268,13 +268,17 @@ public abstract class LightSource {
 		foreach (Thread aThread in threads) {
 			//Wainit for all threads to finish
 			aThread.Join();
+
 			}
 		bar.closeBar();
-
 		//stopping timer
 		DateTime stopTime = DateTime.Now; 
 		this.shine_duration = (stopTime-startTime);
-			
+/*		if (this.lightsource_shine_threads > 1) {
+			Console.Write("Several threads have been active, need some time to sync...");
+			Thread.Sleep(500);
+			Console.WriteLine(" [done]");
+			}*/
 		this.addObjectRevenues();
 			
 		return this.total_lightsource_intensity;

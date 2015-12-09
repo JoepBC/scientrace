@@ -1,0 +1,1 @@
+TRAPEZOID_OFFSET,LIGHT_ANGLE,RAY_COUNT,Timestamp,cpu time (s),#traces,intensity,weighted_intensity,solarcell-1,Scientrace.ParallelRandomSquareLightSource-yield,Scientrace.ParallelRandomSquareLightSource-weighted_sum,Cell-yield,total light intensity,total revenue,total yield

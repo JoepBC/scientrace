@@ -64,15 +64,25 @@ public class ScientraceXMLParser {
 		double env_radius = this.X.getXDouble(xenv.Attribute("Radius"));
 		bool drawaxes = this.X.getXBool(xenv.Attribute("DrawAxes"), true);
 		string environment_material_id = this.X.getXString(xenv.Attribute("Environment"), "air");
-		Scientrace.Vector cameraviewpoint = this.X.getXVector(xenv.Element("CameraViewpoint"), new Scientrace.Vector(0,0,1));
+		Scientrace.Vector cameraviewpoint = new Scientrace.Vector(0,0,1); // default viewpoint 0,0,1
 		Scientrace.Vector camrotationvec = null;
 		double camrotationangle = 0;
+		XElement camfrom = xenv.Element("CameraFrom");
+		if (camfrom !=null) {
+			cameraviewpoint = this.X.getXNzVector(camfrom);
+			Scientrace.Vector camdirvec = cameraviewpoint.negative();
+			Scientrace.NonzeroVector defvec = new Scientrace.NonzeroVector(0,0,-1);
+			camrotationangle = defvec.angleWith(camdirvec);
+			camrotationvec = defvec.crossProduct(camdirvec);
+			}
 		XElement camrot = xenv.Element("CameraRotation");
 		if (camrot != null) {
 			camrotationvec = this.X.getXVectorByName(camrot, "Vector");
 			camrotationangle = this.X.getXAngleByName(camrot, "Angle");
 			}
-//			Scientrace.Vector camorientation = this.X.getXVector(xenv.Element("Orientation"), new Scientrace.Vector(0,0,1));
+
+		cameraviewpoint = this.X.getXVector(xenv.Element("CameraViewpoint"), cameraviewpoint);
+
 		Scientrace.MaterialProperties env_material = Scientrace.MaterialProperties.FromIdentifier(environment_material_id);
 		retenv = new Scientrace.Object3dEnvironment(env_material, env_radius, cameraviewpoint);
 			retenv.perishAtBorder = true;
@@ -155,9 +165,8 @@ public class ScientraceXMLParser {
 			case "ToppedPyramid":
 				createdObject3d = o3dp.parseXToppedPyramid(xel);
 				break;
-			case "CameraViewpoint":
-				//set cam settings
-				break;
+			case "CameraViewpoint": //fallthrough
+			case "CameraFrom": //fallthrough
 			case "CameraRotation":
 				//set cam settings
 				break;

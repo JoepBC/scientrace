@@ -13,15 +13,21 @@
 	   - the same table-filesnames to be used for the whole batch.
 	-->
 
-	<Replace Key="RAY_COUNT" Value="12" />
+	<Replace Key="CAMDIR" Value="-3.5;9;22" />
+	<Replace Key="RANDOM_SEED" Value="1" />
+	<Replace Key="RAY_COUNT" Value="120" />
 
-	<Repalce Key="EXPORT_X3D" Value="yes" />
+	<Replace Key="EXPORT_X3D" Value="yes" />
 
 	<Replace Key="VAR_RINGS" Value="6" />
 	<Replace Key="BATCH_ID" Value="empty_setup" />
 
-	<Replace Key="LENS_DIAMETER" Value="56.57" Tag="40*40 diagonal" />
+	<Replace Key="OUT_DIR" Value="def_out" />
 
+	<Replace Key="RADIUS_ANGULAR_APERTURE" Value="0.25" />
+
+	<Replace Key="LENS_DIAMETER" Value="56.57" Tag="40*40 diagonal" />
+	<Replace Key="FOCUS_WAVELENGTH" Value="450E-9" />
 	<Replace Key="FRESNEL_SIDE" Value="40" />
 	<Replace Key="LIGHT_WIDTH" Value="@FRESNEL_SIDE@;0;0" />
 	<Replace Key="LIGHT_HEIGHT" Value="0;0;@FRESNEL_SIDE@" />
@@ -29,7 +35,10 @@
 	<Replace Key="CELL_SIDE" Value="2" />	
 	<Replace Key="CELL_WIDTH" Value="@CELL_SIDE@;0;0" />
 	<Replace Key="CELL_HEIGHT" Value="0;0;-@CELL_SIDE@" />
-	<Replace Key="FOCAL_DISTANCE" Value="40" />
+	<Replace Key="FOCAL_DISTANCE" Value="80" />
+
+	<Replace Key="BACK_SURFACE_HEIGHT" Value="-0.1" />
+	<Replace Key="SPECTRUM_WAVELENGTH" Value="600E-9" />
 
 <Replace Key="SECOPT_TRUNCATED_OFFSET" Value="0.4" Tag=" (TOP_ZX - BASE_ZX)^2 / TOP_Y, make 0 for flat top" />
 <Replace Key="SECOPT_BASE_ZX" Value="1" Tag="Half of total sidelength of solar cell" />
@@ -51,31 +60,33 @@
 </PreProcess>
 
 <!-- modify your output settings here -->
-<Output Path="out">
+<Output Path="@OUT_DIR@">
          <X3D Filename="3dview_%o_@READABLE_CONFIGKEY@.x3d" Export="@EXPORT_X3D@" />
-<!--
         <YieldData Filename="data_@BATCH_ID@_%o" HTMLWriteMode="append" ExportHTML="true" ExportCSV="true" CVSWriteMode="append" />
+        <SVG Filename="pdp_%o_@READABLE_CONFIGKEY@.svg" Export="yes" Grid="true" SpotSizeFraction="0.005" Legends="true" PhotonCloud="false" ExportAngles="true" ExportWavelengths="false" />
+<!--
         <Histogram Export="yes" Filename="histogram_@BATCH_ID@_%o.csv" Resolution="0.5" />
-        <SVG Filename="pdp_%o_@READABLE_CONFIGKEY@.svg" Export="yes" Grid="true" SpotSizeFraction="0.002" Legends="true" PhotonCloud="false" ExportAngles="true" ExportWavelengths="true" />
         <PhotonDump Filename="dump_%o_@READABLE_CONFIGKEY@.csv" Export="no" />
         <XML ExportCustomTraces="true" ExportPreProcessed="true" Filename="xml_%o_@READABLE_CONFIGKEY@.scx" DisplayCustomTraces="false" DisplayPreProcessed="false" /> -->
 </Output>
 
 <!-- Place your objects here -->
-<ObjectEnvironment Environment="air" Radius="500" DrawAxes="yes" Tag="">
+<ObjectEnvironment Environment="air" Radius="100" DrawAxes="1" Tag="">
 
 	<!-- Change the 3D viewpoint here -->
-	<CameraViewpoint x="-160" y="32" z="480" />
-	<CameraRotation>
-		<Vector xyz="0;1;0" />
-		<Angle Degrees="-20" />
-	</CameraRotation>
+	<CameraFrom xyz="@CAMDIR@" />
+	<CameraViewpoint xyz="@CAMDIR@"> 
+		<Translate y="6" />
+	</CameraViewpoint>
 
-	<LightSource Class="RandomRectangle" Radius="1" RandomSeed="1" Distance="2" RayCount="@RAY_COUNT@" MinIntensity="0.4">
+	<LightSource Class="RandomRectangle" Radius="1" RandomSeed="@RANDOM_SEED@" Distance="2" RayCount="@RAY_COUNT@" MinIntensity="0.4">
+		<TraceModifier DistributionPattern="RandomUniformDensityCircle" SpatialDistribution="UniformProjections" AddSelf="no" RandomSeed="1" ModifyCount="1">
+			<MaxAngle Degrees="@RADIUS_ANGULAR_APERTURE@" />
+		</TraceModifier>
 
 		<REMSpectrum Class="nmrange" From="350" To="1800" EntryCount="24" />
 		<REMSpectrum Class="visible" />
-		<Spectrum Class="static" Wavelength="@WAVELENGTH@" />
+		<Spectrum Class="static" Wavelength="@SPECTRUM_WAVELENGTH@" />
 
 		<Location xyz="0;@FOCAL_DISTANCE@;0">
 			<Translate xyz="@LIGHT_HEIGHT@" Factor="-0.5" />
@@ -87,7 +98,24 @@
 		<Direction xyz="0;-1;0" />
 	</LightSource>	
 
-	<FresnelLens DoubleConvex="no" FocusWavelength="450E-9" VarRings="@VAR_RINGS@" Diameter="@LENS_DIAMETER@">
+
+	<Rectangle Material="black" Tag="back_surface" Register="true">
+		<Location xyz="0;0;0">
+			<Translate xyz="@LIGHT_WIDTH@" Factor="-0.2" />
+			<Translate xyz="@LIGHT_HEIGHT@" Factor="-0.2" />
+			<Translate y="@BACK_SURFACE_HEIGHT@" Factor="1" />
+		</Location>
+		<Height xyz="@LIGHT_HEIGHT@">
+			<Multiply Factor="0.4" />
+		</Height>
+		<Width xyz="@LIGHT_WIDTH@">
+			<Multiply Factor="0.4" />
+		</Width>
+	</Rectangle>
+
+
+
+	<FresnelLens DoubleConvex="no" FocusWavelength="@FOCUS_WAVELENGTH@" VarRings="@VAR_RINGS@" Diameter="@LENS_DIAMETER@">
 		<LensPlanoCenter xyz="0;@FOCAL_DISTANCE@;0">
 			<Translate y="@SECOPT_TOP_Y@" Factor="1" />
 		</LensPlanoCenter>
@@ -95,7 +123,7 @@
 		<Material Class="pmma" RefractiveIndex="1.5" Reflects="true" />
 	</FresnelLens>
 
-	<Rectangle Material="black" Tag="solar_cell" Register="true">
+	<Rectangle Material="black" Tag="solar_cell" Register="false">
 		<Location xyz="0;0;0">
 			<Translate xyz="@CELL_WIDTH@" Factor="-0.5" />
 			<Translate xyz="@CELL_HEIGHT@" Factor="-0.5" />

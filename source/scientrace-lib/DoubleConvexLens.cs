@@ -239,7 +239,7 @@ public class DoubleConvexLens : Scientrace.EnclosedVolume {
 		double meridians = 12;
 
 						
-		System.Text.StringBuilder retx3d = new System.Text.StringBuilder(1024);
+		System.Text.StringBuilder retx3d = new System.Text.StringBuilder(2000);
 		retx3d.AppendLine("<!-- DOUBLECONVEXLENS GRID start -->");
 		X3DShapeDrawer xsd = new X3DShapeDrawer();
 		xsd.primaryRGB = "0.4 0 0.2";

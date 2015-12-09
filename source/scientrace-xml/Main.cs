@@ -75,7 +75,7 @@ class MainClass {
 				Console.WriteLine("\n\n If you feel like this error is caused by a bug, run the experiment again with the addition parameter: -debug 1\nSend the output to the scientrace developers.");
 				}
 			}
-		Console.WriteLine("[Done] .");
+		Console.WriteLine("[All done] .");
 		Environment.Exit(0);
 	}
 

@@ -12,6 +12,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.IO;
+using System.Threading;
 
 namespace Scientrace {
 
@@ -27,6 +28,11 @@ public partial class TraceJournal {
 
 	//Singleton instance "holder"
 	private static TraceJournal instance;
+
+	private Semaphore spot_sema = new Semaphore(1, 1, "add_spot_semaphore");
+	private Semaphore angle_sema = new Semaphore(1, 1, "add_angle_semaphore");
+	private Semaphore casualty_sema = new Semaphore(1, 1, "add_casualty_semaphore");
+	private Semaphore trace_sema = new Semaphore(1, 1, "add_trace_semaphore");
 
 	public System.Random rnd = new System.Random(1);
 		
@@ -80,10 +86,10 @@ public partial class TraceJournal {
 	public bool drawTraces = true;
 	public bool x3dWavelengthColourLines = true;
 
-	public ArrayList traces = new ArrayList();
-	public ArrayList spots = new ArrayList();
-	public ArrayList angles = new ArrayList();
-	public ArrayList casualties = new ArrayList();
+	public ArrayList traces = new ArrayList(100000);
+	public ArrayList spots = new ArrayList(100000);
+	public ArrayList angles = new ArrayList(100000);
+	public ArrayList casualties = new ArrayList(100000);
 	public double spotsize;// = null; //0.1E-3; //radius of a spot in a 2D export set to 0.2 mm.
 	public double spotdiagonalfraction = 0.005;
 
@@ -115,26 +121,47 @@ public partial class TraceJournal {
 		return Path.GetFileNameWithoutExtension(this.source_filename);
 		}
 
+	public void recordTrace(Scientrace.Trace trace) {
+		this.trace_sema.WaitOne();
+			this.traces.Add(trace);
+		this.trace_sema.Release();
+		}
+
+
 	public void recordAngle(Scientrace.Angle angle) {
-		this.angles.Add(angle);
-	}
+		this.angle_sema.WaitOne();
+			this.angles.Add(angle);
+		this.angle_sema.Release();
+		}
 
 	public void recordCasualty(Scientrace.Spot casualty) {
-		if (!casualty.loc.isValid()) {
-			throw new ArgumentOutOfRangeException("Casualty has an invalid location.");
-			}
-		this.casualties.Add(casualty);
-	}
+		this.casualty_sema.WaitOne();
+			if (!casualty.loc.isValid()) {
+				throw new ArgumentOutOfRangeException("Casualty has an invalid location.");
+				}
+			this.casualties.Add(casualty);
+		this.casualty_sema.Release();
+		}
 
 
 	public void recordSpot(Scientrace.Spot spot) {
-		this.spots.Add(spot);
-	}
+		this.spot_sema.WaitOne();
+			if (spot == null)
+				throw new NullReferenceException("ERROR: why would you record a null value?");
+			this.spots.Add(spot);
+		this.spot_sema.Release();
+		}
 
+	public void checkNullSpots(string routine_id) {
+		this.spot_sema.WaitOne();
+		foreach (Spot aspot in this.spots)
+						if (aspot == null) Console.WriteLine("Null spot found at "+routine_id);
+		this.spot_sema.Release();
+		}
 
 	public string exportX3D(Scientrace.Object3dEnvironment env) {
 		//Console.WriteLine("Writing journal to X3D");
-		StringBuilder retsb = new StringBuilder(1024);
+		StringBuilder retsb = new StringBuilder(500000); //let's just preserve 0.5MB's for starters. Much faster than continuously increasing.
 		if (this.drawTraces)
 			this.writeX3DTraces(retsb);
 		if (this.drawAngles)
@@ -262,25 +289,27 @@ public partial class TraceJournal {
 		/// <param name="export_data">The file contents</param>
 		/// <param name="filename">The filename</param>
 		/// <param name="data_description">A description for display purposes. Pass "" to avoid display.</param>
-		public void writeExportDataToFile(string export_data, string filename, string data_description) {
+		public void writeExportDataToFile(string export_data, string filename, string data_description, DateTime start_time) {
 			StreamWriter writestream;
 			string filename_fullpath = this.exportpath+filename;
 			if (data_description.Length > 0) //only display when data_description is given.
-				Console.WriteLine("Writing "+data_description+" to: " +filename_fullpath);
+				Console.Write("Writing "+data_description+" to: " +filename_fullpath);
 			using (writestream = new StreamWriter(filename_fullpath))
 				writestream.Write(export_data);
+			TimeSpan duration = DateTime.Now-start_time;
+			Console.WriteLine(" [done in "+duration.TotalSeconds+"s]");
 			}
 
 
 
 
 		public void writeLightsourceDumpXML(Scientrace.LightSource aLightsource) {
-
+			DateTime start_time = DateTime.Now;
 			XElement xlight = aLightsource.exportCustomTracesXML();
 
 			string filename = this.xml_export_filename.Replace("%o", aLightsource.tag);
 			if (this.xml_export_lightsources) 
-				this.writeExportDataToFile(xlight.ToString(), filename, aLightsource.tag+"-custromtraces-XML");
+				this.writeExportDataToFile(xlight.ToString(), filename, aLightsource.tag+"-custromtraces-XML", start_time);
 			if (this.xml_display_lightsource)
 				Console.WriteLine(xlight.ToString());
 			}
@@ -294,6 +323,7 @@ public partial class TraceJournal {
 			
 		
 		public void exportPreProcessed() {
+			DateTime start_time = DateTime.Now;
 			if (this.xml_display_preprocessed) {
 				Console.WriteLine("<!-- *** PreProcessed XML *** -->");
 				Console.WriteLine(this.xml_export_preprocessed_string);
@@ -301,14 +331,15 @@ public partial class TraceJournal {
 				}
 			if (this.xml_export_preprocessed) {
 				string filename = this.xml_export_filename.Replace("%o",this.config_id);
-				this.writeExportDataToFile(this.xml_export_preprocessed_string, filename, "PreProcessed SCX");
+				this.writeExportDataToFile(this.xml_export_preprocessed_string, filename, "PreProcessed SCX", start_time);
 				}
 			}
 
 		/* help-methods for exportAll function */
 		public void writeX3D(Scientrace.Object3dEnvironment env) {
+			DateTime start_time = DateTime.Now;
 			string filename = this.x3dfilename.Replace("%o", env.tag);
-			this.writeExportDataToFile(env.exportX3D(), filename, "X3D");
+			this.writeExportDataToFile(env.exportX3D(), filename, "X3D", start_time);
 			}
 
 		public void writeSVGLegends() {
@@ -328,9 +359,10 @@ public partial class TraceJournal {
 
 			foreach (Scientrace.PDPSource pdpSource in this.exportPDPSources)
 				foreach (Scientrace.SurfaceSide side in anObject.surface_sides) {
+					DateTime start_time = DateTime.Now;
 					//Write down SVG trace-pattern of an object for side "side"
 					string filename = this.svgfilename.Replace("%o",anObject.tag+"-"+side.ToString()+"-"+pdpSource.ToString());
-								this.writeExportDataToFile(this.exportSVG(anObject, side, pdpSource), filename, side.ToString()+"@"+anObject.tag+"-SVG");
+								this.writeExportDataToFile(this.exportSVG(anObject, side, pdpSource), filename, side.ToString()+"@"+anObject.tag+"-SVG", start_time);
 					}
 
 			/*
@@ -365,12 +397,6 @@ public partial class TraceJournal {
 	public void registerLightSource(Scientrace.LightSource lightsource) {
 		this.registeredLightSources.Add(lightsource);
 		}
-		
-
-
-	public void recordTrace(Scientrace.Trace trace) {
-		this.traces.Add(trace);
-	}
-	
+			
 }
 }

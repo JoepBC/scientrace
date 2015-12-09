@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScientraceConfig ConfigID="1.25%25%65536" ConfigDescription="TRAPEZOID_OFFSET%LIGHT_ANGLE%RAY_COUNT">
+
+
+	<PreProcess>
+		<Replace Key="RAY_COUNT" Value="512" />
+	    <Replace Key="EXPORT_SVG" Value="yes" />
+		<Replace Key="EXPORT_X3D" Value="yes" />
+		<Replace Key="LIGHT_ANGLE" Value="30" />
+		<Replace Key="TRAPEZOID_OFFSET" Value="3" />
+		<Replace Key="BITMAPS_DIR" Value="../bitmaps/" />
+
+	<Import Key="GRID">
+		<For Key="SHIFT" From="-228" To="228" Step="114" />
+		<Value><!--Start of grid finger @ @SHIFT@ -->
+			<Rectangle Material="mirror" Tag="grid_finger_left_side" Register="no" X3DFillBitmap="../../bitmaps/gold.png" rX3DEmissiveColor="#000066" remX3DDiffuseColor="#000066" X3DFillBothSides="yes" >
+				<Location xyz="-11;0;0"><Translate x="@SHIFT@" /></Location>
+				<Width xyz="0;500;0" />
+				<Height xyz="1.25;0;5.7" />
+			</Rectangle>
+			<Rectangle Material="mirror" Tag="grid_finger_right_side" Register="no" X3DFillBitmap="../../bitmaps/gold.png" rX3DEmissiveColor="#000066" remX3DDiffuseColor="#000066" X3DFillBothSides="yes" >
+				<Location xyz="0;0;0" ><Translate x="@SHIFT@" /></Location>
+				<Width xyz="0;500;0" />
+				<Height xyz="-1.25;0;5.7" />
+			</Rectangle>
+			<Rectangle Material="mirror" Tag="grid_finger_right_top" Register="no" X3DFillBitmap="../../bitmaps/gold.png" rX3DEmissiveColor="#000066" remX3DDiffuseColor="#000066" X3DFillBothSides="yes" >
+				<Location xyz="-11;0;5.7" ><Translate xyz="1.25;0;0" /><Translate x="@SHIFT@" /></Location>
+				<Width xyz="0;500;0" />
+				<Height xyz="11.0001;0;0"><Translate xyz="1.25;0;0" Factor="-2" /></Height>
+			</Rectangle><!-- End of grid finger @ @SHIFT@ -->
+		</Value>
+	</Import>
+
+
+
+	</PreProcess>
+
+
+	<!-- START OF 3D SETUP -->
+	<Output Path="out">
+		<Histogram Export="yes" Filename="histogram_%o.csv" Resolution="1" />
+		<X3D Filename="3dview_%o_1.25_25_65536.x3d" Export="no" />
+		<SVG Filename="1.25_25_65536_%o.svg" Export="no" Grid="no" SpotSizeFraction="0.0015" ExportAngles="yes" ExportWavelengths="no" />
+		<XML ExportCustomTraces="no" ExportPreProcessed="no" />
+		<YieldData Filename="data_%o" HTMLWriteMode="append" ExportHTML="yes" CVSWriteMode="append" />
+		<PhotonDump Filename="%o_1.25_25_65536.csv" Export="no" /> 
+	</Output> 
+
+<ObjectEnvironment Environment="air" Radius="1000" DrawAxes="no">
+
+    <!-- Camera properties -->
+	<CameraViewpoint xyz="55;113;50" />
+	<REMCameraViewpoint xyz="71;107;36" />
+	<REMCameraViewpoint x="0" y="40" z="12" />
+
+	<CameraRotation>
+		<Vector xyz="1;0;0" />
+		<Angle Degrees="65" />
+	</CameraRotation>
+
+
+	<LightSource Class="RandomSquare" BeamCount="65536" MaxInteractions="40" MinIntensity="0.001" Diameter="1.5E-2" Distance="50" RandomSeed="-1">	
+		<Location xyz="-5.5;200;5.7" />
+
+		<Width xyz="114;0;0" />
+		<Height xyz="0;25;0" />
+
+		<Direction x="0" y="0" z="-1"><Rotate><AboutAxis xyz="0;-1;0"/><Angle Degrees="25" /></Rotate></Direction>
+		<Spectrum Class="static" Wavelength="500E-9" />
+	</LightSource>
+
+<!-- insert grid fingers here -->
+@GRID@
+
+	<Rectangle Material="black" Register="yes" X3DFillBitmap="../../bitmaps/black.png" Tag="Cell">
+		<Location xyz="-250;0;0" />
+		<Width x="500" />
+		<Height y="500" />
+		<Register Performance="yes" />
+	</Rectangle>
+
+  </ObjectEnvironment>
+</ScientraceConfig>

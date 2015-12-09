@@ -191,7 +191,7 @@ public class Sphere : Scientrace.EnclosedVolume, IInterSectableBorder3d {
 		}
 			
 	public override string exportX3D(Scientrace.Object3dEnvironment env) {
-		System.Text.StringBuilder retx3d = new System.Text.StringBuilder("<!-- SPHERE GRID start -->");
+		System.Text.StringBuilder retx3d = new System.Text.StringBuilder("<!-- SPHERE GRID start -->", 10000);
 		
 		Scientrace.Location tNodeLoc;
 		Scientrace.Location tMerConnectLoc;

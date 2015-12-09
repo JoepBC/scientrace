@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 
+
 namespace Scientrace {
 
 
@@ -86,20 +87,20 @@ public class LinePiece : Line {
 		}
 
 	static public string drawLinePiecesXML(List<ObjectLinePiece> linePieces) {
-		string retstr = "";
+		System.Text.StringBuilder retstr = new System.Text.StringBuilder(5000);
 		foreach (ObjectLinePiece olp in linePieces) {
-			retstr += X3DGridPoint.get_RGBA_Line_XML(olp.lp, olp.col);
+			retstr.Append(X3DGridPoint.get_RGBA_Line_XML(olp.lp, olp.col));
 			}
-		return retstr;
+		return retstr.ToString();
 		}
 
 
 	static public string drawLinePiecesXML(List<LinePiece> linePieces, string colour) {
-		string retstr = "";
+		System.Text.StringBuilder retstr = new System.Text.StringBuilder(5000);
 		foreach (LinePiece lp in linePieces) {
-			retstr += X3DGridPoint.get_RGBA_Line_XML(lp, colour);
+			retstr.Append(X3DGridPoint.get_RGBA_Line_XML(lp, colour));
 			}
-		return retstr;
+		return retstr.ToString();
 		}
 
 	/*

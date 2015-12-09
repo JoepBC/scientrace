@@ -17,7 +17,7 @@ namespace Scientrace {
 public class VectorTransform {
 	
 	//private static List<VectorTransform> inverseVectorCache = new List<VectorTransform>();
-	private static Dictionary<string,VectorTransform> inverseVectorDictionary = new Dictionary<string, VectorTransform>();
+	private static Dictionary<string,VectorTransform> inverseVectorDictionary = new Dictionary<string, VectorTransform>(50000);
 	private static Semaphore InverseVectorCacheSema = new Semaphore(1, 1, "InverseVectorCacheSema");
 	public static TimeSpan total_inverse_calculation_time = new TimeSpan(0);
 
@@ -94,7 +94,6 @@ public class VectorTransform {
 		//RELEASE CACHE SEMAPHORE
 		VectorTransform.InverseVectorCacheSema.Release();
 		//Console.WriteLine("Element (u="+this.u+", v="+this.v+", w="+this.w+") added to cache. Current cache size: "+VectorTransform.inverseVectorDictionary.Count);
-
 		return false;
 		}
 

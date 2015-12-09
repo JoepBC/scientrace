@@ -36,7 +36,7 @@ public partial class TraceJournal {
 		double wheelRadius = 0.1;
 		double wheelcx = 1.145;
 		double wheelcy = 1.145;
-		StringBuilder retstrb = new StringBuilder("<!-- AngleWheel legend -->");
+		StringBuilder retstrb = new StringBuilder("<!-- AngleWheel legend -->", 1024);
 		int zstepcount = 10;		
 		double zstep = Math.PI/(2*zstepcount);
 		int astepcount = 24;
@@ -281,7 +281,7 @@ public partial class TraceJournal {
 		double ToY = anObject.svgysize/(vb[3]-vb[1]);
 		double ToTot = Math.Sqrt(Math.Pow(ToX,2)+Math.Pow(ToY,2));
 		string strokewidth = (ToTot*((vb[2]-vb[0])+(vb[3]-vb[1]))/800.0).ToString("#.##############"); //0.25% linewidth	
-		StringBuilder retstr = new StringBuilder();
+		StringBuilder retstr = new StringBuilder(1024);
 		retstr.Append(@"<?xml version='1.0' standalone='no'?>
 <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN'
 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
@@ -316,13 +316,13 @@ xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
 		//Scientrace.Parallelogram surface = anObject.getDistributionSurface();
 		//this.spotsize = Math.Sqrt(Math.Pow(surface.u.length,2)+Math.Pow(surface.v.length,2))*this.spotdiagonalfraction;
 		this.spotsize = Math.Sqrt(Math.Pow(anObject.svgxsize,2)+Math.Pow(anObject.svgysize,2))*this.spotdiagonalfraction;
-		StringBuilder retstr = new StringBuilder();
+		StringBuilder retstr = new StringBuilder(10000000); // this string may become very big, allocating this amount of memory may help.
 		retstr.Append(this.exportSVGOpening(anObject));
 		
 		Scientrace.Location loc2d;
 
-		string centerSpots = "<!-- END OF SPOTS CENTERS -->";
-		string pol_lines = "<!-- END OF POLARISATION LINES -->";
+		StringBuilder pol_lines = new StringBuilder("<!-- START OF POLARISATION LINES -->",300000);
+		StringBuilder centerSpots = new StringBuilder("<!-- START OF SPOTS CENTERS -->",300000);
 		//Console.WriteLine("Now writing "+this.spots.Count+" spots");
 		//int icount = 0;
 		foreach(Scientrace.Spot casualty in this.spots) {
@@ -355,24 +355,25 @@ xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
 </g>");
 				} // end if draw photoncloud (to create the frogg-egg kinda image)
 				
-				centerSpots = (@"<g>
+				centerSpots.Append(@"<g>
 <circle cx='"+loc2d.x+"' cy='"+(anObject.svgysize-loc2d.y)+"' r='"+(casualty.intensity*this.spotsize/(this.svg_export_photoncloud?4:1))+"' style='"+
 "fill:"+this.getPhotonColourForPDPSource(casualty, pdpSource, anObject)
 +@";fill-opacity:8;stroke:none'>
 <title><!-- Tooltip -->"+this.spotDescriptor(casualty, anObject,false)+@"</title>
 </circle>
-</g>") + centerSpots;
-				pol_lines = (@"
+</g>");
+				pol_lines.Append(@"
  <line x1='"+(loc2d.x-(pol_vec_1_2d.x*this.spotsize))+"' y1='"+(anObject.svgysize-(loc2d.y-(pol_vec_1_2d.y*this.spotsize)))+"' x2='"+(loc2d.x+(pol_vec_1_2d.x*this.spotsize))+"' y2='"+(anObject.svgysize-(loc2d.y+(pol_vec_1_2d.y*this.spotsize)))+"' style='stroke:rgb(0,96,192);stroke-width:"+(casualty.intensity*this.spotsize/5)+@"' />
  <line x1='"+(loc2d.x-(pol_vec_2_2d.x*this.spotsize))+"' y1='"+(anObject.svgysize-(loc2d.y-(pol_vec_2_2d.y*this.spotsize)))+"' x2='"+(loc2d.x+(pol_vec_2_2d.x*this.spotsize))+"' y2='"+(anObject.svgysize-(loc2d.y+(pol_vec_2_2d.y*this.spotsize)))+"' style='stroke:rgb(192,96,0);stroke-width:"+(casualty.intensity*this.spotsize/5)+@"' />
  <line x1='"+(loc2d.x-(pol_vec_1_2d.x*this.spotsize))+"' y1='"+(anObject.svgysize-(loc2d.y-(pol_vec_1_2d.y*this.spotsize)))+"' x2='"+(loc2d.x+(pol_vec_1_2d.x*this.spotsize))+"' y2='"+(anObject.svgysize-(loc2d.y+(pol_vec_1_2d.y*this.spotsize)))+"' style='stroke:rgb(256,256,256);stroke-width:"+(casualty.intensity*this.spotsize/8)+@"' />
  <line x1='"+(loc2d.x-(pol_vec_2_2d.x*this.spotsize))+"' y1='"+(anObject.svgysize-(loc2d.y-(pol_vec_2_2d.y*this.spotsize)))+"' x2='"+(loc2d.x+(pol_vec_2_2d.x*this.spotsize))+"' y2='"+(anObject.svgysize-(loc2d.y+(pol_vec_2_2d.y*this.spotsize)))+"' style='stroke:rgb(256,256,256);stroke-width:"+(casualty.intensity*this.spotsize/8)+@"' />
-")+pol_lines;
+");
 				} // end condition for spot to be on the correct object and from the proper direction
 			}
-			centerSpots = "<!-- START OF CENTERSPOTS -->"+centerSpots;
-			pol_lines = "<!-- START OF POLARISATION LINES -->"+pol_lines;
-			retstr.Append(centerSpots+pol_lines);
+			centerSpots.Append("<!-- END OF CENTERSPOTS -->");
+			pol_lines.Append("<!-- END OF POLARISATION LINES -->");
+			retstr.Append(centerSpots);
+			retstr.Append(pol_lines);
 			foreach(Scientrace.SurfaceMarker marker in anObject.markers) {
 				retstr.Append(marker.exportSVG());
 				}	

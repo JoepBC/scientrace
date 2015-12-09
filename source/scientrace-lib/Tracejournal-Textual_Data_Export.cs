@@ -157,6 +157,10 @@ public partial class TraceJournal {
 		for (double bin = 0; bin < 180; bin = bin+this.angle_histogram_resolution)
 			angle_histogram.Add(this.toResString(bin), 0);
 		foreach(Scientrace.Spot casualty in this.spots) {
+			if (casualty == null) {
+								Console.WriteLine("Error: Casualty is null when writing angle histogram...");
+								continue;
+				}
 			//only count casualties for current object.
 			if (casualty.object3d != anObject) continue;
 			double angle_rad = anObject.getSurfaceNormal().negative().angleWith(casualty.trace.traceline.direction);
@@ -191,13 +195,14 @@ public partial class TraceJournal {
 		using (StreamWriter histogram_csv_writestream = new StreamWriter(csv_filename, true)) {
 			//Only write header (keys) for new file:
 			if (write_headers) {
-				Console.WriteLine("Writing data to new file: "+csv_filename);
+				Console.Write("Writing data to new file: "+csv_filename);
 				histogram_csv_writestream.WriteLine(this.csvLine(new List<T>(aDictionary.Keys)));
 				} else
-				Console.WriteLine("Appending data to: "+csv_filename);
+				Console.Write("Appending data to: "+csv_filename);
 			//Always write data (values) - duh
 			histogram_csv_writestream.WriteLine(this.csvLine(new List<U>(aDictionary.Values)));
 			}
+		Console.WriteLine(" [done]");
 		}
 
 	public void writePhotondumpCSV(Scientrace.PhysicalObject3d anObject) {
@@ -238,8 +243,12 @@ public partial class TraceJournal {
 		using (StreamWriter csvphotondumpwritestream = new StreamWriter(csvphotondumpfilename)) {
 			csvphotondumpwritestream.WriteLine(this.csvLine(header));
 			foreach(Scientrace.Spot casualty in this.spots) {
+				if (casualty == null) {
+					Console.WriteLine("WARNING: Casualty null value found. That's weird...");
+					}
 				List<string> body = new List<string>();
 				if (casualty.object3d == anObject) {
+					try {
 					loc2d = anObject.get2DLoc(casualty.loc);
 					body.Add(casualty.trace.traceid); // IDENTIFIER
 					body.Add(casualty.trace.traceline.direction.x.ToString()); // DIRX
@@ -266,7 +275,8 @@ public partial class TraceJournal {
 					body.Add(casualty.pol_vec_2.y.ToString());
 					body.Add(casualty.pol_vec_2.z.ToString());
 					body.Add(casualty.pol_vec_2.length.ToString());
-					csvphotondumpwritestream.WriteLine(this.csvLine(body));
+					csvphotondumpwritestream.WriteLine(this.csvLine(body));	
+										} catch { Console.WriteLine("Some of the attributes messed up..." ); }
 				}
 			}
 		

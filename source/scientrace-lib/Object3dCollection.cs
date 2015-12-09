@@ -191,7 +191,7 @@ public class Object3dCollection : Scientrace.Object3d {
 	}
 
 	public override string exportX3D(Scientrace.Object3dEnvironment env) {
-		StringBuilder retsb = new StringBuilder(1024);
+		StringBuilder retsb = new StringBuilder(500000); // start with 0.5MB of X3D memory, makes it a lot faster.
 		//reserve a memory size of 1024 chars "to start off with".
 		foreach (Object3d object3d in this.objects) {
 			retsb.Append(object3d.exportX3D(env));

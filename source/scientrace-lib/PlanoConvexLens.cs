@@ -128,7 +128,7 @@ public class PlanoConvexLens : Scientrace.EnclosedVolume {
 		double lat_circles = 3;
 		double meridians = 12;
 		
-		System.Text.StringBuilder retx3d = new System.Text.StringBuilder("<!-- PLANOCONVEXLENS GRID start -->");
+		System.Text.StringBuilder retx3d = new System.Text.StringBuilder("<!-- PLANOCONVEXLENS GRID start -->", 1024);
 		retx3d.Append("\t<!-- Plano part -->" );
 
 
