@@ -192,12 +192,23 @@ public class DielectricSurfaceInteraction {
 			Vector v1 = this.trace_in.getPolarisationVec1();
 			Vector v2 = this.trace_in.getPolarisationVec2();
 
-			this.amp_is = 0;
-			this.amp_ip = 0;
+			double squared_vec_sum_is = 0;
+			double squared_vec_sum_ip = 0; 
+			double oldval_is = 0;
+			double oldval_ip = 0;	
 			foreach (Vector aVec in new List<Vector>{v1, v2}) {
-				this.amp_is += aVec.dotProduct(s);
-				this.amp_ip += aVec.dotProduct(p);
+				squared_vec_sum_is += Math.Pow(aVec.dotProduct(s),2);
+				squared_vec_sum_ip += Math.Pow(aVec.dotProduct(p),2);
+				oldval_is += aVec.dotProduct(s);
+				oldval_ip += aVec.dotProduct(p);
 				}
+			this.amp_is = Math.Pow(squared_vec_sum_is,0.5);
+			this.amp_ip = Math.Pow(squared_vec_sum_ip,0.5);
+			/*
+			double l1 =	v1.length*v1.length + v2.length*v2.length;
+			double l2 = this.amp_is*this.amp_is + this.amp_ip * this.amp_ip;
+			Console.WriteLine((l1-l2).ToString()+" =("+l1+"/"+l2+")      from v1/v2:"+v1.length.ToString()+"/"+v2.length.ToString()+" becomes: "+this.amp_is+"/"+this.amp_ip+" was:"+oldval_is+"/"+oldval_ip); 
+			/* */
 			}
 
 
@@ -302,7 +313,10 @@ public class DielectricSurfaceInteraction {
 			// (25A) Jenkins / (4.43) Hecht * this.amp_ix
 			this.amp_rp = this.amp_ip * (Math.Tan(imint) / Math.Tan(sums));
 
-			if (this.total_internal_reflection) return;
+			if (this.total_internal_reflection) {
+				throw new InvalidOperationException();
+				// used to be: return;
+				}
 
 			//(25B) Jenkins / (4.44) Hecht * this.amp_ix
 			this.amp_ts = this.amp_is * 2.0 * Math.Sin(this.angle_t) * Math.Cos(this.angle_i) / sinofsums;
@@ -382,15 +396,15 @@ public class DielectricSurfaceInteraction {
 			// Construct the new trace line
 			Scientrace.Line reflect_line = new Scientrace.Line(this.interaction_loc + (this.dir_r.toVector()*offset), this.dir_r);
 
-			double new_intensity = this.intensity_after_absorption*(this.amp_rs*this.amp_rs + this.amp_rp*this.amp_rp);
-			
+			double new_intensity = (this.intensity_after_absorption/this.intensity_in) *
+						(Math.Pow(this.amp_rs,2) + Math.Pow(this.amp_rp,2));
+
 			// Sometimes, this new intensity is to small to care about. Return null.	
 			if (new_intensity <= MainClass.SIGNIFICANTLY_SMALL) {
 				//Console.WriteLine("New intensity is: "+new_intensity+" is:"+this.amp_is+" ip:"+this.amp_ip+" ts:"+this.amp_ts+" tp:"+this.amp_tp);
 				return null;
 				}
-			//TODO: check replaced line below and at getRefractTrace(offset)
-			//Scientrace.Trace reflect_trace = trace_in.fork(reflect_line, (this.dir_s*this.intc_rs), (this.dir_rp*this.intc_rp), new_intensity);
+
 			Scientrace.Trace reflect_trace = 
 					trace_in.fork(reflect_line, (this.dir_s.toVector()*this.amp_rs), (this.dir_rp.toVector()*this.amp_rp), 
 									new_intensity, (this.total_internal_reflection?"_fr":"_r"));
@@ -415,16 +429,13 @@ public class DielectricSurfaceInteraction {
 			if (this.total_internal_reflection) return null;
 
 			Scientrace.Line refract_line = new Scientrace.Line(this.interaction_loc + (this.dir_t.toVector()*offset), this.dir_t);
-//WRONG
-			double new_intensity = this.intensity_after_absorption*(1-(this.amp_rs*this.amp_rs + this.amp_rp*this.amp_rp));
-			//Console.WriteLine((Math.Sqrt(this.intc_rs + this.intc_rp)));
-			//		Console.WriteLine(" rs: "+this.intc_rs+" rp:"+this.intc_rp+" ts: "+this.intc_ts+" tp:"+this.intc_tp);
 
-			//		double new_intensity = ((this.intc_ts*amp_is*amp_is) + (this.intc_tp*amp_ip*amp_ip))*this.intensity_after_absorption;
-			//Scientrace.Trace refract_trace = trace_in.fork(refract_line, (this.dir_s*this.intc_ts), (this.dir_tp*this.intc_tp), new_intensity);
+			double refr_intensity = (this.intensity_after_absorption/this.intensity_in) *
+						((Math.Pow(this.amp_is,2) + Math.Pow(this.amp_ip,2))-(Math.Pow(this.amp_rs,2) + Math.Pow(this.amp_rp,2)) );
+
 			Scientrace.Trace refract_trace = 
 					trace_in.fork(refract_line, (this.dir_s.toVector()*this.amp_ts), (this.dir_tp.toVector()*this.amp_tp), 
-									new_intensity, "_t");
+									refr_intensity, "_t");
 			refract_trace.currentObject = this.object_to;
 
 			// Don't bother with empty traces.

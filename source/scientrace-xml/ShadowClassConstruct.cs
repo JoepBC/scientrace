@@ -26,8 +26,7 @@ namespace ScientraceXMLParser {
 		shadowO3D.debug_data = xel.ToString();
 
 		this.getX3DBaseProperties(shadowO3D, xel);
-
-		shadowO3D.register_performance = this.X.getXBool(xel, "Register", false);
+		shadowO3D.register_performance = this.X.getXBool(xel.Attribute("Register"), false);
 		XElement xer = xel.Element("Register");
 		if (xer != null) {
 			if (this.X.getXBool(xer,"SolarCell", (this.X.getXBool(xer, "Performance", false))))

@@ -23,7 +23,7 @@ public class XMLSpectrumParser : ScientraceXMLAbstractParser{
 		int mod_multip = 1;
 		if (xspec.Attribute("ModuloMultiplier") != null) {
 			mod_multip = this.X.getXInt(xspec, "ModuloMultiplier");
-			Console.WriteLine("Setting new MOD: "+mod_multip);
+			//Console.WriteLine("Setting new MOD: "+mod_multip);
 
 		} //else { Console.WriteLine("NOT Setting new MOD for "+xspec.Name.ToString()); }
 		//Console.WriteLine(mod_multip+"MOD");

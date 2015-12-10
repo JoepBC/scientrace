@@ -123,7 +123,7 @@
 		<Material Class="pmma" RefractiveIndex="1.5" Reflects="true" />
 	</FresnelLens>
 
-	<Rectangle Material="black" Tag="solar_cell" Register="false">
+	<Rectangle Material="black" Tag="solar_cell" Register="true">
 		<Location xyz="0;0;0">
 			<Translate xyz="@CELL_WIDTH@" Factor="-0.5" />
 			<Translate xyz="@CELL_HEIGHT@" Factor="-0.5" />

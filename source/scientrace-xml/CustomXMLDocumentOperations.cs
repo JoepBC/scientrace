@@ -580,7 +580,7 @@ namespace ScientraceXMLParser {
 			}
 		if (xparent.Element(xmlkey) != null) { 
 			try { return (bool)this.getXBool(xparent.Element(xmlkey));
-				} catch {throw new XMLException("ERROR: COULD NOT PARSE BOOLEAN "+xmlkey+"("+xparent.Attribute(xmlkey).Value+") AT \""+xparent.Name+"\" element");}
+				} catch {throw new XMLException("ERROR: COULD NOT PARSE BOOLEAN "+xmlkey+"("+xparent.Element(xmlkey).ToString()+") AT \""+xparent.Name+"\" element");}
 			}
 		throw new XMLException("ERROR: no "+xmlkey+" found for "+xparent.Name+" boolean element");
 		}
@@ -594,7 +594,11 @@ namespace ScientraceXMLParser {
 			}
 		if (xparent.Element(xmlkey) != null) { 
 			try { return (bool)this.getXBool(xparent.Element(xmlkey));
-				} catch {throw new XMLException("ERROR: COULD NOT PARSE BOOLEAN "+xmlkey+"("+xparent.Attribute(xmlkey).Value+") AT \""+xparent.Name+"\" element");}
+				} 
+			catch(Exception e) {
+				Console.WriteLine("WARNING"); 
+				throw new XMLException("ERROR: COULD NOT PARSE BOOLEAN "+xmlkey+"("+xparent.Element(xmlkey).ToString()+") AT \""+xparent.Name+"\" element");
+				}
 			}
 		return defvalue;
 		}	
@@ -608,7 +612,7 @@ namespace ScientraceXMLParser {
 			}
 		if (xparent.Element(xmlkey) != null) { 
 			try { return this.getXBool(xparent.Element(xmlkey));
-				} catch {throw new XMLException("ERROR: COULD NOT PARSE BOOLEAN "+xmlkey+"("+xparent.Attribute(xmlkey).Value+") AT \""+xparent.Name+"\" element");}
+				} catch {throw new XMLException("ERROR: COULD NOT PARSE BOOLEAN "+xmlkey+"("+xparent.Element(xmlkey).ToString()+") AT \""+xparent.Name+"\" element");}
 			}
 		return defvalue;
 		}	
@@ -628,7 +632,7 @@ namespace ScientraceXMLParser {
 			}
 		if (xparent.Element(xmlkey) != null) { 
 			try { return Convert.ToInt32(xparent.Element(xmlkey).Value);
-				} catch {throw new XMLException("ERROR: COULD NOT PARSE "+xmlkey+"("+xparent.Attribute(xmlkey).Value+") AT \""+xparent.Name+"\" element");}
+				} catch {throw new XMLException("ERROR: COULD NOT PARSE "+xmlkey+"("+xparent.Element(xmlkey).ToString()+") AT \""+xparent.Name+"\" element");}
 			}
 		throw new XMLException("ERROR: no "+xmlkey+" found for "+xparent.Name+" element");
 		}
@@ -696,7 +700,7 @@ namespace ScientraceXMLParser {
 			}
 		if (xparent.Element(xmlkey) != null) { 
 			try { return xparent.Element(xmlkey).Value;
-				} catch {throw new XMLException("ERROR: COULD NOT PARSE "+xmlkey+"("+xparent.Element(xmlkey).Value+") AT \""+xparent.Name+"\" element");}
+				} catch {throw new XMLException("ERROR: COULD NOT PARSE "+xmlkey+"("+xparent.Element(xmlkey).ToString()+") AT \""+xparent.Name+"\" element");}
 			}
 		return null;	
 		}
@@ -715,7 +719,7 @@ namespace ScientraceXMLParser {
 			}
 		if (xparent.Element(xmlkey) != null) { 
 			try { return Convert.ToDouble(xparent.Element(xmlkey).Value);
-				} catch {throw new XMLException("ERROR: COULD NOT PARSE "+xmlkey+"("+xparent.Element(xmlkey).Value+") AT \""+xparent.Name+"\" element");}
+				} catch {throw new XMLException("ERROR: COULD NOT PARSE "+xmlkey+"("+xparent.Element(xmlkey).ToString()+") AT \""+xparent.Name+"\" element");}
 			}
 		return null;
 		}
@@ -728,7 +732,7 @@ namespace ScientraceXMLParser {
 			}
 		if (xparent.Element(xmlkey) != null) { 
 				try { return Convert.ToInt32(xparent.Element(xmlkey).Value);
-				} catch {throw new XMLException("ERROR: COULD NOT PARSE "+xmlkey+"("+xparent.Element(xmlkey).Value+") {int} AT \""+xparent.Name+"\" element");}
+				} catch {throw new XMLException("ERROR: COULD NOT PARSE "+xmlkey+"("+xparent.Element(xmlkey).ToString()+") {int} AT \""+xparent.Name+"\" element");}
 			}
 		return null;
 		}
