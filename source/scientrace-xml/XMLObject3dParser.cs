@@ -200,15 +200,23 @@ public class XMLObject3dParser : ScientraceXMLAbstractParser {
 			Scientrace.Location location = this.X.getXVector(xprism.Element("Location")).toLocation();
 			Scientrace.Vector tsurfv1 = this.X.getXVector(xprism.Element("SurfaceVector1"));
 			Scientrace.Vector tsurfv2 = this.X.getXVector(xprism.Element("SurfaceVector2"));
-			Scientrace.Vector tzaxis = this.X.getXVector(xprism.Element("Height"));
+			
 			Scientrace.NonzeroVector surfv1, surfv2, zaxisheight;
 			try {
 				surfv1 = tsurfv1.tryToNonzeroVector();
 				surfv2 = tsurfv2.tryToNonzeroVector();
+				zaxisheight = surfv1.crossProduct(tsurfv2).tryToNonzeroVector();
+				} catch {
+				throw new XMLException("Parsing fresnel prism error: SurfaceVectors1 and 2 may not be zero.");
+				}
+
+			Scientrace.Vector tzaxis = this.X.getXVector(xprism.Element("Height"), zaxisheight);
+			try {
 				zaxisheight = tzaxis.tryToNonzeroVector();
 				} catch {
-				throw new XMLException("Parsing fresnel prism error: SurfaceVectors & z-axis may not be zero");
+				throw new XMLException("Parsing fresnel prism error: height vector may not be zero.");
 				}
+
 			double LongSideAngle = this.X.getXAngle(xprism.Element("LongSideAngle"));
 			double ShortSideAngle = this.X.getXAngle(xprism.Element("ShortSideAngle"));
 			int TeethCount = this.X.getXInt(xprism.Attribute("TeethCount"));

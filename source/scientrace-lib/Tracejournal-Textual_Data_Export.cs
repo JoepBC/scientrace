@@ -318,9 +318,9 @@ public partial class TraceJournal {
 			xrow.Add(new XElement("td", lightsource.direction.y));
 			xheader.Add(new XElement("td","Z"));
 			xrow.Add(new XElement("td", lightsource.direction.z));*/
-			xheader.Add(new XElement("td","calculation time (s)"));
+			xheader.Add(new XElement("td","calc_seconds"));
 			xrow.Add(new XElement("td", lightsource.shine_duration));
-			xheader.Add(new XElement("td","number of traces"));
+			xheader.Add(new XElement("td","number_of_traces"));
 			xrow.Add(new XElement("td", lightsource.traceCount()));
 			xheader.Add(new XElement("td","intensity"));
 			xrow.Add(new XElement("td", lightsource.total_lightsource_intensity.ToString()));
@@ -341,18 +341,18 @@ public partial class TraceJournal {
 				xheader.Add(new XElement("td", lightsource.tag+"-weighted_sum"));
 				xrow.Add(new XElement("td", (lightsource.revenueForObject(solarcell)/lightsource.total_lightsource_intensity)*lightsource.weighted_intensity));
 				}
-			xheader.Add(new XElement("td", "total revenue"));
+			xheader.Add(new XElement("td", "total_revenue"));
 			xrow.Add(new XElement("td", solarcell.getTotalRevenue()));
 			xheader.Add(new XElement("td", solarcell.tag+"-yield"));
 			xrow.Add(new XElement("td", solarcell.getTotalRevenue()/total_intensity));
 			total_revenue = total_revenue + solarcell.getTotalRevenue();
 			solarcellcount++;
 			}
-		xheader.Add(new XElement("td", "total light intensity"));
+		xheader.Add(new XElement("td", "total_light_intensity"));
 		xrow.Add(new XElement("td", total_intensity));
-		xheader.Add(new XElement("td", "total revenue"));
+		xheader.Add(new XElement("td", "total_revenue"));
 		xrow.Add(new XElement("td", total_revenue));
-		xheader.Add(new XElement("td", "total yield"));
+		xheader.Add(new XElement("td", "total_yield"));
 		xrow.Add(new XElement("td", total_revenue/total_intensity));
 		/*xheader.Add(new XElement("td", "total yield (%)"));
 		xrow.Add(new XElement("td", (100*total_revenue/total_intensity)+"%"));*/

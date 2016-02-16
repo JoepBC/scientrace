@@ -161,7 +161,9 @@ public class CircularFresnelPrism : Object3dCollection {
 
 		//Setting boundaries for first and second half collections:
 		if (this.teethCount < this.divisioncount) {
-			throw new ArgumentOutOfRangeException("Lees teeth("+this.teethCount+") for prism than divisions("+this.divisioncount+")");
+			this.divisioncount = 2;
+			Console.WriteLine("Warning: Less teeth("+this.teethCount+") for prism than divisions("+this.divisioncount+"), now setting divisioncount to 2.");
+			//throw new ArgumentOutOfRangeException("Less teeth("+this.teethCount+") for prism than divisions("+this.divisioncount+")");
 			}
 		for (int idiv = 0; idiv<this.divisioncount; idiv++) {
 

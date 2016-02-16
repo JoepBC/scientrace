@@ -41,6 +41,8 @@ namespace ScientraceXMLParser {
 		retutm.modify_traces_count = modifycount;
 		retutm.randomSeed = randomseed;
 		
+		retutm.random_modification_select = this.X.getXBool(xutm, "Random", retutm.random_modification_select);
+
 		return retutm;
 		}
 				

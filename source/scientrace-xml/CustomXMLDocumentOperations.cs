@@ -597,7 +597,7 @@ namespace ScientraceXMLParser {
 				} 
 			catch(Exception e) {
 				Console.WriteLine("WARNING"); 
-				throw new XMLException("ERROR: COULD NOT PARSE BOOLEAN "+xmlkey+"("+xparent.Element(xmlkey).ToString()+") AT \""+xparent.Name+"\" element");
+								throw new XMLException("ERROR: COULD NOT PARSE BOOLEAN "+xmlkey+"("+xparent.Element(xmlkey).ToString()+") AT \""+xparent.Name+"\" element\n"+e.Message);
 				}
 			}
 		return defvalue;

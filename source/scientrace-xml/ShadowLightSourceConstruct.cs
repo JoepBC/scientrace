@@ -230,8 +230,15 @@ public class ShadowLightSourceConstruct : ScientraceXMLAbstractParser{
 		}
 
 
-		public List <Scientrace.Trace> getCustomTracesListFromXData(XElement xlight,
+	public List <Scientrace.Trace> getCustomTracesListFromXData(XElement xlight,
 												Scientrace.Object3dEnvironment env) {
+			string traces_filename = (this.X.getXStringByName(xlight, "Filename", null));
+			if (traces_filename != null)
+				if (System.IO.File.Exists(traces_filename)) {
+					XDocument xd = XDocument.Load(traces_filename);
+					return this.getCustomTracesListFromXData(xd.Element("LightSource"), env);
+					} else throw new System.IO.FileNotFoundException("CustomTraces filename ("+traces_filename+") does not exist.");
+			// If there aren't any Trace sub-Elements, you might as well stop here (return null)
 			if (!xlight.Elements("Trace").Any())
 						return null;
 			List <Scientrace.Trace> customtraces = new List<Scientrace.Trace>();
