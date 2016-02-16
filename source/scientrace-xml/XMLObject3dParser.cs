@@ -1,6 +1,7 @@
 using System;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using ScientraceXMLParser;
 
 namespace ScientraceXMLParser {
 	
@@ -220,8 +221,11 @@ public class XMLObject3dParser : ScientraceXMLAbstractParser {
 			double LongSideAngle = this.X.getXAngle(xprism.Element("LongSideAngle"));
 			double ShortSideAngle = this.X.getXAngle(xprism.Element("ShortSideAngle"));
 			int TeethCount = this.X.getXInt(xprism.Attribute("TeethCount"));
+			Scientrace.MaterialProperties material = new ShadowClassConstruct(this.parentcollection).getXMaterial(xprism);
+			/*
 			string materialid = this.X.getXString(xprism.Attribute("Material"));
 			Scientrace.MaterialProperties material = Scientrace.MaterialProperties.FromIdentifier(materialid);
+			*/
 			Scientrace.CircularFresnelPrism tretprism = 
 				new Scientrace.CircularFresnelPrism(this.parentcollection,
 				this.parentcollection.materialproperties, location, surfv1, surfv2, zaxisheight, 
@@ -241,8 +245,9 @@ public class XMLObject3dParser : ScientraceXMLAbstractParser {
 		public Scientrace.ParabolicMirror parseXParabolicMirror(XElement xmir) {
 			Scientrace.UnitVector miraxis = this.X.getXNzVector(xmir.Element("MirrorAxis")).toUnitVector();
 
-			string materialid = this.X.getXString(xmir.Attribute("Material"));
-			Scientrace.MaterialProperties material = Scientrace.MaterialProperties.FromIdentifier(materialid);
+			/*string materialid = this.X.getXString(xmir.Attribute("Material"));
+			Scientrace.MaterialProperties material = Scientrace.MaterialProperties.FromIdentifier(materialid);*/
+			Scientrace.MaterialProperties material = new ShadowClassConstruct(this.parentcollection).getXMaterial(xmir);
 			XMLBorderParser xbp = new XMLBorderParser();
 			Scientrace.AbstractGridBorder border = xbp.getXBorder(xmir.Element("Border"));
 			Scientrace.ParabolicMirror tretpmir;
@@ -284,9 +289,10 @@ public class XMLObject3dParser : ScientraceXMLAbstractParser {
 				}
 			Scientrace.NonzeroVector width = vwidth.tryToNonzeroVector();
 			Scientrace.NonzeroVector height = vheight.tryToNonzeroVector();
-			string materialid = this.X
+			/*string materialid = this.X
 				.getXString(xsc.Attribute("Material"));
-			Scientrace.MaterialProperties material = Scientrace.MaterialProperties.FromIdentifier(materialid);
+			Scientrace.MaterialProperties material = Scientrace.MaterialProperties.FromIdentifier(materialid); */
+			Scientrace.MaterialProperties material = new ShadowClassConstruct(this.parentcollection).getXMaterial(xsc);
 			//Console.WriteLine("MAT CELL: "+material.GetType());
 			Scientrace.Rectangle retcel = new Scientrace.Rectangle(this.parentcollection,
 				material, location, width, height);
@@ -323,9 +329,9 @@ public class XMLObject3dParser : ScientraceXMLAbstractParser {
 			Scientrace.UnitVector orthogonaldir = this.X.getXVector(xsc.Element("OrthogonalDirection")).tryToUnitVector();
 			//double sidelength = this.X.getXDouble(xsc.Attribute("SideLength"));
 			double sidelength = this.X.getXDouble(xsc, "SideLength");
-			string materialid = this.X.getXString(xsc.Attribute("Material"));
-			Scientrace.MaterialProperties material = Scientrace.MaterialProperties.FromIdentifier(materialid);
-			//Console.WriteLine("MAT CELL: "+material.GetType());
+			/*string materialid = this.X.getXString(xsc.Attribute("Material"));
+			Scientrace.MaterialProperties material = Scientrace.MaterialProperties.FromIdentifier(materialid); */
+			Scientrace.MaterialProperties material = new ShadowClassConstruct(this.parentcollection).getXMaterial(xsc);
 			Scientrace.Rectangle retcel = new Scientrace.Rectangle(this.parentcollection, material, center, 
 				                          pointingtowards, orthogonaldir, sidelength);
 			this.addCommonObjectProperties(retcel, xsc);

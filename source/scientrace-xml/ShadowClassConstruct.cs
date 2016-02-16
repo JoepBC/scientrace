@@ -8,7 +8,7 @@ using ShadowScientrace;
 
 namespace ScientraceXMLParser {
 
-	public class ShadowClassConstruct : ScientraceXMLAbstractParser{
+public class ShadowClassConstruct : ScientraceXMLAbstractParser{
 	
 	public ShadowClassConstruct (Scientrace.Object3dCollection parent):base() {
 		this.parentcollection = parent;
