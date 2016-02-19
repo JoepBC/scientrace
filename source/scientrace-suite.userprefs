@@ -3,22 +3,22 @@
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-xml/XMLObject3dParser.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-xml/ScientraceXMLParser.cs">
     <Files>
       <File FileName="scientrace-lib/DielectricSurfaceInteraction.cs" Line="1" Column="1" />
       <File FileName="scientrace-lib/Trace.cs" Line="1" Column="1" />
       <File FileName="scientrace-lib/Trace-Polarisation_Support.cs" Line="1" Column="1" />
-      <File FileName="scientrace-xml/XMLSpectrumParser.cs" Line="112" Column="1" />
+      <File FileName="scientrace-xml/XMLSpectrumParser.cs" Line="1" Column="1" />
       <File FileName="scientrace-xml/CustomXMLDocumentOperations.cs" Line="1" Column="1" />
       <File FileName="scientrace-xml/Main.cs" Line="1" Column="1" />
       <File FileName="scientrace-lib/Tracejournal-Textual_Data_Export.cs" Line="1" Column="1" />
       <File FileName="scientrace-xml/XMLOutputParser.cs" Line="1" Column="1" />
       <File FileName="scientrace-xml/XMLLightSourceParser.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/UniformTraceModifier.cs" Line="407" Column="34" />
+      <File FileName="scientrace-lib/UniformTraceModifier.cs" Line="1" Column="1" />
       <File FileName="scientrace-lib/SpiralLightSource.cs" Line="1" Column="1" />
-      <File FileName="scientrace-xml/XMLTraceModifierParser.cs" Line="45" Column="1" />
-      <File FileName="scientrace-xml/ScientraceXMLParser.cs" Line="160" Column="66" />
-      <File FileName="scientrace-xml/XMLObject3dParser.cs" Line="334" Column="109" />
+      <File FileName="scientrace-xml/XMLTraceModifierParser.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/ScientraceXMLParser.cs" Line="175" Column="39" />
+      <File FileName="scientrace-xml/XMLObject3dParser.cs" Line="261" Column="72" />
       <File FileName="scientrace-xml/ShadowClassConstruct.cs" Line="11" Column="1" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

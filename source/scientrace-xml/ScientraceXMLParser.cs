@@ -61,7 +61,11 @@ public class ScientraceXMLParser {
 		Scientrace.Object3dEnvironment retenv;
 		
 		// Creating "the entire object-space"
-		double env_radius = this.X.getXDouble(xenv.Attribute("Radius"));
+		double env_radius = this.X.getXDouble(xenv.Attribute("Radius"), -1);
+		if (env_radius == -1) {
+			Console.WriteLine("Warning: ObjectEnvironment radius not set. Using 100 as a random default. You might want to change this.");
+			env_radius = 100;
+			}
 		bool drawaxes = this.X.getXBool(xenv.Attribute("DrawAxes"), true);
 		string environment_material_id = this.X.getXString(xenv.Attribute("Environment"), "air");
 		Scientrace.Vector cameraviewpoint = new Scientrace.Vector(0,0,1); // default viewpoint 0,0,1
@@ -168,7 +172,7 @@ public class ScientraceXMLParser {
 			case "CameraViewpoint": //fallthrough
 			case "CameraFrom": //fallthrough
 			case "CameraRotation":
-				//set cam settings
+				//Cam settings set at environment.
 				break;
 			case "LightSource":
 				//do nothing, already parsed previously
