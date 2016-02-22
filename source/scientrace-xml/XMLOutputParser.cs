@@ -105,6 +105,8 @@ public class XMLOutputParser : ScientraceXMLAbstractParser	{
 		Scientrace.TraceJournal tj = Scientrace.TraceJournal.Instance;
 		tj.angle_histogram_export = this.X.getXBool(xhistogram, "Export", tj.angle_histogram_export);
 		tj.angle_histogram_resolution = this.X.getXDouble(xhistogram, "Resolution", tj.angle_histogram_resolution);
+		tj.angle_histogram_from = this.X.getXDouble(xhistogram, "FromAngle", tj.angle_histogram_from);
+		tj.angle_histogram_to = this.X.getXDouble(xhistogram, "ToAngle", tj.angle_histogram_to);
 		tj.angle_histogram_csv_filename = this.X.getXStringByName(xhistogram, "Filename", tj.angle_histogram_csv_filename);
 		}
 		

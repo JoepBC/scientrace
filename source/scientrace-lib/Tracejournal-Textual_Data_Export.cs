@@ -35,6 +35,8 @@ public partial class TraceJournal {
 	/// The size of the bin. The total number of bins is 90/angle_histogram_resolution
 	/// </summary>
 	public double angle_histogram_resolution = 1.0;
+	public double angle_histogram_from = 0;
+	public double angle_histogram_to = 180;
 	public string angle_histogram_csv_filename = "histogram_%o.csv";
 	public const int APPEND = 1001;
 	public const int WRITE = 1002;
@@ -135,27 +137,32 @@ public partial class TraceJournal {
 			retdict.Add(aKey, this.stringToCsv(exportFields[aKey]));
 			}
 
-
-		//20151021: OLD OBSOLETE METHOD ON NON-GENERIC HASHTABLE IMPLEMENTATION
-		/* IDictionaryEnumerator e = this.exportFields.GetEnumerator();
-		while (e.MoveNext()) {
-			retdict.Add(e.Key.ToString(), this.stringToCsv(e.Value.ToString()));
-			}
-		*/
 		return retdict;
 		}
 
 
 	public string toResString(double aDouble) {
-		return (this.angle_histogram_resolution*Math.Floor(aDouble/this.angle_histogram_resolution)).ToString();
+		// This *1.00000000000001 thing is a quick&dirty hack to avoid floating point errors that otherwise occur.
+		return (this.angle_histogram_resolution*
+				Math.Floor(aDouble*1.000000000001/this.angle_histogram_resolution)).ToString();
 		}
 		
+	public void addToOtherBin(double value, Dictionary<string, double> dict) {
+		if (!dict.ContainsKey("other")) {
+			dict.Add("other", value);
+			return;
+			}
+		dict["other"] = dict["other"] + value;
+		}
+
 	public void writeAngleHistogramCSV(Scientrace.PhysicalObject3d anObject) {
 		Dictionary<string, double> angle_histogram = new Dictionary<string, double>();
 
 		//Creating empty bins
-		for (double bin = 0; bin < 180; bin = bin+this.angle_histogram_resolution)
+		for (double bin = this.angle_histogram_from; bin < this.angle_histogram_to; bin = bin+this.angle_histogram_resolution) {
+			//Console.WriteLine("NEWBIN: "+this.toResString(bin)+ " from:"+bin);
 			angle_histogram.Add(this.toResString(bin), 0);
+			}
 		foreach(Scientrace.Spot casualty in this.spots) {
 			if (casualty == null) {
 								Console.WriteLine("Error: Casualty is null when writing angle histogram...");
@@ -171,8 +178,10 @@ public partial class TraceJournal {
 			if (angle_histogram.ContainsKey(bin)) //{
 				angle_histogram[bin] = angle_histogram[bin]+casualty.intensity;
 				//Console.WriteLine("bin {"+bin+"} increased."); }
-				else 
-				Console.WriteLine("WARNING: BIN {"+bin+"} NOT FOUND FOR HISTOGRAM."+angle_deg_mod+"/"+angle_deg);
+				else {
+				this.addToOtherBin(casualty.intensity, angle_histogram);
+				//Console.WriteLine("WARNING: BIN {"+bin+"} NOT FOUND FOR HISTOGRAM."+angle_deg_mod+"/"+angle_deg);\
+				}
 			}
 
 		string angle_histogram_csv_filename = this.exportpath+this.angle_histogram_csv_filename.Replace("%o",anObject.tag);
