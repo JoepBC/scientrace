@@ -113,10 +113,11 @@ public class ParabolicMirror : Scientrace.FlatSurfaceObject3d {
 				//Console.WriteLine("___1");
 				
 				//check below removed for performance reasons
-				if (!trfline.throughLocation(ips[ipi].loc, 0.00001)) {
+				/*if (!trfline.throughLocation(ips[ipi].loc, 0.00001)) {
 					string warning =@"ERROR: GOING DOWN! \n baseintersections "+trfline+" FAILED!";
 					throw new ArgumentOutOfRangeException(warning+ips[ipi].loc.trico() + " not in line " + trfline);
-				}/* else {
+				} */ //This was removed at 20160222
+				/* else {
 					Scientrace.Line reflline = trfline.reflectAt(this.baseIntersectionPlane(ips[ipi].loc.x, ips[ipi].loc.y),0);
 				//Console.WriteLine("___2");
 					/*if (!reflline.throughLocation(this.getBaseConcentrationPoint(), 0.000001)) {
@@ -204,6 +205,7 @@ public class ParabolicMirror : Scientrace.FlatSurfaceObject3d {
 			return ip;
 		}*/
 //		if ((Math.Pow(ABCa,2)) < 1E-56) { // <-- used to be 
+//		if ((Math.Pow(ABCa,2)) < 1E-31) { // <-- used to be
 		if ((Math.Pow(ABCa,2)) < 1E-31) { // <-- now, so no (/less) significance errors do occur any longer in results
 			//Console.WriteLine("ABCa is SMALL"+ABCa.ToString());
 			ip = new Scientrace.IntersectionPoint[1];
@@ -234,24 +236,33 @@ public class ParabolicMirror : Scientrace.FlatSurfaceObject3d {
 		//still here? two results!
 		/*d1 = ((-ABCb)+Math.Sqrt(Math.Pow(ABCb, 2)-(4*ABCa*ABCc)))/(2*ABCa);
 		d2 = ((-ABCb)-Math.Sqrt(Math.Pow(ABCb, 2)-(4*ABCa*ABCc)))/(2*ABCa);*/
-		d1 = ((-ABCb)+Math.Sqrt(discr))/(2*ABCa);
-		d2 = ((-ABCb)-Math.Sqrt(discr))/(2*ABCa);
+		d1 = ((-ABCb)+Math.Sqrt(discr))/(2.0*ABCa);
+		d2 = ((-ABCb)-Math.Sqrt(discr))/(2.0*ABCa);
 		v1 = (line.direction.toVector()*d1)+line.startingpoint.toVector();
 		v2 = (line.direction.toVector()*d2)+line.startingpoint.toVector();
-	//	Console.WriteLine("discr: "+discr+" ABCa: "+ABCa+" ABCb: "+ABCb+" ABCc: "+ABCc);
+
+
+		//Console.WriteLine("discr: "+discr+" ABCa: "+ABCa+" ABCb: "+ABCb+" ABCc: "+ABCc);
 		//FOR BETTER PERFORMANCE REMOVE CHECKS BELOW
-		if (!line.throughLocation(v1.toLocation(), 0.00001)) {
+		/* //This was removed at 20160222
+		if ((v1 != null) && (!line.throughLocation(v1.toLocation(), 0.00001))) {
 			throw new Exception("TRFd line 1 "+v1.trico()+" avoids "+line.ToString());
 			}
-		if (!line.throughLocation(v2.toLocation(), 0.00001)) {
+		if ((v2 != null) && (!line.throughLocation(v2.toLocation(), 0.00001))) {
 			v2 = v1;
 //			Console.WriteLine("discr: "+discr);
 //			throw new Exception("TRFd line 2 "+v1.trico()+" avoids "+line.ToString()+" contrairy to "+v1.trico());
 			}
-
+		*/
 		ip = new Scientrace.IntersectionPoint[2];
-		ip[0] = new IntersectionPoint(v1.toLocation(), this.baseIntersectionShape(v1.x, v1.y));
-		ip[1] = new IntersectionPoint(v2.toLocation(), this.baseIntersectionShape(v2.x, v2.y));
+		ip[0] = (v1 == null ?
+				null : 
+				new IntersectionPoint(v1.toLocation(), this.baseIntersectionShape(v1.x, v1.y))
+				);
+		ip[1] = (v2 == null ?
+				null : 
+				new IntersectionPoint(v2.toLocation(), this.baseIntersectionShape(v2.x, v2.y))
+				);
 		return ip;
 	}
 
