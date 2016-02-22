@@ -240,7 +240,11 @@ public abstract class Object3d {
 			return new Intersection(false,this); //do not parse this object
 			}
 		}
-		
+
+	public virtual Scientrace.Object3dEnvironment getEnvironment() {
+		return parent.getEnvironment();
+		}
+
 	public bool hasDummyBorder() {
 		return (this.dummyborder!=null);
 		}

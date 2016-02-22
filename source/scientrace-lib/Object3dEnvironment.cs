@@ -42,6 +42,10 @@ public class Object3dEnvironment : Scientrace.Object3dCollection {
 			this.cameraviewpoint = cameraviewpoint;
 	}
 		
+	public override Scientrace.Object3dEnvironment getEnvironment() {
+		return this;
+		}
+
 	public static Object3dEnvironment dummy() {
 		return new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance, 1, Scientrace.Vector.ZeroVector());
 		}
