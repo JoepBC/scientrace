@@ -55,16 +55,16 @@ public class X3DGridPoint {
 		if (loc1 == null || loc2 == null) {
 			return "";
 		}
-		return @"<!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='"+loc2.trico()+" \t"+loc1.trico()+@"' />
-		<ColorRGBA color='"+colorRGBAstring+" \t"+colorRGBAstring+@"' /></LineSet></Shape>";
+		return @"<!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='"+loc2.trico()+" \t"+loc1.trico()+@"' />"+
+		"<ColorRGBA color='"+colorRGBAstring+" \t"+colorRGBAstring+@"' /></LineSet></Shape>";
 		}
 
 	public static string get_RGB_Line_XML(Scientrace.Location loc1, Scientrace.Location loc2, string colourRGBstring) {
 		if (loc1 == null || loc2 == null) {
 			return "";
 		}
-		return @"<!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='"+loc2.trico()+" \t"+loc1.trico()+@"' />
-		<Color color='"+colourRGBstring+" \t"+colourRGBstring+@"' /></LineSet></Shape>";
+		return @"<!--RGBA_Line--><Shape><LineSet vertexCount='2'><Coordinate point='"+loc2.trico()+" \t"+loc1.trico()+@"' />"+
+		"<Color color='"+colourRGBstring+" \t"+colourRGBstring+@"' /></LineSet></Shape>";
 		}
 
 	public string x3DLineTo(Scientrace.Location aLoc) {

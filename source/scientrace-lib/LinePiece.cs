@@ -89,6 +89,8 @@ public class LinePiece : Line {
 	static public string drawLinePiecesXML(List<ObjectLinePiece> linePieces) {
 		System.Text.StringBuilder retstr = new System.Text.StringBuilder(5000);
 		foreach (ObjectLinePiece olp in linePieces) {
+			// Writing some helpful comments.
+			retstr.Append("<!-- Line From: \n"+olp.lp.startingpoint+" To: \n"+olp.lp.endingpoint+" -->");
 			retstr.Append(X3DGridPoint.get_RGBA_Line_XML(olp.lp, olp.col));
 			}
 		return retstr.ToString();
@@ -96,11 +98,19 @@ public class LinePiece : Line {
 
 
 	static public string drawLinePiecesXML(List<LinePiece> linePieces, string colour) {
-		System.Text.StringBuilder retstr = new System.Text.StringBuilder(5000);
+		List<ObjectLinePiece> olps = new List<ObjectLinePiece>();
+		foreach (LinePiece lp in linePieces) {
+			ObjectLinePiece tolp = new ObjectLinePiece();
+			tolp.col = colour;
+			tolp.lp = lp;
+			olps.Add(tolp);
+			}
+		return LinePiece.drawLinePiecesXML(olps);
+		/*System.Text.StringBuilder retstr = new System.Text.StringBuilder(5000);
 		foreach (LinePiece lp in linePieces) {
 			retstr.Append(X3DGridPoint.get_RGBA_Line_XML(lp, colour));
 			}
-		return retstr.ToString();
+		return retstr.ToString(); */
 		}
 
 	/*

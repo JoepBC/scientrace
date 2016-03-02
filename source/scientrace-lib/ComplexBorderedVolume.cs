@@ -62,10 +62,10 @@ public class ComplexBorderedVolume : EnclosedVolume {
 		double foo = 0;
 		foreach (ObjectLinePiece anOLP in markedSlices) {
 			//foo += env.radius/2000;
-						anOLP.lp.startingpoint.x= anOLP.lp.startingpoint.x + foo;
-						anOLP.lp.endingpoint.x= anOLP.lp.endingpoint.x + foo;
-						anOLP.lp.startingpoint.y= anOLP.lp.startingpoint.y + foo;
-						anOLP.lp.endingpoint.y= anOLP.lp.endingpoint.y + foo;
+			anOLP.lp.startingpoint.x= anOLP.lp.startingpoint.x + foo;
+			anOLP.lp.endingpoint.x= anOLP.lp.endingpoint.x + foo;
+			anOLP.lp.startingpoint.y= anOLP.lp.startingpoint.y + foo;
+			anOLP.lp.endingpoint.y= anOLP.lp.endingpoint.y + foo;
 			}
 
 		// draw the linepieces after having checked and marked what's inside and outside
