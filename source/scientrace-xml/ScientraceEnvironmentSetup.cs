@@ -68,11 +68,15 @@ namespace ScientraceXMLParser{
 
 	public string preProcessFiles(string sourcefilename, string xmlsource) {
 		XDocument xd = XDocument.Parse(xmlsource);
-		XElement xpreprocess = xd.Element("ScientraceConfig").Element("PreProcess");
+		XElement xconf = xd.Element("ScientraceConfig");
+		if (xconf == null) {
+			throw new XMLException("No root element [ScientraceConfig] found in ["+sourcefilename+"]");
+			}
+		XElement xpreprocess = xconf.Element("PreProcess");
 		if (xpreprocess == null) { return xmlsource; }
 
 		foreach (XElement xe in xd.Element("ScientraceConfig").Element("PreProcess").Elements("Import")) {
-			string varname = xe.Attribute("Key").Value;
+			string varname = this.X.getXStringByName(xe, "Key"); //xe.Attribute("Key").Value;
 			XAttribute importfileatt = xe.Attribute("File");
 			string importvalue;
 			if (importfileatt == null) {
@@ -107,15 +111,15 @@ namespace ScientraceXMLParser{
 
 	public string replaceKeys(XElement xsource, string xmlsource) {
 		foreach (XElement xe in xsource.Elements("Replace")) {
-			string varname = xe.Attribute("Key").Value;
+			string varname = this.X.getXStringByName(xe, "Key");
 			string tovalue;
-			if (xe.Attribute("Value")!=null) {
-				tovalue = xe.Attribute("Value").Value;
-				} else {
+			if (xe.Element("Value") != null) {
 				System.Xml.XmlReader xr = xe.Element("Value").CreateReader();
 				xr.MoveToContent();
 				tovalue = xr.ReadInnerXml();
-				}
+				} 
+			else
+				tovalue = this.X.getXStringByName(xe, "Value");
 			xmlsource = xmlsource.Replace("$"+varname, tovalue).Replace("@"+varname+"@", tovalue);
 			}
 		return xmlsource;
