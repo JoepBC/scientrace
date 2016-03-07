@@ -229,7 +229,7 @@ public class DielectricSurfaceInteraction {
 			this.intensity_after_absorption = this.intensity_in * transmission;
 
 			double relative_absorption_density = this.static_surface_absorption*this.trace_in.intensityFraction();
-			if (this.static_surface_absorption > 0.000001) { //don't write a spot at minimal absorption.
+			if (this.static_surface_absorption > MainClass.SIGNIFICANTLY_SMALL) { //don't write a spot at minimal absorption.
 				TraceJournal.Instance.recordSpot(new Scientrace.Spot(this.interaction_loc, 
 					                                                  object_to,
 					                                                  absolute_absorption_density, relative_absorption_density,

@@ -365,7 +365,7 @@ public partial class Trace {
 		double absorptionIntensityFraction = absorption_fraction*oldintensityfraction;
 		this.intensity = oldintensity-absorption;
 
-		if (absorption > 0.0000000001) { //don't write a spot at ~0 absorption.
+		if (absorption > MainClass.SIGNIFICANTLY_SMALL) { //don't write a spot at ~0 absorption.
 		TraceJournal.Instance.recordSpot(new Scientrace.Spot(this.traceline.startingpoint, 
 			                                                  anObject3d,
 			                                                  absorption, absorptionIntensityFraction,

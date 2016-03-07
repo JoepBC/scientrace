@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Scientrace {
 
-public class ComplexBorderedVolume : EnclosedVolume {
+public partial class ComplexBorderedVolume : EnclosedVolume {
 
 	public List<PlaneBorderEnclosedVolume> subVolumes;
 	
@@ -26,115 +26,6 @@ public class ComplexBorderedVolume : EnclosedVolume {
 			//this.borders = enclosing_borders;
 			}
 		//Console.WriteLine("Number of subvolumes for {"+this.tag+"}: "+this.subVolumes.Count);
-		}
-		
-	public override string exportX3D(Object3dEnvironment env) {
-		// Step 1: Collect base linepieces that would draw the basic structure
-		List<ObjectLinePiece> baseLinePieces = new List<ObjectLinePiece>();		
-		foreach (PlaneBorderEnclosedVolume aSubVolume in this.subVolumes) {
-			baseLinePieces.AddRange(aSubVolume.getOLPBorderEdges());
-			}
-		// Step 2: Slice all linepieces that are intersected by other subVolumes
-		List<ObjectLinePiece> slicedLinePieces = new List<ObjectLinePiece>();
-		foreach (ObjectLinePiece anOLP in baseLinePieces) {
-			// Distances/linepieces smaller than "significance" are considered insignificant ignored.
-			if(anOLP.lp.getLength() < MainClass.SIGNIFICANTLY_SMALL)
-				continue;
-			List<ObjectLinePiece> olpChunks = new List<ObjectLinePiece>();
-			List<ObjectLinePiece> newOLPChunks = new List<ObjectLinePiece>();
-			
-			olpChunks.Add(anOLP);
-			foreach (PlaneBorderEnclosedVolume aSubVolume in this.subVolumes) {
-				newOLPChunks = new List<ObjectLinePiece>();	//create empty new list
-				foreach (ObjectLinePiece anOLPChunk in olpChunks) {
-					newOLPChunks.AddRange(aSubVolume.sliceObjectLinePiece(anOLPChunk));
-					} // end oldChunks
-				olpChunks = newOLPChunks;
-				} // end subVolumes
-			
-			slicedLinePieces.AddRange(newOLPChunks);
-			} // end anOLP loop
-		
-
-		List<ObjectLinePiece> markedSlices = this.markInsideOutsideOLPs(this.cleanupLinePieceList(slicedLinePieces));
-
-		Console.WriteLine("ComplexBorder gridline count: "+markedSlices.Count+" out of "+slicedLinePieces.Count);
-		double foo = 0;
-		foreach (ObjectLinePiece anOLP in markedSlices) {
-			//foo += env.radius/2000;
-			anOLP.lp.startingpoint.x= anOLP.lp.startingpoint.x + foo;
-			anOLP.lp.endingpoint.x= anOLP.lp.endingpoint.x + foo;
-			anOLP.lp.startingpoint.y= anOLP.lp.startingpoint.y + foo;
-			anOLP.lp.endingpoint.y= anOLP.lp.endingpoint.y + foo;
-			}
-
-		// draw the linepieces after having checked and marked what's inside and outside
-		//return LinePiece.drawLinePiecesXML(this.markInsideOutsideOLPs(baseLinePieces)); // <-- show non-sliced pieces only.
-		string line_pieces_xml = LinePiece.drawLinePiecesXML(markedSlices);
-		if (line_pieces_xml.Length < 1)
-			Console.WriteLine("WARNING: the volume {"+this.tag+"} cannot be drawn.");
-		return "<!-- ComplexVolume: "+this.tag+" -->"+line_pieces_xml+"<!-- END OF ComplexVolume: "+this.tag+" -->";
-		}
-		
-	/// <summary>
-	/// Removes all duplicate entries.
-	/// </summary>
-	public Dictionary<LinePiece, ObjectLinePiece> cleanupLinePieceListDict(List<ObjectLinePiece> olps) {
-		Dictionary<LinePiece, ObjectLinePiece> retDict = new Dictionary<LinePiece, ObjectLinePiece>();
-		foreach (ObjectLinePiece olp in olps) {
-			if (retDict.ContainsKey(olp.lp)) {
-				//ObjectLinePiece oldOLP = retDict[olp.lp];
-				/*Console.WriteLine("List has double linepiece: "+olp.lp.ToString()+
-					" Previous object: "+oldOLP.o3d.tag+ " / colour: "+oldOLP.col+
-					" New/skpd object: "+olp.o3d.tag+ " / colour: "+olp.col); */
-				/*Console.WriteLine("Previous object: "+oldOLP.o3d.tag+ " / colour: "+oldOLP.col);
-				Console.WriteLine("New/skpd object: "+olp.o3d.tag+ " / colour: "+olp.col); */
-				} else {
-				//add object
-				retDict.Add(olp.lp, olp);
-				}
-			}
-		return retDict;
-		}
-		
-		
-	public List<ObjectLinePiece> cleanupLinePieceList(List<ObjectLinePiece> olps) {
-		Dictionary<LinePiece, ObjectLinePiece> tdict = this.cleanupLinePieceListDict(olps);
-		return new List<ObjectLinePiece>(tdict.Values);
-		}
-	
-	public string getMarkCol() {		
-//		string markColor = "0 1 0 1";
-		return ""+this.rnd.NextDouble()+" "+this.rnd.NextDouble()+" "+this.rnd.NextDouble()+" "+" 1";
-		}	
-
-	/// <summary>
-	/// From a list of LinePieces, find out for each linepiece whether they are inside all other volumes or not.
-	/// The reason for this method is that the "inner borders" don't have to be drawn, only the outer borders, those
-	/// not enclosed by the other subvolumes borders.
-	/// </summary>
-	/// <returns>The inside outside OL ps.</returns>
-	/// <param name="olps">Olps.</param>
-	public List<ObjectLinePiece> markInsideOutsideOLPs(List<ObjectLinePiece> olps) {
-		List<ObjectLinePiece> markedOLPs = new List<ObjectLinePiece>();
-		foreach (ObjectLinePiece anOLP in olps) {
-			ObjectLinePiece tOLP = anOLP;
-			//tOLP.col = this.getMarkCol();
-			//Console.Write("+");
-			foreach (PlaneBorderEnclosedVolume aSubVolume in this.subVolumes) {
-				// do not use the subvolume that created the border for container-checking
-				if (tOLP.o3d == aSubVolume) { 
-					continue;
-					} 
-				if (aSubVolume.contains(tOLP.lp.getCenter(), null, 0.0000001)) {
-					tOLP.col = "0 0 0 0.1";
-					}
-				}
-				// Distances/linepieces smaller than "significance" are considered insignificant and are ignored.
-				if(tOLP.lp.getLength() > MainClass.SIGNIFICANTLY_SMALL)
-					markedOLPs.Add(tOLP);
-			}
-		return markedOLPs;
 		}
 
 	public bool contains(Scientrace.Location aLocation, double excludedMargin) {

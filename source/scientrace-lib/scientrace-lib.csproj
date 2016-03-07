@@ -155,6 +155,7 @@
     <Compile Include="PlaneBorderEnclosedVolume-3D_Drawing.cs" />
     <Compile Include="RandomCircleLightSource.cs" />
     <Compile Include="MaterialProperties_VariousMaterials.cs" />
+    <Compile Include="ComplexBorderedVolume-3D_drawing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

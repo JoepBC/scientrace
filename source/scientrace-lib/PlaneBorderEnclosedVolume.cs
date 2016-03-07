@@ -78,7 +78,7 @@ public partial class PlaneBorderEnclosedVolume:EnclosedVolume {
 
 
 	public bool contains(Scientrace.Location aLocation, PlaneBorder excludeBorder) {
-		return this.contains(aLocation, excludeBorder, 0.000000001);
+		return this.contains(aLocation, excludeBorder, MainClass.SIGNIFICANTLY_SMALL);
 		}
 
 	public bool contains(Scientrace.Location aLocation, PlaneBorder excludeBorder, double excludedMargin) {

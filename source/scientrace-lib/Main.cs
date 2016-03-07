@@ -6,7 +6,7 @@ namespace Scientrace {
 
 class MainClass {
 
-	public const double SIGNIFICANTLY_SMALL = 1E-15;
+	public const double SIGNIFICANTLY_SMALL = 1E-14;
 
 	public static void Main(string[] args) {
 		//Console.WriteLine("Running application: "+String.Join(";",args));
