@@ -10,28 +10,28 @@ using System;
 namespace Scientrace {
 
 
-public class SuncyclePMMAProperties : Scientrace.MaterialProperties {
+public class AltPMMAProperties : Scientrace.MaterialProperties {
 
 
 	//Singleton instance "holder"
-	private static SuncyclePMMAProperties instance;
+	private static AltPMMAProperties instance;
 
-	private SuncyclePMMAProperties() {
+	private AltPMMAProperties() {
 		this.reflects = true;
 		this.dielectric = true;
 	}
 
 	public override string identifier() {
-		return "suncyclepmma";
+		return "altpmma";
 		}
 
-	public static SuncyclePMMAProperties Instance {
+	public static AltPMMAProperties Instance {
 		get {
 			//lazy init
-			if (SuncyclePMMAProperties.instance == null) {
-				SuncyclePMMAProperties.instance = new SuncyclePMMAProperties();
+			if (AltPMMAProperties.instance == null) {
+				AltPMMAProperties.instance = new AltPMMAProperties();
 			}
-			return SuncyclePMMAProperties.instance;
+			return AltPMMAProperties.instance;
 		}
 	}
 

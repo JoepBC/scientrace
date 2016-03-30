@@ -141,6 +141,9 @@ public class Exploder {
 			if (xe.Attribute("Value")!=null) {
 				tovalue = xe.Attribute("Value").Value;
 				} else {
+				if (xe.Element("Value") == null) {
+					throw new Exception("No {Value} attribute or element found for ReplaceKey: {\n"+xe.ToString()+"\n}");
+					}
 				System.Xml.XmlReader xr = xe.Element("Value").CreateReader();
 				xr.MoveToContent();
 				tovalue = xr.ReadInnerXml();

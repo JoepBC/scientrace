@@ -50,8 +50,11 @@ public abstract class MaterialProperties {
 		}
 		
 	public static void buildMaterialList( ) {
+		//For backwards compatibility:
+		MaterialProperties.materials.Add("suncyclepmma", AltPMMAProperties.Instance);
+
 		MaterialProperties.addMaterial(PMMAProperties.Instance);
-		MaterialProperties.addMaterial(SuncyclePMMAProperties.Instance);
+		MaterialProperties.addMaterial(AltPMMAProperties.Instance);
 		MaterialProperties.addMaterial(BlackBodySurface.Instance);
 		MaterialProperties.addMaterial(AirProperties.Instance);
 		MaterialProperties.addMaterial(PerfectMirror.Instance);

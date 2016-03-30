@@ -60,6 +60,7 @@ public abstract class LightSpectrum {
 		//if modulo multiplier == 0 or negative, a multiplier is generated.
 		this.modulo_multiplier = this.findRelPrimeMultiplier();
 		this.mod_multip_verified = true;
+		Console.WriteLine("Mod Multip:"+this.modulo_multiplier);
 		return;
 		}
 

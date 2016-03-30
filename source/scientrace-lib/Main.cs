@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Scientrace {
 
-class MainClass {
+public class MainClass {
 
 	public const double SIGNIFICANTLY_SMALL = 1E-14;
 

@@ -121,14 +121,14 @@ public class XMLSpectrumParser : ScientraceXMLAbstractParser{
 			}
 		foreach (XElement wlxel in xlightspectrum.Elements("Wavelength")) {
 			double wlintens = this.X.getXDouble(wlxel, "Intensity", 1);
-			if (wlintens > 1E-9) { //check for minimal intensity threshold of 1E-9
+			if (wlintens > Scientrace.MainClass.SIGNIFICANTLY_SMALL) { //check for minimal intensity threshold
 				if (wlxel.Attribute("nm") == null) 
 					ls.addWavelength(this.X.getXDouble(wlxel, "m"), wlintens);
 				else 
 					ls.addNanometerWavelength(this.X.getXDouble(wlxel, "nm"), wlintens);
 				} 
 			else
-				Console.WriteLine("NOTE: "+wlxel.ToString()+" has neglected intensity of "+wlintens);
+				Console.WriteLine("NOTE: "+wlxel.ToString()+" has negligible intensity of "+wlintens+ " and is skipped.");
 			}
 		ls.force_verify_mod_multip();
 		}

@@ -1,4 +1,4 @@
-<Spectrum Class="User" Tag="am15-direct_300-1800nm-res10nm-energy" TotalIntensity="1" ModuloMultiplier="199">
+<Spectrum Class="User" Tag="am15-direct_300-1800nm-res10nm-energy" TotalIntensity="1" ModuloMultiplier="101">
 <!-- Spectral data derived from spreadsheet data on http://rredc.nrel.gov/solar/spectra/am1.5/astmg173/astmg173.html -->
 	<Wavelength nm="300" Intensity="0.0139997966" />
 	<Wavelength nm="310" Intensity="0.3390028" />

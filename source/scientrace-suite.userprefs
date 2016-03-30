@@ -3,27 +3,27 @@
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-lib/ComplexBorderedVolume-3D_drawing.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-xml/XMLSpectrumParser.cs">
     <Files>
-      <File FileName="scientrace-lib/ComplexBorderedVolume.cs" Line="12" Column="16" />
-      <File FileName="scientrace-lib/ComplexBorderedVolume-3D_drawing.cs" Line="74" Column="3" />
+      <File FileName="scientrace-lib/ComplexBorderedVolume.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/ComplexBorderedVolume-3D_drawing.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/PlaneBorderEnclosedVolume.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Trace.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/DielectricSurfaceInteraction.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/ShadowClassConstruct.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/ShadowLightSourceConstruct.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/ScientraceEnvironmentSetup.cs" Line="1" Column="1" />
+      <File FileName="scientrace-batchexploder/Exploder.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/MaterialProperties_VariousMaterials.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/SuncyclePMMAProperties.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/TraceJournal.cs" Line="273" Column="10" />
+      <File FileName="scientrace-lib/Tracejournal-Textual_Data_Export.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/SpiralLightSource.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/LightSpectrum.cs" Line="93" Column="24" />
+      <File FileName="scientrace-xml/XMLSpectrumParser.cs" Line="119" Column="49" />
+      <File FileName="scientrace-lib/Main.cs" Line="7" Column="8" />
+      <File FileName="scientrace-lib/Location.cs" Line="80" Column="61" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="scientrace-suite" expanded="True">
-            <Node name="scientrace-lib" expanded="True">
-              <Node name="ComplexBorderedVolume-3D_drawing.cs" selected="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="ClassPad">
-        <State name="__root__">
-          <Node name="scientrace-suite" expanded="True" selected="True" />
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
