@@ -3,26 +3,16 @@
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-xml/XMLSpectrumParser.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-lib/Tracejournal-Textual_Data_Export.cs">
     <Files>
-      <File FileName="scientrace-lib/ComplexBorderedVolume.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/ComplexBorderedVolume-3D_drawing.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/PlaneBorderEnclosedVolume.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Trace.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/DielectricSurfaceInteraction.cs" Line="1" Column="1" />
-      <File FileName="scientrace-xml/ShadowClassConstruct.cs" Line="1" Column="1" />
-      <File FileName="scientrace-xml/ShadowLightSourceConstruct.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Tracejournal-Textual_Data_Export.cs" Line="110" Column="22" />
+      <File FileName="scientrace-xml/XMLOutputParser.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Histogram1d.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/TraceJournal.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/TraceJournalExportableHistogram.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Histogram2d.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/TraceJournalExportable.cs" Line="19" Column="100" />
       <File FileName="scientrace-xml/ScientraceEnvironmentSetup.cs" Line="1" Column="1" />
-      <File FileName="scientrace-batchexploder/Exploder.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/MaterialProperties_VariousMaterials.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/SuncyclePMMAProperties.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/TraceJournal.cs" Line="273" Column="10" />
-      <File FileName="scientrace-lib/Tracejournal-Textual_Data_Export.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/SpiralLightSource.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/LightSpectrum.cs" Line="93" Column="24" />
-      <File FileName="scientrace-xml/XMLSpectrumParser.cs" Line="119" Column="49" />
-      <File FileName="scientrace-lib/Main.cs" Line="7" Column="8" />
-      <File FileName="scientrace-lib/Location.cs" Line="80" Column="61" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

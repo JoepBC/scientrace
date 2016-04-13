@@ -22,22 +22,14 @@ public partial class TraceJournal {
 
 	public Dictionary<string, string> exportFields = new Dictionary<string,string>();
 
+	public List<Scientrace.TraceJournalExportable> exportables = new List<TraceJournalExportable>();
+
 	public string yieldtablefilename;
 	public bool exportyieldtablehtml = false;
 	public int htmldatawritemode = 1001; //append by default
 	public bool exportyieldtablecsv = false;
 	public int csvdatawritemode = 1001; //append by default
-	/// <summary>
-	/// Whether to export a histogram of the incident angles per object per "resolution" of the angle.
-	/// </summary>
-	public bool angle_histogram_export = true;
-	/// <summary>
-	/// The size of the bin. The total number of bins is 90/angle_histogram_resolution
-	/// </summary>
-	public double angle_histogram_resolution = 1.0;
-	public double angle_histogram_from = 0;
-	public double angle_histogram_to = 180;
-	public string angle_histogram_csv_filename = "histogram_%o.csv";
+
 	public const int APPEND = 1001;
 	public const int WRITE = 1002;
 
@@ -48,27 +40,27 @@ public partial class TraceJournal {
 	public string photondumpfilename = "photondump_%o.csv";
 
 
-		public string csvLine<T>(List<T> values) {
+		public static string csvLine<T>(List<T> values) {
 			return String.Join(",", values.ToArray());
 			}
 
-		public string csvLine(List<double> values) {
+		public static string csvLine(List<double> values) {
 			return String.Join(",", values.ToArray());
 			}
 		
-		public string csvLine(List<string> values) {
+		public static string csvLine(List<string> values) {
 			return String.Join(",", values.ToArray());
 			}
 		
-		public string intToCsv(int anInteger) {
+		public static string intToCsv(int anInteger) {
 			return Convert.ToString(anInteger);
 			}
 
-		public string doubleToCsv(double aDouble) {
+		public static string doubleToCsv(double aDouble) {
 			return Convert.ToString(aDouble);
 			}
 		
-		public string stringToCsv(string aString) {
+		public static string stringToCsv(string aString) {
 			return aString.Replace("\"", "\"\"");
 			}
 
@@ -100,18 +92,43 @@ public partial class TraceJournal {
 		return this.ensureUniqueKey(key+"'", aDictionary);
 		}
 
+	/// <summary>
+	/// Safely adds a value to a dictionary with a key. If the key already exists, it is altered such that it IS new. The return value is true if the key has been modified, and false if the original key was used.
+	/// </summary>
+	/// <returns><c>true</c> if the key has been modified, and false if the original key was used
+	/// <param name="adict">A <string,string> Dictionary</param>
+	/// <param name="key">A string</param>
+	/// <param name="value">A string</param>
+	public bool safeAddToDict(Dictionary<string, string> adict, string key, string value) {
+		bool key_modified = false;
+		if (adict.ContainsKey(key)) {
+			Console.WriteLine("WARNING: cannot add key {"+key+"} to dictionary. Key already exists. Creating unique version.");
+			key = this.ensureUniqueKey(key, adict);
+			key_modified = true;
+			}
+		adict.Add(key, value);
+		return key_modified;
+		}
+
 	public Dictionary<string, string> exportYieldDataDictionary() {
 		Dictionary<string, string> retdict = new Dictionary<string, string>();
 		this.addConfigVariablesToDictionary(retdict);
-		retdict.Add("Timestamp", this.timestamp);
+		this.safeAddToDict(retdict,"Timestamp", this.timestamp); // REPLACED LINE BELOW.
+		//retdict.Add("Timestamp", this.timestamp);
 		double total_intensity = 0;
 		double total_shine_duration = 0;
 		foreach (Scientrace.LightSource lightsource in this.registeredLightSources) {
+			string tag_prefix = lightsource.tag+"-";
+			//this.safeAddToDict(retdict,"light source", lightsource.tag); // REPLACED LINE BELOW.
 			//retdict.Add("light source",lightsource.tag);
-			retdict.Add("cpu time (s)",lightsource.shine_duration.TotalSeconds.ToString());
-			retdict.Add("#traces",lightsource.traceCount().ToString());
-			retdict.Add("intensity",lightsource.total_lightsource_intensity.ToString());
-			retdict.Add("weighted_intensity",lightsource.weighted_intensity.ToString());
+			this.safeAddToDict(retdict,"cpu time (s)", tag_prefix+lightsource.shine_duration.TotalSeconds.ToString()); // REPLACED LINE BELOW.
+			//retdict.Add("cpu time (s)",lightsource.shine_duration.TotalSeconds.ToString());
+			this.safeAddToDict(retdict,"#traces", tag_prefix+lightsource.traceCount().ToString()); // REPLACED LINE BELOW.
+			//retdict.Add("#traces",lightsource.traceCount().ToString());
+			this.safeAddToDict(retdict,"intensity", tag_prefix+lightsource.total_lightsource_intensity.ToString()); // REPLACED LINE BELOW.
+			//retdict.Add("intensity",lightsource.total_lightsource_intensity.ToString());
+			this.safeAddToDict(retdict,"weighted_intensity", tag_prefix+lightsource.weighted_intensity.ToString()); // REPLACED LINE BELOW.
+			//retdict.Add("weighted_intensity",lightsource.weighted_intensity.ToString());
 			total_intensity = total_intensity + lightsource.total_lightsource_intensity;
 			total_shine_duration = total_shine_duration + lightsource.shine_duration.TotalSeconds;
 			}
@@ -134,59 +151,30 @@ public partial class TraceJournal {
 
 
 		foreach (string aKey in this.exportFields.Keys) {
-			retdict.Add(aKey, this.stringToCsv(exportFields[aKey]));
+			retdict.Add(aKey, TraceJournal.stringToCsv(exportFields[aKey]));
 			}
 
 		return retdict;
 		}
 
 
-	public string toResString(double aDouble) {
-		// This *1.00000000000001 thing is a quick&dirty hack to avoid floating point errors that otherwise occur.
-		return (this.angle_histogram_resolution*
-				Math.Floor(aDouble*1.000000000001/this.angle_histogram_resolution)).ToString();
-		}
-		
-	public void addToOtherBin(double value, Dictionary<string, double> dict) {
-		if (!dict.ContainsKey("other")) {
-			dict.Add("other", value);
-			return;
-			}
-		dict["other"] = dict["other"] + value;
-		}
 
-	public void writeAngleHistogramCSV(Scientrace.PhysicalObject3d anObject) {
-		Dictionary<string, double> angle_histogram = new Dictionary<string, double>();
 
-		//Creating empty bins
-		for (double bin = this.angle_histogram_from; bin < this.angle_histogram_to; bin = bin+this.angle_histogram_resolution) {
-			//Console.WriteLine("NEWBIN: "+this.toResString(bin)+ " from:"+bin);
-			angle_histogram.Add(this.toResString(bin), 0);
-			}
-		foreach(Scientrace.Spot casualty in this.spots) {
-			if (casualty == null) {
-								Console.WriteLine("Error: Casualty is null when writing angle histogram...");
-								continue;
-				}
-			//only count casualties for current object.
-			if (casualty.object3d != anObject) continue;
-			double angle_rad = anObject.getSurfaceNormal().negative().angleWith(casualty.trace.traceline.direction);
-			double angle_deg = angle_rad*180/Math.PI;
-			double angle_deg_mod =((180+angle_deg)%360)-180;
-			string bin = this.toResString(angle_deg_mod);
-			//Console.WriteLine("bin: "+bin+", angledegmod:"+angle_deg_mod+", hist_res:"+this.angle_histogram_resolution);
-			if (angle_histogram.ContainsKey(bin)) //{
-				angle_histogram[bin] = angle_histogram[bin]+casualty.intensity;
-				//Console.WriteLine("bin {"+bin+"} increased."); }
-				else {
-				this.addToOtherBin(casualty.intensity, angle_histogram);
-				//Console.WriteLine("WARNING: BIN {"+bin+"} NOT FOUND FOR HISTOGRAM."+angle_deg_mod+"/"+angle_deg);\
+
+/* Histogram methods */
+	protected void writeExportHistograms(Scientrace.PhysicalObject3d anObject) {
+		foreach (TraceJournalExportable exportable in this.exportables) {
+			if (exportable.export) {
+				exportable.write(anObject);
+				//exportable.writeAngleHistogramCSV(anObject);
 				}
 			}
-
-		string angle_histogram_csv_filename = this.exportpath+this.angle_histogram_csv_filename.Replace("%o",anObject.tag);
-		this.appendWriteWithConfigVariables(angle_histogram_csv_filename, angle_histogram);
 		}
+/* End of Histogram methods */
+
+
+
+/* Start of Dictionary export methods */
 
 	public Dictionary<string, string> appendWriteWithConfigVariables<T,U>(string csv_filename, Dictionary<T,U> aDictionary) {
 		Dictionary<string, string> retdict = new Dictionary<string, string>();
@@ -205,14 +193,17 @@ public partial class TraceJournal {
 			//Only write header (keys) for new file:
 			if (write_headers) {
 				Console.Write("Writing data to new file: "+csv_filename);
-				histogram_csv_writestream.WriteLine(this.csvLine(new List<T>(aDictionary.Keys)));
+				histogram_csv_writestream.WriteLine(TraceJournal.csvLine(new List<T>(aDictionary.Keys)));
 				} else
 				Console.Write("Appending data to: "+csv_filename);
 			//Always write data (values) - duh
-			histogram_csv_writestream.WriteLine(this.csvLine(new List<U>(aDictionary.Values)));
+			histogram_csv_writestream.WriteLine(TraceJournal.csvLine(new List<U>(aDictionary.Values)));
 			}
 		Console.WriteLine(" [done]");
 		}
+
+/* End of Dictionary Export methods */
+
 
 	public void writePhotondumpCSV(Scientrace.PhysicalObject3d anObject) {
 		Scientrace.Location loc2d;
@@ -250,7 +241,7 @@ public partial class TraceJournal {
 		string csvphotondumpfilename = this.exportpath+this.photondumpfilename.Replace("%o",anObject.tag);
 
 		using (StreamWriter csvphotondumpwritestream = new StreamWriter(csvphotondumpfilename)) {
-			csvphotondumpwritestream.WriteLine(this.csvLine(header));
+			csvphotondumpwritestream.WriteLine(TraceJournal.csvLine(header));
 			foreach(Scientrace.Spot casualty in this.spots) {
 				if (casualty == null) {
 					Console.WriteLine("WARNING: Casualty null value found. That's weird...");
@@ -284,7 +275,7 @@ public partial class TraceJournal {
 					body.Add(casualty.pol_vec_2.y.ToString());
 					body.Add(casualty.pol_vec_2.z.ToString());
 					body.Add(casualty.pol_vec_2.length.ToString());
-					csvphotondumpwritestream.WriteLine(this.csvLine(body));	
+					csvphotondumpwritestream.WriteLine(TraceJournal.csvLine(body));	
 										} catch { Console.WriteLine("Some of the attributes messed up..." ); }
 				}
 			}
@@ -462,16 +453,16 @@ public partial class TraceJournal {
 
 
 			using (StreamWriter bodycsvwritestream = new StreamWriter(fullcsvbody, appendcsv)) {
-				bodycsvwritestream.WriteLine(this.csvLine(body));
+				bodycsvwritestream.WriteLine(TraceJournal.csvLine(body));
 				}
 			using (StreamWriter headercsvwritestream = new StreamWriter(fullcsvheader, false)) {
-				headercsvwritestream.WriteLine(this.csvLine(header));
+				headercsvwritestream.WriteLine(TraceJournal.csvLine(header));
 				}
 			using (StreamWriter fullcsvwritestream = new StreamWriter(fullcsvfilename, this.csvdatawritemode==APPEND)) {
 				if (!appendcsv) {
-					fullcsvwritestream.WriteLine(this.csvLine(header));
+					fullcsvwritestream.WriteLine(TraceJournal.csvLine(header));
 					}
-				fullcsvwritestream.WriteLine(this.csvLine(body));
+				fullcsvwritestream.WriteLine(TraceJournal.csvLine(body));
 				}
 		}
 

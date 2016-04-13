@@ -267,8 +267,7 @@ public partial class TraceJournal {
 			foreach (Scientrace.PhysicalObject3d anObject in this.registeredPerformanceObjects) {
 				if (this.exportphotondump)
 					this.writePhotondumpCSV(anObject);
-				if (this.angle_histogram_export)
-					this.writeAngleHistogramCSV(anObject);
+				this.writeExportHistograms(anObject);
 				if (this.exportsvg) {
 					this.writeSVG(anObject);
 					}

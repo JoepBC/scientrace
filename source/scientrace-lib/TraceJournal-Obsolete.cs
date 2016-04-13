@@ -69,33 +69,33 @@ public class TraceJournal_Obsolete : TraceJournal {
 			string[] cdescs = this.config_description.Split('%');
 			for (int icids = 0; icids < cids.Length; icids++) {
 				//writing headers
-				header.Add(this.stringToCsv(cdescs[icids]));
-				body.Add(this.stringToCsv(cids[icids]));
+				header.Add(TraceJournal.stringToCsv(cdescs[icids]));
+				body.Add(TraceJournal.stringToCsv(cids[icids]));
 				/*xheader.Add(new XElement("td", cdescs[icids]));
 				xrow.Add(new XElement("td", cids[icids]));*/
 				}
 			header.Add("TimeStamp");
-			body.Add(this.stringToCsv(this.timestamp));
+			body.Add(TraceJournal.stringToCsv(this.timestamp));
 
 			double total_intensity = 0;
 			double total_shine_duration = 0;
 			foreach (Scientrace.LightSource lightsource in this.registeredLightSources) {
-				header.Add(this.stringToCsv("lightsource"));
-				body.Add(this.stringToCsv(lightsource.tag));
+				header.Add(TraceJournal.stringToCsv("lightsource"));
+				body.Add(TraceJournal.stringToCsv(lightsource.tag));
 				/* header.Add(this.stringToCsv("direction X"));
 				body.Add(this.doubleToCsv(lightsource.direction.x));
 				header.Add(this.stringToCsv("Y"));
 				body.Add(this.doubleToCsv(lightsource.direction.y));
 				header.Add(this.stringToCsv("Z"));
 				body.Add(this.doubleToCsv(lightsource.direction.z)); */
-				header.Add(this.stringToCsv("calculation time (s)"));
-				body.Add(this.doubleToCsv(lightsource.shine_duration.TotalSeconds));
-				header.Add(this.stringToCsv("number of traces"));
-				body.Add(this.intToCsv(lightsource.traceCount()));
-				header.Add(this.stringToCsv("intensity"));
-				body.Add(this.doubleToCsv(lightsource.total_lightsource_intensity));
-				header.Add(this.stringToCsv("weighted_intensity"));
-				body.Add(this.doubleToCsv(lightsource.weighted_intensity));
+				header.Add(TraceJournal.stringToCsv("calculation time (s)"));
+				body.Add(TraceJournal.doubleToCsv(lightsource.shine_duration.TotalSeconds));
+				header.Add(TraceJournal.stringToCsv("number of traces"));
+				body.Add(TraceJournal.intToCsv(lightsource.traceCount()));
+				header.Add(TraceJournal.stringToCsv("intensity"));
+				body.Add(TraceJournal.doubleToCsv(lightsource.total_lightsource_intensity));
+				header.Add(TraceJournal.stringToCsv("weighted_intensity"));
+				body.Add(TraceJournal.doubleToCsv(lightsource.weighted_intensity));
 
 				total_intensity = total_intensity + lightsource.total_lightsource_intensity;
 				total_shine_duration = total_shine_duration + lightsource.shine_duration.TotalSeconds;
@@ -103,36 +103,36 @@ public class TraceJournal_Obsolete : TraceJournal {
 
 			double total_revenue = 0;
 			foreach (Scientrace.PhysicalObject3d solarcell in this.registeredPerformanceObjects) {
-				header.Add(this.stringToCsv("solarcell"));
-				body.Add(this.stringToCsv(solarcell.tag));
+				header.Add(TraceJournal.stringToCsv("solarcell"));
+				body.Add(TraceJournal.stringToCsv(solarcell.tag));
 				
 				foreach (Scientrace.LightSource lightsource in this.registeredLightSources) {
-					header.Add(this.stringToCsv(lightsource.tag+"-yield"));
-					body.Add(this.doubleToCsv(lightsource.revenueForObject(solarcell)/lightsource.total_lightsource_intensity));
-					header.Add(this.stringToCsv(lightsource.tag+"-weighted_sum"));
-					body.Add(this.doubleToCsv((lightsource.revenueForObject(solarcell)/lightsource.total_lightsource_intensity)*lightsource.weighted_intensity));
+					header.Add(TraceJournal.stringToCsv(lightsource.tag+"-yield"));
+					body.Add(TraceJournal.doubleToCsv(lightsource.revenueForObject(solarcell)/lightsource.total_lightsource_intensity));
+					header.Add(TraceJournal.stringToCsv(lightsource.tag+"-weighted_sum"));
+					body.Add(TraceJournal.doubleToCsv((lightsource.revenueForObject(solarcell)/lightsource.total_lightsource_intensity)*lightsource.weighted_intensity));
 					}
 
-				header.Add(this.stringToCsv("total_revenue"));
-				body.Add(this.doubleToCsv(solarcell.getTotalRevenue()));
-				header.Add(this.stringToCsv(solarcell.tag+"-yield"));
-				body.Add(this.doubleToCsv(solarcell.getTotalRevenue()/total_intensity));
+				header.Add(TraceJournal.stringToCsv("total_revenue"));
+				body.Add(TraceJournal.doubleToCsv(solarcell.getTotalRevenue()));
+				header.Add(TraceJournal.stringToCsv(solarcell.tag+"-yield"));
+				body.Add(TraceJournal.doubleToCsv(solarcell.getTotalRevenue()/total_intensity));
 				total_revenue = total_revenue + solarcell.getTotalRevenue();
 				}
-			header.Add(this.stringToCsv("total light intensity"));
-			body.Add(this.doubleToCsv(total_intensity));
-			header.Add(this.stringToCsv("total revenue"));
-			body.Add(this.doubleToCsv(total_revenue));
-			header.Add(this.stringToCsv("total yield"));
-			body.Add(this.doubleToCsv(total_revenue/total_intensity));
+			header.Add(TraceJournal.stringToCsv("total light intensity"));
+			body.Add(TraceJournal.doubleToCsv(total_intensity));
+			header.Add(TraceJournal.stringToCsv("total revenue"));
+			body.Add(TraceJournal.doubleToCsv(total_revenue));
+			header.Add(TraceJournal.stringToCsv("total yield"));
+			body.Add(TraceJournal.doubleToCsv(total_revenue/total_intensity));
 			/*header.Add(this.stringToCsv("total yield (%)"));
 			body.Add(this.stringToCsv((100*total_revenue/total_intensity)+"%"));*/
 			/*header.Add(this.stringToCsv("total time(s)"));
 			body.Add(this.doubleToCsv(total_shine_duration));*/
 			IDictionaryEnumerator e = this.exportFields.GetEnumerator();
 			while (e.MoveNext()) {
-				header.Add(this.stringToCsv(e.Key.ToString())); //both key and value are already Strings... but anyway
-				body.Add(this.stringToCsv(e.Value.ToString()));
+				header.Add(TraceJournal.stringToCsv(e.Key.ToString())); //both key and value are already Strings... but anyway
+				body.Add(TraceJournal.stringToCsv(e.Value.ToString()));
 			}
 
 			//WRITING DATA TO FILES:
@@ -157,16 +157,16 @@ public class TraceJournal_Obsolete : TraceJournal {
 
 
 			using (StreamWriter bodycsvwritestream = new StreamWriter(fullcsvbody, appendcsv)) {
-				bodycsvwritestream.WriteLine(this.csvLine(body));
+				bodycsvwritestream.WriteLine(TraceJournal.csvLine(body));
 				}
 			using (StreamWriter headercsvwritestream = new StreamWriter(fullcsvheader, false)) {
-				headercsvwritestream.WriteLine(this.csvLine(header));
+				headercsvwritestream.WriteLine(TraceJournal.csvLine(header));
 				}
 			using (StreamWriter fullcsvwritestream = new StreamWriter(fullcsvfilename, this.csvdatawritemode==APPEND)) {
 				if (!appendcsv) {
-					fullcsvwritestream.WriteLine(this.csvLine(header));
+					fullcsvwritestream.WriteLine(TraceJournal.csvLine(header));
 					}
-				fullcsvwritestream.WriteLine(this.csvLine(body));
+				fullcsvwritestream.WriteLine(TraceJournal.csvLine(body));
 				}
 			}// end old_writeYieldCSV
 		

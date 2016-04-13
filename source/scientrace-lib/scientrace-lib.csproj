@@ -156,6 +156,10 @@
     <Compile Include="RandomCircleLightSource.cs" />
     <Compile Include="MaterialProperties_VariousMaterials.cs" />
     <Compile Include="ComplexBorderedVolume-3D_drawing.cs" />
+    <Compile Include="Histogram1d.cs" />
+    <Compile Include="TraceJournalExportable.cs" />
+    <Compile Include="TraceJournalExportableHistogram.cs" />
+    <Compile Include="Histogram2d.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

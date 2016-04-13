@@ -1,6 +1,7 @@
 using System;
 using System.Xml.Linq;
 using System.Collections.Generic;
+using Scientrace;
 
 namespace ScientraceXMLParser {
 
@@ -45,8 +46,7 @@ public class XMLOutputParser : ScientraceXMLAbstractParser	{
 		XElement xx3d = xoutput.Element("X3D");
 		//if (xx3d != null) 
 			this.configX3DOutput(xx3d);
-		XElement xhist = xoutput.Element("Histogram");
-			this.configHistogramOutput(xhist);
+		this.configHistograms(xoutput);
 		XElement xdata = xoutput.Element("YieldData");
 		//if (xdata != null) 
 			this.configDataOutput(xdata);
@@ -101,13 +101,40 @@ public class XMLOutputParser : ScientraceXMLAbstractParser	{
 		tj.spotdiagonalfraction = this.X.getXDouble(xsvg,"SpotSizeFraction", 1.0/200.0);
 		}
 
+	public void configHistograms(XElement xoutput) {
+		foreach (XElement xhist in xoutput.Elements("Histogram")) {
+			this.configHistogramOutput(xhist);
+			}
+
+		foreach (XElement xhist in xoutput.Elements("Hist2")) {
+			this.configHistogram2dOutput(xhist);
+			}
+
+		}
+
+	public void configHistogram2dOutput(XElement xhistogram) {
+		Scientrace.TraceJournal tj = Scientrace.TraceJournal.Instance;
+		Scientrace.Histogram2d hist = new Scientrace.Histogram2d(tj);
+			hist.export = this.X.getXBool(xhistogram, "Export", hist.export);
+			hist.angle_histogram_resolution = this.X.getXDouble(xhistogram, "Resolution", hist.angle_histogram_resolution);
+			hist.angle_histogram_from = this.X.getXDouble(xhistogram, "FromAngle", hist.angle_histogram_from);
+			hist.angle_histogram_to = this.X.getXDouble(xhistogram, "ToAngle", hist.angle_histogram_to);
+			hist.angle_histogram_csv_filename = this.X.getXStringByName(xhistogram, "Filename", hist.angle_histogram_csv_filename);
+			hist.tag = this.X.getXStringByName(xhistogram, "Tag", hist.tag);
+			hist.referenceVector = this.X.getXNzVectorByName(xhistogram, "Ref", new Scientrace.NonzeroVector(1,0,0));
+		tj.exportables.Add(hist);
+		Console.WriteLine("Hist2d added:"+hist.tag);
+		}
+
 	public void configHistogramOutput(XElement xhistogram) {
 		Scientrace.TraceJournal tj = Scientrace.TraceJournal.Instance;
-		tj.angle_histogram_export = this.X.getXBool(xhistogram, "Export", tj.angle_histogram_export);
-		tj.angle_histogram_resolution = this.X.getXDouble(xhistogram, "Resolution", tj.angle_histogram_resolution);
-		tj.angle_histogram_from = this.X.getXDouble(xhistogram, "FromAngle", tj.angle_histogram_from);
-		tj.angle_histogram_to = this.X.getXDouble(xhistogram, "ToAngle", tj.angle_histogram_to);
-		tj.angle_histogram_csv_filename = this.X.getXStringByName(xhistogram, "Filename", tj.angle_histogram_csv_filename);
+		Scientrace.Histogram1d hist = new Scientrace.Histogram1d(tj);
+			hist.export = this.X.getXBool(xhistogram, "Export", hist.export);
+			hist.angle_histogram_resolution = this.X.getXDouble(xhistogram, "Resolution", hist.angle_histogram_resolution);
+			hist.angle_histogram_from = this.X.getXDouble(xhistogram, "FromAngle", hist.angle_histogram_from);
+			hist.angle_histogram_to = this.X.getXDouble(xhistogram, "ToAngle", hist.angle_histogram_to);
+			hist.angle_histogram_csv_filename = this.X.getXStringByName(xhistogram, "Filename", hist.angle_histogram_csv_filename);
+		tj.exportables.Add(hist);
 		}
 		
 	public void configDataOutput(XElement xdata) {
