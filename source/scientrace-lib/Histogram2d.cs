@@ -79,8 +79,12 @@ public class Histogram2d : TraceJournalExportableHistogram {
 				}
 
 			string bin = this.radiansToRoundedDegString(angle_rad);
+
+			double reweigh_factor = (this.lightsource_weigh_intensity) 
+				? (casualty.trace.lightsource.weighted_intensity/casualty.trace.lightsource.total_lightsource_intensity)
+				: 1;
 			//Console.WriteLine("Line: "+casualty.trace.traceline.direction.trico()+" becomes: "+vecOnPlane.trico()+" angle:"+angle_rad+" / "+bin);
-			this.addToBin(angle_histogram, bin, casualty.intensity, true);
+			this.addToBin(angle_histogram, bin, casualty.intensity*reweigh_factor, true);
 			}
 
 		string angle_histogram_csv_filename = this.tj.exportpath+this.angle_histogram_csv_filename.Replace("%o",anObject.tag).Replace("%t",this.tag).Replace("%s",plane_descr.Replace(" ", "_"));

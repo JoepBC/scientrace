@@ -15,9 +15,11 @@ public abstract class TraceJournalExportableHistogram : TraceJournalExportable {
 	/// </summary>
 	public double angle_histogram_resolution = 1.0;
 	public double angle_histogram_from = 0;
-	public double angle_histogram_to = 180;
+	public double angle_histogram_to = 90;
 	public string angle_histogram_csv_filename = "%t_%o.csv";
 
+	// The "weighed_intensity" of a lightsource usually contains its desired total efficiency, not related to the number of rays emitted.
+	public bool lightsource_weigh_intensity = true;
 
 	public TraceJournalExportableHistogram(TraceJournal aTJ):base(aTJ) {
 		}

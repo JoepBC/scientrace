@@ -3,16 +3,22 @@
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-lib/Tracejournal-Textual_Data_Export.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-lib/Histogram1d.cs">
     <Files>
-      <File FileName="scientrace-lib/Tracejournal-Textual_Data_Export.cs" Line="110" Column="22" />
-      <File FileName="scientrace-xml/XMLOutputParser.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Histogram1d.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/TraceJournal.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/RectangularPrism.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/LightSource.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Trace.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Trace-Polarisation_Support.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Object3d.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Plane.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Intersection.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/IntersectionPoint.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Tracejournal-Textual_Data_Export.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/ShadowLightSourceConstruct.cs" Line="1" Column="1" />
       <File FileName="scientrace-lib/TraceJournalExportableHistogram.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Histogram2d.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/TraceJournalExportable.cs" Line="19" Column="100" />
       <File FileName="scientrace-xml/ScientraceEnvironmentSetup.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Histogram2d.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Histogram1d.cs" Line="20" Column="45" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

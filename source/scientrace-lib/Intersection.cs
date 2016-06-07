@@ -19,6 +19,16 @@ public class Intersection {
 	public Scientrace.Object3d object3d;
 	public bool leaving = false;
 
+	//copy constructor
+	public Intersection(Intersection copyIntersection) {
+		this.intersects = copyIntersection.intersects;
+		this.object3d = copyIntersection.object3d;
+		this.leaving = copyIntersection.leaving;
+		if (copyIntersection.enter != null)
+			this.enter = new Scientrace.IntersectionPoint(copyIntersection.enter);
+		if (copyIntersection.exit != null)
+			this.exit = new Scientrace.IntersectionPoint(copyIntersection.exit);
+		}
 
 	public Intersection(bool intersects, Scientrace.Object3d object3d) {
 		this.intersects = intersects;
@@ -148,20 +158,28 @@ public class Intersection {
 			}
 		}
 
+	public bool hasSurfaceNormalModifiers() {
+		return this.getSurfaceNormalModifiers().Count > 0;
+		}
+
+	public List<Scientrace.UniformTraceModifier> getSurfaceNormalModifiers() {
+		Scientrace.Object3d o3d = this.object3d;
+		Scientrace.SurfaceProperties surfaceprops = this.getSurfaceProperties();
+		// fill the list with modifiers. A surface may have specific (dominant) properties set, but not necessarily. 
+		// If not, use the properties for the interacting object.
+		return ((surfaceprops == null) ?
+			o3d.surface_normal_modifiers
+			: surfaceprops.surface_normal_modifiers);
+		}
+
 	/// <summary>
 	/// Surface errors can be modelled using linear modifiers. They change the surface
 	/// normal accordingly. The "linear" means that it doesn't matter in what order
 	/// the errors are applied.
 	/// </summary>
 	public void applyLinearModifiers() {
-		Scientrace.Object3d o3d = this.object3d;
-		Scientrace.SurfaceProperties surfaceprops = this.getSurfaceProperties();
-		// fill the list with modifiers. A surface may have specific (dominant) properties set, but not necessarily. 
-		// If not, use the properties for the interacting object.
-		List<Scientrace.UniformTraceModifier> modifiers = 
-			((surfaceprops == null) ?
-			o3d.surface_normal_modifiers
-			: surfaceprops.surface_normal_modifiers);
+		List<Scientrace.UniformTraceModifier> modifiers = this.getSurfaceNormalModifiers();
+
 		//foreach (Scientrace.UniformTraceModifier utm in o3d.surface_normal_modifiers) {
 		foreach (Scientrace.UniformTraceModifier utm in modifiers) {
 			/*TODO: due to the history of the Plane class, it's vectors length contain crucial 

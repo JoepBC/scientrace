@@ -176,7 +176,7 @@ public partial class Trace {
 	/// <param name='anIntersection'>
 	/// An intersection.
 	/// </param>
-	public void processIntersection(Scientrace.Intersection anIntersection) {
+	public List<Scientrace.Trace> processIntersection(Scientrace.Intersection anIntersection) {
 		// basic check on validity
 		if (this.isEmpty()) { Console.WriteLine("invisible trace found. Should have died earlier. Now terminating."); throw new Exception("invisible trace");	/*return;*/ }	
 
@@ -210,6 +210,7 @@ public partial class Trace {
 		foreach (Scientrace.Trace newtrace in newTraces) {
 			newtrace.cycle();
 			}
+		return newTraces;
 		}
 
 
@@ -378,6 +379,35 @@ public partial class Trace {
 		return absorption_fraction;
 		}
 
+	public double debug_AngleEnterSurfaceWithTraceNormal(Intersection anIntersection) {
+		return this.traceline.direction.angleWith(anIntersection.enter.flatshape.plane.getNorm())*180/Math.PI;
+		}
+	public void debug_IntersectionToConsole(Intersection anIntersection, string tag) {
+		Console.WriteLine(tag+": "+anIntersection.ToString()+
+				"\n\t norm: "+anIntersection.enter.flatshape.plane.getNorm()+
+				"\n\t deg: "+this.debug_AngleEnterSurfaceWithTraceNormal(anIntersection)+
+				"\n\t dotproduct: "+this.traceline.direction.dotProduct(anIntersection.enter.flatshape.plane.getNorm()) );
+		}
+	public void debug_IntersectionValuesToConsole(Intersection in_before, Intersection in_after) {
+		Console.WriteLine("### DEBUG ###");
+		this.debug_IntersectionToConsole(in_before, "-  PRE");
+		this.debug_IntersectionToConsole(in_after, "- POST");
+		}
+
+	public bool validFlatPlaneModification(Intersection in_before, Intersection in_after) { return this.validFlatPlaneModification(in_before, in_after, this);}
+	public bool validFlatPlaneModification(Intersection in_before, Intersection in_after, Trace aTrace) {
+		Vector in_dir = aTrace.traceline.direction;
+		UnitVector old_norm = in_before.enter.flatshape.plane.getNorm();
+		UnitVector new_norm = in_after.enter.flatshape.plane.getNorm();
+		Vector refl_dir = in_dir.reflectOnSurface(new_norm);
+		bool reflection_ok = in_dir.dotProduct(old_norm) * refl_dir.dotProduct(old_norm) < 0;
+		bool incident_side_unchanged = in_dir.dotProduct(old_norm) * in_dir.dotProduct(new_norm) > 0;
+/*		Console.WriteLine("reflection: "+reflection_ok+ ", side: "+incident_side_unchanged);
+	Console.WriteLine("Incident beam dir: "+in_dir.ToString()+" dotp:"+in_dir.dotProduct(old_norm));
+	Console.WriteLine("Refl beam dir: "+refl_dir.ToString()+" dotp:"+refl_dir.dotProduct(new_norm));*/
+		return incident_side_unchanged && reflection_ok;
+		}
+
 
 	/// <summary>
 	/// The Cycle is actually the main action for a trace. If you start somewhere in 
@@ -392,22 +422,56 @@ public partial class Trace {
 			return;
 			}
 
+		bool retry = false;
 		// Find intersections 
-		Scientrace.Intersection ins = this.lightsource.env.intersects(this);
-		if (ins.intersects) {
-			// Intoduce modelled surface alterations, e.g. to simulate imperfections.
-			ins.applyLinearModifiers();
+		Scientrace.Intersection unmod_intersection = this.lightsource.env.intersects(this);
+		// Is there an intersection? (an object with a surface in this trace's path?
+		if (unmod_intersection.intersects) {
+			/* Linear Modifiers are applied. This may cause the intersection to produce a surface with a normal that
+			   has an orientation in the opposite direction of the incoming beam. This is not allowed. When this is
+			   the case, a new modification is performed on the raw intersection until this is OK. */
+			// TODO: create a "safe" applyLinearModifiers method which performs this operation on a ref vector attribute.
+			Scientrace.Intersection active_intersection = new Scientrace.Intersection(unmod_intersection);
+			if (active_intersection.hasSurfaceNormalModifiers()) do {
+				if (retry) {
+					active_intersection = new Scientrace.Intersection(unmod_intersection);
+					//Console.WriteLine("\n+1\n");
+					}
+				retry = true;
 
+				// Intoduce modelled surface alterations, e.g. to simulate imperfections.
+				active_intersection.applyLinearModifiers();
+				//this.debug_IntersectionValuesToConsole(unmod_intersection, active_intersection);
+				}
+			while (!this.validFlatPlaneModification(unmod_intersection, active_intersection));
+	
 			// Any new intersection should lie in the line of the direction of the traceline from the startingpoint. Doublecheck:
-			if ((ins.enter.loc - this.traceline.startingpoint).dotProduct(this.traceline.direction) < 0) {
+			if ((active_intersection.enter.loc - this.traceline.startingpoint).dotProduct(this.traceline.direction) < 0) {
 				throw new Exception("location lies in the past!"); }
 
 			// FUNCTIONAL PROCEDURES ON TRACE CYCLING
 			
 			// If the trace is leaving the current component...
-			if (ins.leaving) {
-				ins.resetObjectToParentWhenLeaving();				}
-			this.processIntersection(ins);
+			if (active_intersection.leaving) {
+				active_intersection.resetObjectToParentWhenLeaving();
+				}
+			//List<Scientrace.Trace> newTraces = 
+				this.processIntersection(active_intersection);
+/*			if (active_intersection.hasSurfaceNormalModifiers()) {
+				foreach (Trace atrace in newTraces) {
+					if (atrace.intensityFraction() == 0)
+						continue;
+					Console.WriteLine("\n\nTrace: "+this.ToCompactString());
+					Console.WriteLine("ToTrace ("+newTraces.Count+"): "+atrace.ToCompactString());
+				//Console.WriteLine("Intensity/isalive:"+atrace.intensityFraction()+"/"+atrace.alive);
+					Console.WriteLine("New angle with Old normal: "+(atrace.traceline.direction.angleWith(active_intersection.enter.flatshape.plane.getNorm())*180/Math.PI).ToString()+"@ "+active_intersection.object3d.tag);
+					Console.WriteLine("New angle with New normal: "+(atrace.traceline.direction.angleWith(unmod_intersection.enter.flatshape.plane.getNorm())*180/Math.PI).ToString());
+	
+					Console.WriteLine("-Old angle with New normal: "+(this.traceline.direction.angleWith(active_intersection.enter.flatshape.plane.getNorm())*180/Math.PI).ToString()+"@ "+active_intersection.object3d.tag);
+					Console.WriteLine("-Old angle with Old normal: "+(this.traceline.direction.angleWith(unmod_intersection.enter.flatshape.plane.getNorm())*180/Math.PI).ToString());
+					}
+				}*/
+
 			} else {
 			/*no intersection before border? End the trace at the border of the environment */
 			if (this.lightsource.env.perishAtBorder) {

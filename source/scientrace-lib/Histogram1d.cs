@@ -38,7 +38,10 @@ public class Histogram1d : TraceJournalExportableHistogram {
 			string bin = this.toResString(angle_deg_mod);*/
 			string bin = this.radiansToRoundedDegString(angle_rad);
 
-			this.addToBin(angle_histogram, bin, casualty.intensity, true);
+			double reweigh_factor = (this.lightsource_weigh_intensity) 
+				? (casualty.trace.lightsource.weighted_intensity/casualty.trace.lightsource.total_lightsource_intensity)
+				: 1;
+			this.addToBin(angle_histogram, bin, casualty.intensity*reweigh_factor, true);
 			/*
 			//Console.WriteLine("bin: "+bin+", angledegmod:"+angle_deg_mod+", hist_res:"+this.angle_histogram_resolution);
 			if (angle_histogram.ContainsKey(bin)) //{

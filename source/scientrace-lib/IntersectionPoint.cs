@@ -18,15 +18,24 @@ public class IntersectionPoint {
 	public IntersectionPoint(Scientrace.Location loc, Scientrace.FlatShape2d flatshape) {
 		this.loc = loc;
 		this.flatshape = flatshape;
-	}
+		}
+
+	// Copy constructor
+	public IntersectionPoint(IntersectionPoint copyIntersectionPoint) {
+		this.loc = new Location(copyIntersectionPoint.loc);
+		this.flatshape = copyIntersectionPoint.flatshape;
+		this.flatshape.plane = new Plane(copyIntersectionPoint.flatshape.plane);
+		}
 
 
 	public static IntersectionPoint locAtSurfaceNormal(Scientrace.Location loc, Scientrace.NonzeroVector normalVec) {
 		return new IntersectionPoint(loc, new FlatShape2d(Plane.newPlaneOrthogonalTo(loc, normalVec)));
 		}
 
+
 	public IntersectionPoint copy() {
-		return new IntersectionPoint(this.loc.copy(), this.flatshape);
+		return new IntersectionPoint(this);
+		//return new IntersectionPoint(this.loc.copy(), this.flatshape);
 		}
 
 	/*

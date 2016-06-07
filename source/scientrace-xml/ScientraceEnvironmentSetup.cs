@@ -175,7 +175,7 @@ namespace ScientraceXMLParser{
 				
 			//double intensity =
 			light.createStartTracesOnEmpty();
-						Console.WriteLine("Shining "+light.traceCount()+" lightbeams within "+light.lightsource_shine_threads+" threads, polarisation support is "+(Trace.support_polarisation?"on":"off")+".");
+			Console.WriteLine("Shining "+light.traceCount()+" traces within "+light.lightsource_shine_threads+" threads, polarisation support is "+(Trace.support_polarisation?"on":"off")+".");
 			startTime = DateTime.Now;
 			light.shine();
 				
