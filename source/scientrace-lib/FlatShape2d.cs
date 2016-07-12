@@ -15,12 +15,18 @@ public class FlatShape2d : Scientrace.Shape2d {
 		this.plane = new Plane(loc, u, v);
 		}
 
+	public FlatShape2d(FlatShape2d copyFlatShape2d) {
+		this.plane = new Scientrace.Plane(copyFlatShape2d.plane);
+		}
+
 	public FlatShape2d(Scientrace.Plane aPlane) {
 		this.plane = aPlane;
 		}
 
+
 	public FlatShape2d copy() {
-		return new FlatShape2d(new Scientrace.Plane(this.plane));
+		//return new FlatShape2d(new Scientrace.Plane(this.plane));
+		return new FlatShape2d(this);
 		}
 
 	}

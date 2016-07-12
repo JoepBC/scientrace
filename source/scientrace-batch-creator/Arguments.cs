@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 //Source: http://www.codeproject.com/KB/recipes/command_line.aspx#
 
-namespace BatchExplode {
+namespace BatchCreator {
     /// <summary>
 
     /// Arguments class

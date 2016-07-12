@@ -350,6 +350,7 @@ public partial class Trace {
 		if ((this.intensityFraction() <= this.lightsource.minimum_intensity_fraction)
 			||
 			(this.nodecount >= this.lightsource.max_interactions)) { 
+			//Console.WriteLine("I am empty + "+this.parent.intensity+" / "+this.intensity+" after "+this.traceid);
 			//Console.WriteLine("I am empty. Will die NOW@"+this.currentObject.tag+this.traceline.startingpoint.trico());
 			this.alive = false;	
 			return true;

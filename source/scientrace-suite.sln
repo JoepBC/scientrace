@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scientrace-unittests", "sci
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scientrace-xml", "scientrace-xml\scientrace-xml.csproj", "{D975D296-5F29-44CD-ABAC-D4297351DA0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scientrace-batchexploder", "scientrace-batchexploder\scientrace-batchexploder.csproj", "{40DFCF07-1F98-4040-82C5-665D6BBD1D12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "scientrace-batch-creator", "scientrace-batch-creator\scientrace-batch-creator.csproj", "{40DFCF07-1F98-4040-82C5-665D6BBD1D12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

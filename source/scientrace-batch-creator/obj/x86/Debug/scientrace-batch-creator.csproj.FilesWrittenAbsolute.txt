@@ -1,0 +1,8 @@
+/home/jbos/Development/applications/scientrace/source/scientrace-batch-creator/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/jbos/Development/applications/scientrace/source/scientrace-batch-creator/bin/Debug/scientrace-batchexploder.exe.mdb
+/home/jbos/Development/applications/scientrace/source/scientrace-batch-creator/bin/Debug/scientrace-batchexploder.exe
+/home/jbos/Development/applications/scientrace/source/scientrace-batch-creator/obj/x86/Debug/scientrace-batchexploder.exe
+/home/jbos/Development/applications/scientrace/source/scientrace-batch-creator/obj/x86/Debug/scientrace-batchexploder.exe.mdb
+/home/jbos/Development/applications/scientrace/source/scientrace-batch-creator/bin/Debug/scientrace-xml-parser.exe
+/home/jbos/Development/applications/scientrace/source/scientrace-batch-creator/bin/Debug/scientrace-lib.dll
+/home/jbos/Development/applications/scientrace/source/scientrace-batch-creator/bin/Debug/OpenTK.dll

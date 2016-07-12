@@ -2,7 +2,7 @@ using System;
 using System.Xml.Linq;
 using System.Collections.Generic;
 
-namespace BatchExplode {
+namespace BatchCreator {
 	
 public class SubBatchArray : ConfigArray {
 
@@ -67,7 +67,7 @@ public class SubBatchArray : ConfigArray {
 	public override string replaceForCurrentValues(string aString) {
 		foreach (KeyValuePair<string, string> vp in this.currentSet()) {
 			//REPLACED BY EXPLODER BELOW AT 20150325: aString = aString.Replace("$"+vp.Key, vp.Value);	
-			aString = Exploder.replaceKeyValues(aString, vp.Key, vp.Value);
+			aString = BatchCreator.replaceKeyValues(aString, vp.Key, vp.Value);
 			//Console.WriteLine("REPLACE"+"$"+vp.Key +"TO "+ vp.Value);
 			
 			//aString = aString.Replace("\""+vp.Key+"\"", "\"_REM:q_"+vp.Key+"\"");	

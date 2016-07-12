@@ -3,7 +3,7 @@ using System.Xml.Linq;
 using Extensions;
 using ScientraceXMLParser;
 
-namespace BatchExplode {
+namespace BatchCreator {
 
 	
 public class KeyExplodeArray : ConfigArray {
@@ -80,12 +80,12 @@ public class KeyExplodeArray : ConfigArray {
 		}
 		
 	public override string replaceForCurrentValues(string aString) {
-		return Exploder.replaceKeyValues(aString, this.name, this.getCurrent());
+		return BatchCreator.replaceKeyValues(aString, this.name, this.getCurrent());
 		//return aString.Replace("$"+this.name, this.getCurrent());
 		}
 
 	public override string replaceForCurrentFilenameValues(string aString) {
-		return Exploder.replaceKeyValues(aString, this.name, this.getCurrentFilenameValue());
+		return BatchCreator.replaceKeyValues(aString, this.name, this.getCurrentFilenameValue());
 		//return aString.Replace("$"+this.name, this.getCurrentFilenameValue());
 		}
 		

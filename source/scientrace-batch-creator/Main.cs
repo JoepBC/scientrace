@@ -3,12 +3,12 @@ using System.Reflection;
 //using System.Collections;
 using System.Collections.Generic;
 
-namespace BatchExplode {
+namespace BatchCreator {
 	
 class MainClass	{
 		
 	public static void Main (string[] args)	{
-			Console.WriteLine("Now running BatchExploder version: "+Assembly.GetExecutingAssembly().GetName().Version);
+			Console.WriteLine("Now running Scientrace Batch Creator version: "+Assembly.GetExecutingAssembly().GetName().Version);
 		/*List<Dictionary<string, string>> valuePairs = new List<Dictionary<string, string>>();
 		valuePairs.Add(new Dictionary<string,string>());
 		valuePairs[0].Add("Naam", "Waarde");
@@ -17,7 +17,7 @@ class MainClass	{
 			Console.WriteLine(vp.Key + " has value "+vp.Value);
 			}
 		//Exploder parser = */
-			new Exploder(new Arguments(args), args);
+			new BatchCreator(new Arguments(args), args);
 		}
 
 	}

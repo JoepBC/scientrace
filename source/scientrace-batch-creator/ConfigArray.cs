@@ -1,5 +1,5 @@
 using System;
-namespace BatchExplode {
+namespace BatchCreator {
 
 public abstract class ConfigArray {
 

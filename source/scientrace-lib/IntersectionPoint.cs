@@ -22,9 +22,13 @@ public class IntersectionPoint {
 
 	// Copy constructor
 	public IntersectionPoint(IntersectionPoint copyIntersectionPoint) {
-		this.loc = new Location(copyIntersectionPoint.loc);
+		this.loc = 
+			(copyIntersectionPoint.loc == null) ?
+			null : new Location(copyIntersectionPoint.loc);
 		this.flatshape = copyIntersectionPoint.flatshape;
-		this.flatshape.plane = new Plane(copyIntersectionPoint.flatshape.plane);
+		/* this.flatshape = 
+			(copyIntersectionPoint.flatshape == null) ?
+			null : new FlatShape2d(copyIntersectionPoint.flatshape); */
 		}
 
 

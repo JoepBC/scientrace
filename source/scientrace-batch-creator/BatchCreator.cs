@@ -3,19 +3,19 @@ using System.Xml.Linq;
 using System.IO;
 using System.Collections;
 
-namespace BatchExplode {
-public class Exploder {
+namespace BatchCreator {
+public class BatchCreator {
 
 	public string source, configfile, outputdir, configkey;
 	public ArrayList keys = new ArrayList();
-	public string batchid = "ExplodedConfig";
+	public string batchid = "BatchConfig";
 	public XElement xconfig;
 		
-	public Exploder(Arguments clArgs, string[] args) {
+	public BatchCreator(Arguments clArgs, string[] args) {
 
 		if (clArgs["config"]==null) {
 			if (args.Length < 1) {
-				Console.WriteLine("Invalid parameters given. Need 'config' parameter.");
+				Console.WriteLine("Invalid parameters given. Need config file parameter.");
 				return;
 				}
 			this.configfile = args[0];
@@ -47,7 +47,7 @@ public class Exploder {
 			this.source = xd.Element("BatchConfig").Attribute("XMLSource").Value;
 			}
 
-		/*this.configfile = "/home/jbos/BatchExplode/BatchExplode/bin/Debug/config.xml";
+		/*this.configfile = "/home/jbos/BatchCreator/BatchCreator/bin/Debug/config.xml";
 		this.source = "/home/jbos/scientrace/suncycle0.3/suncycle_generic.xml";*/
 		this.checksourcefiles();
 		this.readconfig();
@@ -160,7 +160,7 @@ public class Exploder {
 		}
 
 	public string replaceVariables(string source, string key, string value) {
-		return Exploder.replaceKeyValues(source, key, value);
+		return BatchCreator.replaceKeyValues(source, key, value);
 		}
 
 	public void run(int arraycounter) {
