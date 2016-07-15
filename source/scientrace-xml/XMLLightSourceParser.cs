@@ -156,7 +156,7 @@ public class XMLLightSourceParser : ScientraceXMLAbstractParser {
 		public Scientrace.SingleRaySource setSingleRayFromXData(XElement xlight, List<Scientrace.UniformTraceModifier> utms,
 				Scientrace.Object3dEnvironment env) {
 			double distance = this.X.getXDouble(xlight.Attribute("Distance"), 0);
-			int beamcount = this.X.getXInt(xlight.Attribute("RayCount"), this.X.getXInt(xlight.Attribute("BeamCount")));
+			int beamcount = this.X.getXInt(xlight.Attribute("RayCount"), this.X.getXInt(xlight.Attribute("BeamCount"), 1));
 			double minintensity = this.X.getXDouble(xlight, "MinIntensity", 0.01); //default minimum intensity for tracing set to 1%
 			
 			Scientrace.NonzeroVector light_direction = this.X.getXNzVector(xlight.Element("Direction"));

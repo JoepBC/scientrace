@@ -3,29 +3,9 @@
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-batch-creator/Main.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-lib/MaterialProperties_DynamicMaterials.cs">
     <Files>
-      <File FileName="scientrace-lib/RectangularPrism.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/LightSource.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Trace.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Trace-Polarisation_Support.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Object3d.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Plane.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Intersection.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/IntersectionPoint.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Tracejournal-Textual_Data_Export.cs" Line="1" Column="1" />
-      <File FileName="scientrace-xml/ShadowLightSourceConstruct.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/TraceJournalExportableHistogram.cs" Line="1" Column="1" />
-      <File FileName="scientrace-xml/ScientraceEnvironmentSetup.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Histogram2d.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Histogram1d.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/FlatShape2d.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/DielectricSurfaceInteraction.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/Trace-Obsolete_No_Polarisation_Support.cs" Line="1" Column="1" />
-      <File FileName="scientrace-batch-creator/BatchCreator.cs" Line="1" Column="1" />
-      <File FileName="scientrace-batch-creator/Main.cs" Line="7" Column="2" />
-      <File FileName="scientrace-batch-creator/KeyExplodeArray.cs" Line="1" Column="1" />
-      <File FileName="scientrace-batch-creator/SubBatchArray.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/MaterialProperties_DynamicMaterials.cs" Line="19" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

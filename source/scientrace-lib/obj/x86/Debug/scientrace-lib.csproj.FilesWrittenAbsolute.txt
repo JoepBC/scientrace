@@ -1,6 +1,0 @@
-/home/jbos/Development/applications/scientrace/source/scientrace-lib/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/home/jbos/Development/applications/scientrace/source/scientrace-lib/bin/Debug/scientrace-lib.dll.mdb
-/home/jbos/Development/applications/scientrace/source/scientrace-lib/bin/Debug/scientrace-lib.dll
-/home/jbos/Development/applications/scientrace/source/scientrace-lib/obj/x86/Debug/scientrace-lib.dll
-/home/jbos/Development/applications/scientrace/source/scientrace-lib/obj/x86/Debug/scientrace-lib.dll.mdb
-/home/jbos/Development/applications/scientrace/source/scientrace-lib/bin/Debug/OpenTK.dll

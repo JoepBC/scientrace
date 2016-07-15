@@ -9,7 +9,7 @@
 
 		<Replace Key="SCREEN_X" Value="0.50" />
 		<Replace Key="REFRACTIVE_INDEX" Value="1.5" />
-		<Replace Key="POLARISATION_ANGLE" Value="56.31" />
+		<Replace Key="POLARISATION_ANGLE" Value="56.31" Comment="57.31 is the Brewster/polarization angle for n=1.5 with n_ref=1.0" />
 
 	<Import Key="PLATES_CODE">
 		<For Key="PLATE" From="1" To="8" Step="1" />
@@ -28,15 +28,6 @@
 	</PreProcess>
 
 
-	<!-- Describe what data to export -->
-	<Output Path="out">
-		<X3D Filename="3dview_%o_n1.5_p8.x3d" Export="yes" />
-		<YieldData Filename="data_%o" HTMLWriteMode="append" ExportHTML="yes" CVSWriteMode="append" />
-		<SVG Filename="%o_n1.5_p8.svg" Export="yes" Grid="yes" SpotSizeFraction="0.075" PhotonCloud="true" />
-		<PhotonDump Filename="photons_%o_n1.5_p8.csv" Export="yes" />
-		<XML ExportCustomTraces="true" ExportPreProcessed="true" Filename="xml_%o_n1.5_p8.scx" DisplayCustomTraces="false" DisplayPreProcessed="false" />
-	</Output>
-
 <ObjectEnvironment Environment="air" Radius="1" DrawAxes="yes">
 
     <!-- Camera properties -->
@@ -46,7 +37,7 @@
 		<Angle Degrees="75" />
 	</CameraRotation>
 
-	<LightSource Class="Spiral" BeamCount="@BEAMCOUNT@" MaxInteractions="80" MinIntensity="0.0010" Radius="0.004" Distance="0.004" Intensity="100">	
+	<LightSource Class="Spiral" RayCount="@BEAMCOUNT@" MaxInteractions="100" MinIntensity="0.02" Radius="0.004" Distance="0.004" Intensity="100">	
 		<Location xyz="0;0;0E-2" />
 		<SpiralAxis xyz="0;0;-1" />
 		<Direction x="0" y="0" z="-1">

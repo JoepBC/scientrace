@@ -42,6 +42,9 @@
     <Reference Include="OpenTK">
       <HintPath>..\references\OpenTK.dll</HintPath>
     </Reference>
+    <Reference Include="mxparser">
+      <HintPath>..\references\mxparser.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -116,7 +119,6 @@
     <Compile Include="UniformTraceModifier.cs" />
     <Compile Include="TestLight.cs" />
     <Compile Include="ParallelVectorException.cs" />
-    <Compile Include="StaticNTransparentMaterial.cs" />
     <Compile Include="Shape2d.cs" />
     <Compile Include="FlatShape2d.cs" />
     <Compile Include="SurfaceProperties.cs" />
@@ -141,7 +143,6 @@
     <Compile Include="FresnelLensRing.cs" />
     <Compile Include="FresnelLens.cs" />
     <Compile Include="RandomToSurfaceLightSource.cs" />
-    <Compile Include="StaticReflectingAbsorberMaterial.cs" />
     <Compile Include="OpticalEfficiencyCharacteristics.cs" />
     <Compile Include="Rectangle.cs" />
     <Compile Include="RGBColor.cs" />
@@ -154,12 +155,13 @@
     <Compile Include="ShadowClasses.cs" />
     <Compile Include="PlaneBorderEnclosedVolume-3D_Drawing.cs" />
     <Compile Include="RandomCircleLightSource.cs" />
-    <Compile Include="MaterialProperties_VariousMaterials.cs" />
     <Compile Include="ComplexBorderedVolume-3D_drawing.cs" />
     <Compile Include="Histogram1d.cs" />
     <Compile Include="TraceJournalExportable.cs" />
     <Compile Include="TraceJournalExportableHistogram.cs" />
     <Compile Include="Histogram2d.cs" />
+    <Compile Include="MaterialProperties_DynamicMaterials.cs" />
+    <Compile Include="MaterialProperties_StaticMaterials.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

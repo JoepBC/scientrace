@@ -251,6 +251,12 @@ public class ShadowClassConstruct : ScientraceXMLAbstractParser{
 
 				return matprops;
 				//break;
+			case "NFormula":
+				Scientrace.DispersionFormulaDielectricProperties formuladielectric = new Scientrace.DispersionFormulaDielectricProperties();
+				formuladielectric.set_user_formula(this.X.getXStringByName(xmaterial, "Formula"));
+				formuladielectric.reflects = this.X.getXBool(xmaterial, "Reflects", true);
+				return formuladielectric;
+				//break;
 			case "StaticReflectingAbsorber":
 				Scientrace.StaticReflectingAbsorberMaterial statRefAbsorber = new Scientrace.StaticReflectingAbsorberMaterial();
 				statRefAbsorber.setRefractiveIndex(this.X.getXDouble(xmaterial, "RefractiveIndex", 1));
@@ -348,6 +354,15 @@ public class ShadowClassConstruct : ScientraceXMLAbstractParser{
 
 
 	public Scientrace.Object3d constructTriangularPrism(XElement xel) {
+		/* Example:
+		<Prism>
+		    <Location xyz="10;-50;10" />
+		    <Length xyz="0;100;0" />
+		    <Width xyz="10;0;0" />
+		    <Height xyz="5;0;5" />
+		    <Material Class="NFormula" Formula="1.5+(nm*0.01)" />
+		</Prism>
+		*/
 		if (!xel.Name.ToString().IsIn("TriangularPrism", "Prism")) { // != "TriangularPrism") {
 			throw new XMLException("TriangularPrism does not match its name: "+xel.Name.ToString());
 			}

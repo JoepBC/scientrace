@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScientraceConfig ConfigID="n1.5%p0" PolarisationSupport="yes" ConfigDescription="nREFRACTIVE_INDEX%pPLATE_COUNT">
+<ScientraceConfig ConfigID="n1.5%p20" PolarisationSupport="yes" ConfigDescription="nREFRACTIVE_INDEX%pPLATE_COUNT">
 
 	<!-- Setting some variables -->
 	<PreProcess>
-		<Replace Key="READABLE_CONFIGKEY" Value="_p-0_" />
+		<Replace Key="READABLE_CONFIGKEY" Value="_p-20_" />
 		<Replace Key="BEAMCOUNT" Value="1" />
 		<Replace Key="PLATE_COUNT" Value="5" />
 
@@ -12,7 +12,7 @@
 		<Replace Key="POLARISATION_ANGLE" Value="56.31" Comment="57.31 is the Brewster/polarization angle for n=1.5 with n_ref=1.0" />
 
 	<Import Key="PLATES_CODE">
-		<For Key="PLATE" From="1" To="0" Step="1" />
+		<For Key="PLATE" From="1" To="20" Step="1" />
 		<Value>
 			<RectangularPrism>
 				<Material Class="StaticNTransparent" RefractiveIndex="1.5" Reflects="yes" />

@@ -1,6 +1,0 @@
-<LightSource Class="CustomTraces" Intensity="100" MaxInteractions="80" MinIntensity="0.001" Tag="export_from_0.405LoopSpiral">
-  <Trace Wavelength="4.13E-07" Intensity="1" Tag="#112867915">
-    <Location x="-0.0026862688503130347" y="-0.0027546178555714015" z="0.0022187968624456217" />
-    <Direction x="0.83205094807955815" y="0" z="-0.55469921561140545" />
-  </Trace>
-</LightSource>

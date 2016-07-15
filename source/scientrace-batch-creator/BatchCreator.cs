@@ -82,11 +82,16 @@ public class BatchCreator {
 			}
 		if (this.xconfig.Attribute("OutputDir") != null) {
 			this.outputdir = this.xconfig.Attribute("OutputDir").Value;
-			} else { this.outputdir = "explodedir"; }
+			} else { this.outputdir = "xml"; }
 			
 		foreach (XElement sbxe in this.xconfig.Elements("SubBatch")) {
 			this.keys.Add(new SubBatchArray(sbxe));	
 			}
+
+		foreach (XElement exe in this.xconfig.Elements("For")) {
+			this.keys.Add(new KeyExplodeArray(exe));
+			}
+		// For legacy reasons, the "old" Explode name is also still available.
 		foreach (XElement exe in this.xconfig.Elements("Explode")) {
 			this.keys.Add(new KeyExplodeArray(exe));
 			/* this.keys.Add(new KeyExplodeArray(

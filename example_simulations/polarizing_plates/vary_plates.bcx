@@ -1,0 +1,18 @@
+<BatchConfig XMLSource="plates_setup.scx" ID="" OutputDir="xml" Key="n@REFRACTIVE_INDEX@%p@PLATE_COUNT@">
+
+<SubBatch>
+	<ValueSet>
+		<Replace Key="REFRACTIVE_INDEX" Value="1.5" />
+		<Replace Key="POLARISATION_ANGLE" Value="56.31" />
+		<Replace Key="SCREEN_X" Value="0.5" />
+	</ValueSet>
+	<!-- <ValueSet>
+		<Replace Key="REFRACTIVE_INDEX" Value="2.5" />
+		<Replace Key="POLARISATION_ANGLE" Value="68.199" />
+		<Replace Key="SCREEN_X" Value="0.75" />
+	</ValueSet> -->
+</SubBatch>
+
+<For Key="PLATE_COUNT" From="0" To="20" Step="4"  />
+
+</BatchConfig>
