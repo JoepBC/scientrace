@@ -64,6 +64,7 @@ public class XMLOutputParser : ScientraceXMLAbstractParser	{
 	public void configX3DOutput(XElement xx3d) { 
 		Scientrace.TraceJournal tj = Scientrace.TraceJournal.Instance;
 		tj.exportx3d = this.X.getXBool(xx3d, "Export", true);
+		tj.x3d_line_thickness = this.X.getXDouble(xx3d, "LineWidth", 0);
 		//Console.WriteLine("WRITING DATA IS " + tj.exportdata.ToString());
 		tj.x3dfilename = this.X.getXStringByName(xx3d, "Filename", "3dview_"+tj.getSourceFilenameNoExt()+".x3d");
 		}

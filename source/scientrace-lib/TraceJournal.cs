@@ -76,15 +76,7 @@ public partial class TraceJournal {
 	public HashSet<Scientrace.PDPSource> exportPDPSources = new HashSet<PDPSource>{Scientrace.PDPSource.Wavelength, Scientrace.PDPSource.AngleWheel};
 	public string svgfilename;
 	public bool svg_export_photoncloud = false;
-		
-	/* Attributes concerning X3D export */
-	public bool drawInteractionPlanes = false;
-	public bool drawInteractionNormals = false;
-	public bool drawAngles = false;
-	public bool drawSpots = false;
-	public bool drawCasualties = false;
-	public bool drawTraces = true;
-	public bool x3dWavelengthColourLines = true;
+
 
 	public ArrayList traces = new ArrayList(100000);
 	public ArrayList spots = new ArrayList(100000);

@@ -35,7 +35,8 @@ public class X3DShapeDrawer {
 	public string getX3DTranslationTag(Scientrace.Location loc) {
 		return "<Transform translation='"+loc.trico()+"'>";
 		}
-		
+
+
 	public string getX3DRotationTag(Scientrace.NonzeroVector fromVector, Scientrace.NonzeroVector toVector) {
 		Scientrace.Vector r = fromVector.crossProduct(toVector);
 		double angle = 

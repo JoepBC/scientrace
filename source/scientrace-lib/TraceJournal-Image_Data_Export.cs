@@ -17,7 +17,18 @@ namespace Scientrace {
 /// </summary>
 public partial class TraceJournal {
 
-
+	/* Attributes concerning X3D export */
+	public bool drawInteractionPlanes = false;
+	public bool drawInteractionNormals = false;
+	public bool drawAngles = false;
+	public bool drawSpots = false;
+	public bool drawCasualties = false;
+	public bool drawTraces = true;
+	public bool x3dWavelengthColourLines = true;
+	/// <summary>
+	/// The x3d line thickness. A thickness of 0 uses the (old, faster) lineset method, higher values produce "cylinders" with the given thickness.
+	/// </summary>
+	public double x3d_line_thickness = 0;
 		
 	public string colourLegend(PDPSource pdpSource) {
 		switch (pdpSource) {
@@ -182,6 +193,37 @@ public partial class TraceJournal {
 		}
 
 	public void writeX3DTraces(StringBuilder retsb) {
+		if (this.x3d_line_thickness == 0) {
+			this.writeX3DTracesLines(retsb);
+			return;
+			}
+
+		string colour = "1 0 0";
+		foreach (Scientrace.Trace trace in this.traces) {
+			Location fromLoc = trace.traceline.startingpoint;
+			Location toLoc = trace.endloc;
+			Location diffLoc = toLoc - fromLoc;
+			if (diffLoc.length == 0)
+				continue; // no line, move on.
+
+			if (this.x3dWavelengthColourLines) {
+				colour = this.getRedRGB(trace.wavelenght)+" "+
+							this.getGreenRGB(trace.wavelenght)+" "+
+							this.getBlueRGB(trace.wavelenght);
+				}
+			X3DShapeDrawer xsd = new X3DShapeDrawer();
+			
+			retsb.Append(xsd.getX3DTranslationTag(fromLoc));
+			retsb.Append(xsd.getX3DRotationTag(new NonzeroVector(0,diffLoc.length,0), diffLoc.tryToNonzeroVector()));
+			retsb.Append(xsd.getX3DTranslationTag(new Location(0,diffLoc.length*0.5,0)));
+			retsb.Append(@"<Shape>
+<Appearance><Material diffuseColor='"+colour+@"'/></Appearance>
+ <Cylinder bottom='true' height='"+diffLoc.length+"' radius='"+(this.x3d_line_thickness/2)+@"' side='true'/>
+    </Shape><!-- Closing Cylinder transformations --></Transform></Transform></Transform>" );
+			}
+		}
+
+	public void writeX3DTracesLines(StringBuilder retsb) {
 		string fromColour = "1 0 0";
 		string toColour = "0 1 1";
 		foreach (Scientrace.Trace trace in this.traces) {
