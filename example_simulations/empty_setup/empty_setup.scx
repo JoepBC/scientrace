@@ -17,12 +17,14 @@
 
 <!-- modify your output settings here -->
 <Output Path="out">
-        <X3D Filename="3dview_%o_@READABLE_CONFIGKEY@.x3d" Export="true" />
-        <YieldData Filename="data_@BATCH_ID@_%o" HTMLWriteMode="append" ExportHTML="true" ExportCSV="true" CVSWriteMode="append" /> <!-- alternative writemode is "write" -->
-        <Histogram Export="yes" Filename="histogram_@BATCH_ID@_%o.csv" Resolution="0.5" />
-        <SVG Filename="pdp_%o_@READABLE_CONFIGKEY@.svg" Export="yes" Grid="true" SpotSizeFraction="0.02" Legends="true" PhotonCloud="false" ExportAngles="true" ExportWavelengths="true" />
-        <PhotonDump Filename="dump_%o_@READABLE_CONFIGKEY@.csv" Export="no" />
-        <XML ExportCustomTraces="true" ExportPreProcessed="true" Filename="xml_%o_@READABLE_CONFIGKEY@.scx" DisplayCustomTraces="false" DisplayPreProcessed="false" />
+	<X3D Filename="3dview_%o_@READABLE_CONFIGKEY@.x3d" Export="true" />
+	<YieldData Filename="data_@BATCH_ID@_%o" HTMLWriteMode="append" ExportHTML="true" ExportCSV="true" CVSWriteMode="append" /> <!-- alternative writemode is "write" -->
+	<Histogram Export="yes" Filename="histogram_@BATCH_ID@_%o.csv" Resolution="0.5" />
+	<Hist2 Export="yes" Resolution="0.25" FromAngle="0" ToAngle="15" Filename="hist2d_filename" Tag="hires">
+       	<Ref xyz="1;0;0" /></Hist2>
+	<SVG Filename="pdp_%o_@READABLE_CONFIGKEY@.svg" Export="yes" Grid="true" SpotSizeFraction="0.02" Legends="true" PhotonCloud="false" ExportAngles="true" ExportWavelengths="true" />
+	<PhotonDump Filename="dump_%o_@READABLE_CONFIGKEY@.csv" Export="no" />
+	<XML ExportCustomTraces="true" ExportPreProcessed="true" Filename="xml_%o_@READABLE_CONFIGKEY@.scx" DisplayCustomTraces="false" DisplayPreProcessed="false" />
 </Output>
 
 <!-- Place your objects here -->
@@ -35,6 +37,7 @@
 		<Angle Degrees="75" />
 	</CameraRotation>
 
+<!-- Find elements to add to your simulation environment at https://github.com/JoepBC/scientrace/wiki/Scientrace-XML-Elements -->
 
-</ObjectEnvironment>
-</ScientraceConfig>
+<!-- Finally, closing all open tags... -->
+</ObjectEnvironment></ScientraceConfig>
