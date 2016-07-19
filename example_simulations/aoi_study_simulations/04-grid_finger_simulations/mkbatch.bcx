@@ -1,0 +1,75 @@
+<BatchConfig XMLSource="grid_fingers_setup.scx" ID="grid_fingers" OutputDir="grid_finger_scatter_histogram" Key="@TRAPEZOID_OFFSET@%@LIGHT_ANGLE@%@ROUGHNESS_DEVIATION_ANGLE@%@RAY_COUNT@">
+
+<Replace Key="RND_SEED" Value="-1" />
+
+<Explode Key="LIGHT_ANGLE" From="0" To="88" Step="2" PreDecimals="2" Decimals="0" />
+
+<SubBatch>
+  <ValueSet>
+    <Replace Key="TRAPEZOID_OFFSET" Value="0" Tag="90deg" />
+    <Replace Key="ROUGHNESS_DEVIATION_ANGLE" Value="0" />
+    <Replace Key="ABSORPTION_FRACTION" Value="0" />
+  </ValueSet>
+  <ValueSet>
+    <Replace Key="TRAPEZOID_OFFSET" Value="0.4987" Tag="85deg" />
+    <Replace Key="ROUGHNESS_DEVIATION_ANGLE" Value="0" />
+    <Replace Key="ABSORPTION_FRACTION" Value="0" />
+  </ValueSet>
+  <ValueSet>
+    <Replace Key="TRAPEZOID_OFFSET" Value="1.527310397" Tag="75deg" />
+    <Replace Key="ROUGHNESS_DEVIATION_ANGLE" Value="0" />
+    <Replace Key="ABSORPTION_FRACTION" Value="0" />
+  </ValueSet>
+  <ValueSet>
+    <Replace Key="TRAPEZOID_OFFSET" Value="2.658" Tag="65deg" />
+    <Replace Key="ROUGHNESS_DEVIATION_ANGLE" Value="0" />
+    <Replace Key="ABSORPTION_FRACTION" Value="0" />
+  </ValueSet>
+  <ValueSet>
+    <Replace Key="TRAPEZOID_OFFSET" Value="3.991182968" Tag="55deg" />
+    <Replace Key="ROUGHNESS_DEVIATION_ANGLE" Value="0" />
+    <Replace Key="ABSORPTION_FRACTION" Value="0" />
+  </ValueSet>
+  <ValueSet>
+    <Replace Key="TRAPEZOID_OFFSET" Value="5.7" Tag="45deg" />
+    <Replace Key="ROUGHNESS_DEVIATION_ANGLE" Value="0" />
+    <Replace Key="ABSORPTION_FRACTION" Value="0" />
+  </ValueSet>
+  <ValueSet>
+    <Replace Key="TRAPEZOID_OFFSET" Value="2.658" Tag="65deg" />
+    <Replace Key="ROUGHNESS_DEVIATION_ANGLE" Value="12.5" />
+    <Replace Key="ABSORPTION_FRACTION" Value="0" />
+  </ValueSet>
+  <ValueSet>
+    <Replace Key="TRAPEZOID_OFFSET" Value="2.658" Tag="65deg" />
+    <Replace Key="ROUGHNESS_DEVIATION_ANGLE" Value="25.0" />
+    <Replace Key="ABSORPTION_FRACTION" Value="0" />
+  </ValueSet>
+  <ValueSet>
+    <Replace Key="TRAPEZOID_OFFSET" Value="2.658" Tag="65deg" />
+    <Replace Key="ROUGHNESS_DEVIATION_ANGLE" Value="30.0" />
+    <Replace Key="ABSORPTION_FRACTION" Value="0" />
+  </ValueSet>
+</SubBatch>
+
+<SubBatch Tag="a SubBatch Description">
+  <ValueSet Tag="Viewable">
+	<Replace Key="OUT_PATH" Value="view" />
+	<Replace Key="RAY_COUNT" Value="64" />
+	<Replace Key="EXPORT_SVG" Value="yes" />
+	<Replace Key="EXPORT_X3D" Value="yes" />
+	<Replace Key="EXPORT_DATA" Value="no" />
+	<Replace Key="EXPORT_HISTOGRAM" Value="no" />
+  </ValueSet>
+  <ValueSet Tag="Statistics">
+	<Replace Key="OUT_PATH" Value="out" />
+   	<Replace Key="RAY_COUNT" Value="500000" />
+	<Replace Key="EXPORT_SVG" Value="no" />
+	<Replace Key="EXPORT_X3D" Value="no" />
+	<Replace Key="EXPORT_DATA" Value="yes" />
+	<Replace Key="EXPORT_HISTOGRAM" Value="yes" />
+  </ValueSet>
+</SubBatch>
+
+</BatchConfig>
+

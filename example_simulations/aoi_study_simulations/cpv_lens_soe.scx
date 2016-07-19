@@ -9,22 +9,24 @@
 	   - Define it directly in your ScientraceConfig (SCX) file when you don't use the BatchExploder 
 	-->
 	<Replace Key="CONFIGKEY" Value="config" />
+
 	<!-- The BATCH_ID is also to be set by the BatchExploder. It describes the entire batch, and allows
 	   - the same table-filesnames to be used for the whole batch.
 	-->
 
+	<!-- Some additional variables defined for the SOE simulations -->
 	<Replace Key="CAMDIR" Value="-3.5;9;22" />
-	<Replace Key="RANDOM_SEED" Value="1" />
-	<Replace Key="RAY_COUNT" Value="120" />
+	<Replace Key="RANDOM_SEED" Value="-1" />
+	<Replace Key="RAY_COUNT" Value="12000" />
 
 	<Replace Key="EXPORT_X3D" Value="yes" />
 
-	<Replace Key="VAR_RINGS" Value="6" />
+	<Replace Key="VAR_RINGS" Value="128" />
 	<Replace Key="BATCH_ID" Value="empty_setup" />
 
 	<Replace Key="OUT_DIR" Value="def_out" />
 
-	<Replace Key="RADIUS_ANGULAR_APERTURE" Value="0.25" />
+	<Replace Key="RADIUS_ANGULAR_APERTURE" Value="0" />
 
 	<Replace Key="LENS_DIAMETER" Value="56.57" Tag="40*40 diagonal" />
 	<Replace Key="FOCUS_WAVELENGTH" Value="450E-9" />
@@ -38,39 +40,48 @@
 	<Replace Key="FOCAL_DISTANCE" Value="80" />
 
 	<Replace Key="BACK_SURFACE_HEIGHT" Value="-0.1" />
-	<Replace Key="SPECTRUM_WAVELENGTH" Value="600E-9" />
+	<Replace Key="SPECTRUM_FILENAME" Value="define_in_bex" />
 
-<Replace Key="SECOPT_TRUNCATED_OFFSET" Value="0.4" Tag=" (TOP_ZX - BASE_ZX)^2 / TOP_Y, make 0 for flat top" />
-<Replace Key="SECOPT_BASE_ZX" Value="1" Tag="Half of total sidelength of solar cell" />
-<Replace Key="SECOPT_TOP_ZX" Value="3" Tag="Total width of the secondary optics = 6" />
-<Replace Key="SECOPT_TOP_Y" Value="10" Tag="make 0.0001 for effectively only flat glass plate" />
-
-<Replace Key="SECOPT_BASE_Y" Value="-0.0001" />
-
-<Replace Key="SECOPT_A" Value="-@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;@SECOPT_BASE_ZX@" />
-<Replace Key="SECOPT_B" Value="@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;@SECOPT_BASE_ZX@" />
-<Replace Key="SECOPT_C" Value="@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;-@SECOPT_BASE_ZX@" />
-<Replace Key="SECOPT_D" Value="-@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;-@SECOPT_BASE_ZX@" />
-<Replace Key="SECOPT_E" Value="-@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;@SECOPT_TOP_ZX@" />
-<Replace Key="SECOPT_F" Value="@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;@SECOPT_TOP_ZX@" />
-<Replace Key="SECOPT_G" Value="@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;-@SECOPT_TOP_ZX@" />
-<Replace Key="SECOPT_H" Value="-@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;-@SECOPT_TOP_ZX@" />
-
+	<!-- SOE definitions -->
+	<Replace Key="SECOPT_TRUNCATED_OFFSET" Value="0.4" Tag=" (TOP_ZX - BASE_ZX)^2 / TOP_Y, make 0 for flat top" />
+	<Replace Key="SECOPT_BASE_ZX" Value="1" Tag="Half of total sidelength of solar cell" />
+	<Replace Key="SECOPT_TOP_ZX" Value="3" Tag="Total width of the secondary optics = 6" />
+	<Replace Key="SECOPT_TOP_Y" Value="10" Tag="make 0.0001 for effectively only flat glass plate" />
+	<Replace Key="SECOPT_BASE_Y" Value="-0.0001" />
+	<Replace Key="SECOPT_A" Value="-@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;@SECOPT_BASE_ZX@" />
+	<Replace Key="SECOPT_B" Value="@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;@SECOPT_BASE_ZX@" />
+	<Replace Key="SECOPT_C" Value="@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;-@SECOPT_BASE_ZX@" />
+	<Replace Key="SECOPT_D" Value="-@SECOPT_BASE_ZX@;@SECOPT_BASE_Y@;-@SECOPT_BASE_ZX@" />
+	<Replace Key="SECOPT_E" Value="-@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;@SECOPT_TOP_ZX@" />
+	<Replace Key="SECOPT_F" Value="@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;@SECOPT_TOP_ZX@" />
+	<Replace Key="SECOPT_G" Value="@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;-@SECOPT_TOP_ZX@" />
+	<Replace Key="SECOPT_H" Value="-@SECOPT_TOP_ZX@;@SECOPT_TOP_Y@;-@SECOPT_TOP_ZX@" />
 
 </PreProcess>
 
 <!-- modify your output settings here -->
 <Output Path="@OUT_DIR@">
-         <X3D Filename="3dview_%o_@READABLE_CONFIGKEY@.x3d" Export="@EXPORT_X3D@" />
+	<!-- Export 3D files for "viewable" (lowres) simulations. Hires simulations should never export X3D files, as their sizes will be tremendous and they will be too large to view -->
+        <X3D Filename="3dview_%o_@READABLE_CONFIGKEY@.x3d" Export="@EXPORT_X3D@" />
+
+	<!-- Export the optical efficiency of the concentrator -->
         <YieldData Filename="data_@BATCH_ID@_%o" HTMLWriteMode="append" ExportHTML="true" ExportCSV="true" CVSWriteMode="append" />
-        <SVG Filename="pdp_%o_@READABLE_CONFIGKEY@.svg" Export="yes" Grid="true" SpotSizeFraction="0.005" Legends="true" PhotonCloud="false" ExportAngles="true" ExportWavelengths="false" />
-<!--
-        <Histogram Export="yes" Filename="histogram_@BATCH_ID@_%o.csv" Resolution="0.5" />
-        <PhotonDump Filename="dump_%o_@READABLE_CONFIGKEY@.csv" Export="no" />
-        <XML ExportCustomTraces="true" ExportPreProcessed="true" Filename="xml_%o_@READABLE_CONFIGKEY@.scx" DisplayCustomTraces="false" DisplayPreProcessed="false" /> -->
+
+	<!-- Export photon distributions on the cell surface, not used in this study -->
+        <SVG Filename="pdp_%o_@READABLE_CONFIGKEY@.svg" Export="no" Grid="true" SpotSizeFraction="0.005" Legends="true" PhotonCloud="false" ExportAngles="no" ExportWavelengths="false" />
+       
+	<!-- incident angle histogram --> 
+	<Histogram Export="yes" Filename="histogram_@READABLE_CONFIGKEY@_%o.csv" Resolution="1" FromAngle="0" ToAngle="90" /> -->
+
+	<!-- 2-dimensional incident angle histograms, decomposing the incident angle in two orthogonal planes -->
+	<Hist2 Export="yes" Resolution="0.25" FromAngle="0" ToAngle="15" Tag="hires" />
+        <Hist2 Export="yes" Resolution="1" FromAngle="0" ToAngle="90" Tag="lores" />
+
+	<!-- xml files of the preprocessed sources can also be exported. This can be useful upon debugging, or selecting invididual traces from a light source -->
+        <XML ExportCustomTraces="no" ExportPreProcessed="no" Filename="xml_%o_@READABLE_CONFIGKEY@.scx" DisplayCustomTraces="false" DisplayPreProcessed="false" />
 </Output>
 
-<!-- Place your objects here -->
+<!-- The actual simulation objects are defined here -->
 <ObjectEnvironment Environment="air" Radius="100" DrawAxes="1" Tag="">
 
 	<!-- Change the 3D viewpoint here -->
@@ -79,14 +90,12 @@
 		<Translate y="6" />
 	</CameraViewpoint>
 
-	<LightSource Class="RandomRectangle" Radius="1" RandomSeed="@RANDOM_SEED@" Distance="2" RayCount="@RAY_COUNT@" MinIntensity="0.4">
+	<LightSource Class="RandomRectangle" Radius="1" RandomSeed="@RANDOM_SEED@" Distance="2" RayCount="@RAY_COUNT@" MinIntensity="0.1" MaxInteractions="10">
 		<TraceModifier DistributionPattern="RandomUniformDensityCircle" SpatialDistribution="UniformProjections" AddSelf="no" RandomSeed="1" ModifyCount="1">
 			<MaxAngle Degrees="@RADIUS_ANGULAR_APERTURE@" />
 		</TraceModifier>
 
-		<REMSpectrum Class="nmrange" From="350" To="1800" EntryCount="24" />
-		<REMSpectrum Class="visible" />
-		<Spectrum Class="static" Wavelength="@SPECTRUM_WAVELENGTH@" />
+		<Spectrum Class="user" XMLData="@SPECTRUM_FILENAME@" />
 
 		<Location xyz="0;@FOCAL_DISTANCE@;0">
 			<Translate xyz="@LIGHT_HEIGHT@" Factor="-0.5" />
@@ -99,7 +108,7 @@
 	</LightSource>	
 
 
-	<Rectangle Material="black" Tag="back_surface" Register="true">
+	<Rectangle Material="black" Tag="back_surface" Register="false">
 		<Location xyz="0;0;0">
 			<Translate xyz="@LIGHT_WIDTH@" Factor="-0.2" />
 			<Translate xyz="@LIGHT_HEIGHT@" Factor="-0.2" />
@@ -120,7 +129,8 @@
 			<Translate y="@SECOPT_TOP_Y@" Factor="1" />
 		</LensPlanoCenter>
 		<FocalVector xyz="0;-@FOCAL_DISTANCE@;0" />
-		<Material Class="pmma" RefractiveIndex="1.5" Reflects="true" />
+		<REMMaterial Class="pmma" RefractiveIndex="1.5" Reflects="true" />
+		<Material Class="altpmma" />
 	</FresnelLens>
 
 	<Rectangle Material="black" Tag="solar_cell" Register="true">
@@ -136,7 +146,7 @@
 	<BorderedVolume>
     <Material Class="bk7" />
     <SubVolume Tag="secoptics">
-<!--  Flat Top -->
+<!-- The Flat Top of all SOEs-->
         <Plane Tag="TopTrunc">
             <Location xyz="0;@SECOPT_TOP_Y@;0">
 				<Translate y="@SECOPT_TRUNCATED_OFFSET@" Factor="1" />
@@ -144,7 +154,7 @@
             <AllowedNormal xyz="0;-1;0" />
         </Plane>
 <!-- -->
-<!-- The truncated pyramid top -->
+<!-- The oblique sides of the Double Truncated Pyramid (DTP) top -->
 		<Plane Tag="TopLeft">
 			<Location xyz="@SECOPT_E@"><AverageWith xyz="@SECOPT_H@" /></Location>
 			<AllowedNormal xyz="@SECOPT_A@">

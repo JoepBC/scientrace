@@ -1,0 +1,54 @@
+<BatchConfig XMLSource="../cpv_lens_soe.scx" ID="comparison_secopt" OutputDir="x" Key="@OPTICS@%@VAR_RINGS@%@FOCUS_WAVELENGTH@%@RADIUS_ANGULAR_APERTURE@%@RANDOM_SEED@%@RAY_COUNT@">
+
+<Replace Key="SPECTRUM_FILENAME" Value="../../astmg173-direct-300-1800nm-res10nm.scx-spectrum" />
+
+<Replace Key="VAR_RINGS" Value="128" />
+
+<Replace Key="VISUAL_RAY_COUNT" Value="100" />
+<Replace Key="HIRES_RAY_COUNT" Value="65536" /> <!-- 2^16 -->
+
+<Explode Key="RADIUS_ANGULAR_APERTURE" From="0" To="3.5" Step="0.25" Decimals="2" />
+
+<Replace Key="FOCUS_WAVELENGTH" Value="650E-9" />
+
+<Replace Key="RANDOM_SEED" Value="-1" />
+
+<SubBatch Tag="rays">
+	<ValueSet>
+		<Replace Key="RAY_COUNT" Value="@VISUAL_RAY_COUNT@" />
+		<Replace Key="EXPORT_X3D" Value="yes" />
+		<Replace Key="OUT_DIR" Value="view" />
+	</ValueSet>
+	<ValueSet>
+		<Replace Key="RAY_COUNT" Value="@HIRES_RAY_COUNT@" />
+		<Replace Key="EXPORT_X3D" Value="no" />
+		<Replace Key="OUT_DIR" Value="out" />
+	</ValueSet>
+</SubBatch>
+
+<SubBatch Tag="OPTICS">
+	<ValueSet Tag="Flat Plate">
+		<!-- Units represent in mm in physical models -->
+		<Replace Key="SECOPT_TRUNCATED_OFFSET" Value="0" Tag="0 for flat top" />
+		<Replace Key="SECOPT_BASE_ZX" Value="1" Tag="Half of total sidelength of solar cell" />
+		<Replace Key="SECOPT_TOP_ZX" Value="1" Tag="Total width of the secondary optics = 2" />
+		<Replace Key="SECOPT_TOP_Y" Value="0.1" Tag="make 0.0001 for effectively only flat glass plate" />
+		<Replace Key="SECOPT_BASE_Y" Value="-0.0001" />
+	</ValueSet>
+	<ValueSet Tag="Trunc. Pyramid">
+		<Replace Key="SECOPT_TRUNCATED_OFFSET" Value="0" Tag=" (TOP_ZX - BASE_ZX)^2 / TOP_Y, make 0 for flat top" />
+		<Replace Key="SECOPT_BASE_ZX" Value="1" Tag="Half of total sidelength of solar cell" />
+		<Replace Key="SECOPT_TOP_ZX" Value="3" Tag="Total width of the secondary optics = 6" />
+		<Replace Key="SECOPT_TOP_Y" Value="10" Tag="make 0.0001 for effectively only flat glass plate" />
+		<Replace Key="SECOPT_BASE_Y" Value="-0.0001" />
+	</ValueSet>
+	<ValueSet Tag="Double Tr.Pyr.">
+		<Replace Key="SECOPT_TRUNCATED_OFFSET" Value="0.4" Tag=" (TOP_ZX - BASE_ZX)^2 / TOP_Y, make 0 for flat top" />
+		<Replace Key="SECOPT_BASE_ZX" Value="1" Tag="Half of total sidelength of solar cell" />
+		<Replace Key="SECOPT_TOP_ZX" Value="3" Tag="Total width of the secondary optics = 6" />
+		<Replace Key="SECOPT_TOP_Y" Value="10" Tag="make 0.0001 for effectively only flat glass plate" />
+		<Replace Key="SECOPT_BASE_Y" Value="-0.0001" />
+	</ValueSet>
+</SubBatch>
+
+</BatchConfig>
