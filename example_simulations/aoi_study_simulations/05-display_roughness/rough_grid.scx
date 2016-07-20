@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScientraceConfig ConfigID="@CONFIGKEY@" ConfigDescription="@CONFIG_DESCRIPTION@">
+
+
+	<PreProcess>
+		<Replace Key="READABLE_CONFIGKEY" Value="@CONFIG_DESCRIPTION@" />
+
+		<Replace Key="RAY_COUNT" Value="40" />
+	    <Replace Key="EXPORT_SVG" Value="no" />
+		<Replace Key="EXPORT_X3D" Value="yes" />
+		<Replace Key="EXPORT_HISTOGRAM" Value="no" />
+		<Replace Key="EXPORT_DATA" Value="no" />
+		<Replace Key="LIGHT_ANGLE" Value="30" />
+		<Replace Key="TRAPEZOID_OFFSET" Value="2.5" />
+		<Replace Key="RND_SEED" Value="5" />
+
+		<Replace Key="ABSORPTION_FRACTION" Value="0" />
+
+		<Replace Key="ROUGHNESS_DEVIATION_ANGLE" Value="0" />
+
+		<Replace Key="Y_LOW" Value="-40" />
+		<Replace Key="Y_LEN" Value="320" />
+
+	<Replace Key="GRID_MATERIAL"><Value>
+		<Material Class="StaticReflectingAbsorber" RefractiveIndex="1.75" Absorption="@ABSORPTION_FRACTION@" Reflection="1" />
+	</Value></Replace>
+
+	<Replace Key="GRID_ROUGHNESS"><Value>
+		<TraceModifier DistributionPattern="PeriodicRing" SpatialDistribution="UniformProjections" AddSelf="no" ModifyCount="24" Random="no"><MaxAngle Degrees="@ROUGHNESS_DEVIATION_ANGLE@" /></TraceModifier>
+
+	</Value></Replace>
+
+	<Import Key="GRID">
+		<For Key="SHIFT" From="-114" To="114" Step="114" />
+		<Value><!--Start of grid finger @ @SHIFT@ -->
+			<Rectangle Tag="grid_finger_left_side" Register="no" X3DFillBitmap="../../bitmaps/gold.png" rX3DEmissiveColor="#000066" remX3DDiffuseColor="#000066" X3DFillBothSides="yes" >
+				@GRID_MATERIAL@ @GRID_ROUGHNESS@
+
+				<Location xyz="-11;@Y_LOW@;0"><Translate x="@SHIFT@" /></Location>
+				<Width xyz="0;@Y_LEN@;0" />
+				<Height xyz="@TRAPEZOID_OFFSET@;0;5.7" />
+			</Rectangle>
+			<Rectangle Tag="grid_finger_right_side" Register="no" X3DFillBitmap="../../bitmaps/gold.png" rX3DEmissiveColor="#000066" remX3DDiffuseColor="#000066" X3DFillBothSides="yes" >
+				@GRID_MATERIAL@ @GRID_ROUGHNESS@
+				<Location xyz="0;@Y_LOW@;0" ><Translate x="@SHIFT@" /></Location>
+				<Width xyz="0;@Y_LEN@;0" />
+				<Height xyz="-@TRAPEZOID_OFFSET@;0;5.7" />
+			</Rectangle>
+			<Rectangle Tag="grid_finger_right_top" Register="no" X3DFillBitmap="../../bitmaps/gold.png" rX3DEmissiveColor="#000066" remX3DDiffuseColor="#000066" X3DFillBothSides="yes" >
+				@GRID_MATERIAL@ @GRID_ROUGHNESS@
+				<Location xyz="-11;@Y_LOW@;5.7" ><Translate xyz="@TRAPEZOID_OFFSET@;0;0" /><Translate x="@SHIFT@" /></Location>
+				<Width xyz="0;@Y_LEN@;0" />
+				<Height xyz="11.0001;0;0"><Translate xyz="@TRAPEZOID_OFFSET@;0;0" Factor="-2" /></Height>
+			</Rectangle><!-- End of grid finger @ @SHIFT@ -->
+			<Rectangle Material="black" Tag="grid_finger_cell_obstruction" Register="no" >
+				<Location xyz="-11;@Y_LOW@;0.1" ><Translate xyz="0.1;0;0" /><Translate x="@SHIFT@" /></Location>
+				<Width xyz="0;@Y_LEN@;0" />
+				<Height xyz="11.0001;0;0.1"><Translate xyz="0.1;0;0" Factor="-2" /></Height>
+			</Rectangle>
+		</Value>
+	</Import>
+
+
+
+	</PreProcess>
+
+
+	<!-- START OF 3D SETUP -->
+	<Output Path="out">
+		<Histogram Export="@EXPORT_HISTOGRAM@" Filename="histogram_%o.csv" Resolution="1" />
+		<X3D Filename="3dview_%o_@READABLE_CONFIGKEY@.x3d" Export="@EXPORT_X3D@" LineWidth="0.35" DrawArrows="true" />
+		<SVG Filename="@READABLE_CONFIGKEY@_%o.svg" Export="@EXPORT_SVG@" Grid="no" SpotSizeFraction="0.0015" ExportAngles="yes" ExportWavelengths="no" />
+		<YieldData Filename="data_%o" ExportHTML="no" ExportCSV="@EXPORT_DATA@" />
+		<PhotonDump Filename="%o_@READABLE_CONFIGKEY@.csv" Export="no" />
+		<XML ExportCustomTraces="no" ExportPreProcessed="no" />
+	</Output> 
+
+<ObjectEnvironment Environment="air" Radius="200" DrawAxes="no">
+
+    <!-- Camera properties -->
+	<CameraViewpoint xyz="-15;-44;25" />
+	
+	<CameraRotation>
+		<Vector xyz="1;0;0" />
+		<Angle Degrees="65" />
+	</CameraRotation>
+
+	<LightSource Class="CustomTraces" Filename="../traces.scx" MaxInteractions="40" MinIntensity="0.001" Distance="20">
+
+	</LightSource>
+
+<!-- insert grid fingers here -->
+@GRID@
+
+	<Rectangle Material="black" Register="yes" X3DFillBitmap="../../bitmaps/black.png" Tag="Cell">
+		<Location xyz="-250;@Y_LOW@;0" />
+		<Width x="500" />
+		<Height y="@Y_LEN@" />
+		<Register Performance="yes" />
+	</Rectangle>
+
+  </ObjectEnvironment>
+</ScientraceConfig>

@@ -1,0 +1,5 @@
+<BatchConfig XMLSource="rough_grid.scx" ID="roughness_illustrated" OutputDir="x" Key="@ROUGHNESS_DEVIATION_ANGLE@">
+
+<For Key="ROUGHNESS_DEVIATION_ANGLE" From="0" To="25" Step="12.5" Decimals="1" PreDecimals="2" />
+
+</BatchConfig>

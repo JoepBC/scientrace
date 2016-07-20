@@ -29,7 +29,8 @@ public partial class TraceJournal {
 	/// The x3d line thickness. A thickness of 0 uses the (old, faster) lineset method, higher values produce "cylinders" with the given thickness.
 	/// </summary>
 	public double x3d_line_thickness = 0;
-		
+	public bool x3d_draw_direction_arrows = true;
+
 	public string colourLegend(PDPSource pdpSource) {
 		switch (pdpSource) {
 			case PDPSource.Wavelength: return this.wavelengthLegend();
@@ -216,10 +217,13 @@ public partial class TraceJournal {
 			retsb.Append(xsd.getX3DTranslationTag(fromLoc));
 			retsb.Append(xsd.getX3DRotationTag(new NonzeroVector(0,diffLoc.length,0), diffLoc.tryToNonzeroVector()));
 			retsb.Append(xsd.getX3DTranslationTag(new Location(0,diffLoc.length*0.5,0)));
-			retsb.Append(@"<Shape>
-<Appearance><Material diffuseColor='"+colour+@"'/></Appearance>
- <Cylinder bottom='true' height='"+diffLoc.length+"' radius='"+(this.x3d_line_thickness/2)+@"' side='true'/>
-    </Shape><!-- Closing Cylinder transformations --></Transform></Transform></Transform>" );
+			if (this.x3d_draw_direction_arrows)
+				retsb.Append(@"<Shape><Appearance><Material diffuseColor='"+colour+@"'/></Appearance>
+<Cone height='"+(4*this.x3d_line_thickness)+"' bottomRadius='"+(1.5*this.x3d_line_thickness)+@"' solid='true' bottom='true' /></Shape>");
+
+			retsb.Append(@"<Shape><Appearance><Material diffuseColor='"+colour+@"'/></Appearance>
+ <Cylinder bottom='true' height='"+diffLoc.length+"' radius='"+(this.x3d_line_thickness/2)+@"' side='true'/></Shape>
+<!-- Closing Cone + Cylinder transformations --></Transform></Transform></Transform>");
 			}
 		}
 
