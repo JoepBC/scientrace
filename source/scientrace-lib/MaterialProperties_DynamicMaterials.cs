@@ -116,20 +116,6 @@ public class DispersionFormulaDielectricProperties : Scientrace.MaterialProperti
 			{"m", wlstring} 
 			});
 
-/*
-		string formula = MathStrings.matlabToMxParserString(this.user_formula.Replace("nm", "(("+wlstring+")*1000000000)")
-											.Replace("um", "(("+wlstring+")*1000000)")
-											.Replace("mm", "(("+wlstring+")*1000)")
-											.Replace("m", wlstring));
-
-		string formula = this.user_formula.Replace("nm", "(("+wavelength.ToString()+")*1E9)")
-											.Replace("um", "(("+wavelength.ToString()+")*1E6)")
-											.Replace("mm", "(("+wavelength.ToString()+")*1E3)")
-											.Replace("m", wavelength.ToString());*/
-
-		
-        //double result = MathStrings.solveString(formula, new Dictionary<string, object>(){ {"we", "werw"}, {"foo","bar"} });
-		//Console.WriteLine("Evaluated refindex for "+this.user_formula+" after replace: "+formula+" wl: "+(wavelength*1e9)+" = "+result.ToString());
 		this.refindices[wavelength] = result;
 		return result;
 		}

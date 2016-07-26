@@ -18,9 +18,13 @@
 
 
 <Prism>
-	<Location xyz="0;0;-20" />
+	<Location xyz="0;0;-20">
+		<Formula x="x-10" />
+	</Location>
 	<Length xyz="0;0;-30" />
-	<Width xyz="10;0;0" />
+	<Width xyz="10;0;0">
+		<Formula y="cos(z)*2+sqrt(4)/3" />
+	</Width>
 	<Height xyz="@X@;@Y@;0" />
 	
 	<Material Class="NFormula" Tag="BK7 expression from http://refractiveindex.info/?shelf=glass&amp;book=BK7&amp;page=SCHOTT"

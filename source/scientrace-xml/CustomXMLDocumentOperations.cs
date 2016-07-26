@@ -1,6 +1,7 @@
 using System;
 using System.Xml.Linq;
 using System.Collections;
+using System.Collections.Generic;
 
 
 namespace ScientraceXMLParser {
@@ -307,12 +308,43 @@ namespace ScientraceXMLParser {
 				case "Multiply":
 					retvec = this.multiplyVector(retvec, xel);
 					break;
+				case "Formula":
+					retvec = this.formulaVector(retvec, xel);
+					break;
 				default: 
 					Console.WriteLine("WARNING: Unknown vector modification {"+elementName+"} detected. Perhaps the tense has changed? Should be active (Rotate instead of Rotated etc).");
 					break;
 				}
 			}
 		return retvec;
+		}
+
+	public Scientrace.Vector formulaVector(Scientrace.Vector aVector, XElement xformula) {
+		string f_x = "x";
+		string f_y = "y";
+		string f_z = "z";
+		if (xformula.Attribute("xyz") != null) {
+			try {
+				string xyz = xformula.Attribute("xyz").Value;
+				char[] delimiterChars = { ';', '\t' };
+				string[] elements = xyz.Split(delimiterChars);
+				if (elements.Length !=3) {
+					throw new XMLException("Element "+xformula.ToString()+" has \""+elements.Length+ "\" != 3 valid vector elements. ");
+					}
+				f_x=elements[0];
+				f_y=elements[1];
+				f_z=elements[2];
+				} catch { throw new XMLException("Formula "+xformula.ToString()+" does not have proper parameters for {xyz} attribute (can't parse {"+xformula.Attribute("xyz").Value.ToString()+"}. Perhaps incorrect use of PreProcess variables or decimal separators?)."); }
+			} // attribute "xyz"
+		f_x = this.getXStringByName(xformula, "x", f_x);
+		f_y = this.getXStringByName(xformula, "y", f_y);
+		f_z = this.getXStringByName(xformula, "z", f_z);
+		Dictionary<string, object> replace_vectors = new Dictionary<string, object>(){{"x", aVector.x}, {"y", aVector.y}, {"z", aVector.z} };
+		return new Scientrace.Vector(
+			Scientrace.MathStrings.solveString(f_x, replace_vectors),  
+			Scientrace.MathStrings.solveString(f_y, replace_vectors),  
+			Scientrace.MathStrings.solveString(f_z, replace_vectors)
+			);
 		}
 
 	public Scientrace.Vector translateVector(Scientrace.Vector aVector, XElement xtransl) {
