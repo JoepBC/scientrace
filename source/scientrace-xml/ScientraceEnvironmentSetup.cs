@@ -89,12 +89,10 @@ namespace ScientraceXMLParser{
 				importvalue = this.getFileContents(importfileatt.Value, sourcefilename);
 				}
 
-			//This operation used to be executed befor the replace loop below, but it encountered errors. Single value replacement preferred at the end?
+			//This operation used to be executed before the replace loop below, but it encountered errors. Single value replacement preferred at the end?
 			//importvalue = this.parseForFromToElements(xe, importvalue);
 			for (int i = 0; i <64; i++) { //allow nested loops up to 64 runs (should be sufficient right?)
 				importvalue = this.replaceTwoKeySources(xe, xpreprocess, importvalue);
-				//importvalue = this.replaceKeys(xe, importvalue);
-				//importvalue = this.replaceKeys(xpreprocess, importvalue);
 				}
 			//and the final ForFromTo parse:
 			importvalue = this.parseForFromToElements(xe, xpreprocess, importvalue);
@@ -120,11 +118,26 @@ namespace ScientraceXMLParser{
 				} 
 			else
 				tovalue = this.X.getXStringByName(xe, "Value");
-			xmlsource = xmlsource.Replace("$"+varname, tovalue).Replace("@"+varname+"@", tovalue);
+			//xmlsource = xmlsource.Replace("$"+varname, tovalue).Replace("@"+varname+"@", tovalue);
+			xmlsource = this.replaceKeyValue(xmlsource, varname, tovalue);
 			}
 		return xmlsource;
 		}
-		
+
+
+	public string replaceKeyValue(string xml_source, string aKey, string aValue) {
+		return xml_source.Replace("$"+aKey, aValue).Replace("@"+aKey+"@", aValue);
+		}
+
+	public string solveKeys(XElement xsource, string xmlsource) {
+		foreach (XElement xe in xsource.Elements("Solve")) {
+			string varname = this.X.getXStringByName(xe, "Key");
+			string formula = this.X.getXStringByName(xe, "Formula");
+			xmlsource = this.replaceKeyValue(xmlsource, varname, MathStrings.solveString(formula).ToString());
+			}
+		return xmlsource;
+		}
+
 	public string parseForFromToElements(XElement ximport, XElement xpreprocess, string importXMLSource) {
 		string retxml = importXMLSource;
 		foreach (XElement xfor in ximport.Elements("For")) {
@@ -158,6 +171,15 @@ namespace ScientraceXMLParser{
 			}
 		if (xd.Element("ScientraceConfig").Element("PreProcess") == null) { return xmlsource; }
 		xmlsource = this.replaceKeys(xd.Element("ScientraceConfig").Element("PreProcess"), xmlsource);
+
+		// Reload "xd" for solveKeys:
+		XDocument newXd;
+		try {
+			newXd = XDocument.Parse(xmlsource);
+			} catch (Exception e) {
+			throw new XMLException("ERROR PARSING ALREADY PARSED XMLSOURCE: \n"+xmlsource+"\n"+e.Message);
+			}
+		xmlsource = this.solveKeys(newXd.Element("ScientraceConfig").Element("PreProcess"), xmlsource);
 		//Console.WriteLine(xmlsource);
 		return xmlsource;
 		}

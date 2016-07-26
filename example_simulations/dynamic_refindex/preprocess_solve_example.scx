@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Author: Joep Bos-Coenraad, jbos@scientrace.org -->
 <ScientraceConfig>
+
+<PreProcess>
+	<Replace Key="X" Value="4" />
+	<!-- Solve uses mxparser to solve an expression. A collection of all operators is found at http://mathparser.org/mxparser-math-collection/ -->
+	<Solve Key="Y" Formula="sqrt(9+@X@^2)" />
+</PreProcess>
+
 <ObjectEnvironment Environment="air" Radius="60" DrawAxes="yes">
 
 <LightSource Class="SingleRay" Distance="10" RayCount="100">
@@ -14,7 +21,7 @@
 	<Location xyz="0;0;-20" />
 	<Length xyz="0;0;-30" />
 	<Width xyz="10;0;0" />
-	<Height xyz="5;5;0" />
+	<Height xyz="@X@;@Y@;0" />
 	
 	<Material Class="NFormula" Tag="BK7 expression from http://refractiveindex.info/?shelf=glass&amp;book=BK7&amp;page=SCHOTT"
 		Formula="sqrt(1+1.03961212/(1-0.00600069867/um.^2)+0.231792344/(1-0.0200179144/x.^2)+1.01046945/(1-103.560653/x.^2))" />

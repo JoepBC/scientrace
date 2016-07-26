@@ -3,16 +3,17 @@
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-lib/MaterialProperties_DynamicMaterials.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-xml/ScientraceEnvironmentSetup.cs">
     <Files>
-      <File FileName="scientrace-lib/MaterialProperties_DynamicMaterials.cs" Line="137" Column="40" />
-      <File FileName="scientrace-lib/LightSpectrum.cs" Line="26" Column="39" />
-      <File FileName="scientrace-xml/XMLSpectrumParser.cs" Line="116" Column="14" />
-      <File FileName="scientrace-xml/XMLLightSourceParser.cs" Line="186" Column="15" />
-      <File FileName="scientrace-lib/Trace.cs" Line="420" Column="14" />
-      <File FileName="scientrace-lib/SingleRaySource.cs" Line="40" Column="1" />
-      <File FileName="scientrace-lib/Trace-Polarisation_Support.cs" Line="142" Column="35" />
-      <File FileName="scientrace-xml/ShadowClassConstruct.cs" Line="260" Column="34" />
+      <File FileName="scientrace-lib/TraceJournal-Image_Data_Export.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/Object3dEnvironment.cs" Line="1" Column="1" />
+      <File FileName="scientrace-lib/X3DShapeDrawer.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/XMLOutputParser.cs" Line="77" Column="82" />
+      <File FileName="scientrace-batch-creator/BatchCreator.cs" Line="144" Column="34" />
+      <File FileName="scientrace-batch-creator/KeyExplodeArray.cs" Line="14" Column="44" />
+      <File FileName="scientrace-xml/ScientraceEnvironmentSetup.cs" Line="180" Column="56" />
+      <File FileName="scientrace-lib/MathStrings.cs" Line="38" Column="127" />
+      <File FileName="scientrace-lib/MaterialProperties_DynamicMaterials.cs" Line="113" Column="42" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

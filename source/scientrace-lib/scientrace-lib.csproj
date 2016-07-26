@@ -162,6 +162,7 @@
     <Compile Include="Histogram2d.cs" />
     <Compile Include="MaterialProperties_DynamicMaterials.cs" />
     <Compile Include="MaterialProperties_StaticMaterials.cs" />
+    <Compile Include="MathStrings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>

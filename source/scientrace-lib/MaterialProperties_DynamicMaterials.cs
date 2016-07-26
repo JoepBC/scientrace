@@ -6,7 +6,6 @@
 //  */
 using System;
 using System.Collections.Generic;
-using org.mariuszgromada.math.mxparser;
 
 namespace Scientrace {
 public class StaticReflectingAbsorberMaterial : StaticNTransparentMaterial {
@@ -103,15 +102,6 @@ public class DispersionFormulaDielectricProperties : Scientrace.MaterialProperti
 		}
 	}
 
-
-	public static string matlab_to_mxparser_string(string aMatlabString) {
-		return aMatlabString
-				.Replace(".^", "^")
-				.Replace("./", "/")
-				.Replace(".*", "*")
-				;
-		}
-
 	public override double refractiveindex(double wavelength) {
 		// Using cached results for increased performance
 		if (this.refindices.ContainsKey(wavelength))
@@ -119,20 +109,26 @@ public class DispersionFormulaDielectricProperties : Scientrace.MaterialProperti
 
 		string wlstring = wavelength.ToString("F99").TrimEnd("0".ToCharArray());
 
-		string formula = matlab_to_mxparser_string(this.user_formula.Replace("nm", "(("+wlstring+")*1000000000)")
+        double result = MathStrings.solveString(MathStrings.matlabToMxParserString(this.user_formula), new Dictionary<string, object>(){ 
+			{"nm", "(("+wlstring+")*1000000000)"},
+			{"um", "(("+wlstring+")*1000000)"}, 
+			{"mm", "(("+wlstring+")*1000)"}, 
+			{"m", wlstring} 
+			});
+
+/*
+		string formula = MathStrings.matlabToMxParserString(this.user_formula.Replace("nm", "(("+wlstring+")*1000000000)")
 											.Replace("um", "(("+wlstring+")*1000000)")
 											.Replace("mm", "(("+wlstring+")*1000)")
 											.Replace("m", wlstring));
-/*
+
 		string formula = this.user_formula.Replace("nm", "(("+wavelength.ToString()+")*1E9)")
 											.Replace("um", "(("+wavelength.ToString()+")*1E6)")
 											.Replace("mm", "(("+wavelength.ToString()+")*1E3)")
 											.Replace("m", wavelength.ToString());*/
 
-		org.mariuszgromada.math.mxparser.Expression refindex = new org.mariuszgromada.math.mxparser.Expression(formula.ToString());
-//		org.mariuszgromada.math.mxparser.Expression refindex = new org.mariuszgromada.math.mxparser.Expression(formula);
-
-        double result = refindex.calculate();
+		
+        //double result = MathStrings.solveString(formula, new Dictionary<string, object>(){ {"we", "werw"}, {"foo","bar"} });
 		//Console.WriteLine("Evaluated refindex for "+this.user_formula+" after replace: "+formula+" wl: "+(wavelength*1e9)+" = "+result.ToString());
 		this.refindices[wavelength] = result;
 		return result;
