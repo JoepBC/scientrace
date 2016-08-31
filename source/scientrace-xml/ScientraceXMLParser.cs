@@ -46,7 +46,10 @@ public class ScientraceXMLParser {
 	public Scientrace.Object3dEnvironment parseEnvironment() {
 		XElement xenv = this.xsctconf.Element("ObjectEnvironment");
 		if (xenv == null) {
-			Console.WriteLine("WARNING: no Object3d Environment defined in configuration file");
+			//Update since August 30th 2016: allow the absence of an ObjectEnvironment, but call the function with an empty element anyway.
+			return this.parseXEnv(null);
+			//return this.parseXEnv(new XElement("ObjectEnvironment"));
+			//Console.WriteLine("WARNING: no Object3d Environment defined in configuration file");
 			}
 		return this.parseXEnv(xenv);
 		}
@@ -56,14 +59,66 @@ public class ScientraceXMLParser {
 		this.op.parseOutput(this.xsctconf);
 		}
 		
+
 	public Scientrace.Object3dEnvironment parseXEnv(XElement xenv) {
+		//Create the collection itself with its properties first.
+		Scientrace.Object3dEnvironment retenv;
+		
+		// Creating "the entire object-space"
+		double env_radius = this.X.getXDouble(xenv, "Radius", -1);
+		if (env_radius == -1) {
+			Console.WriteLine("Warning: ObjectEnvironment radius not set. Using 100 as an arbitrary default. You might want to change this.");
+			env_radius = 100;
+			}
+		bool drawaxes = this.X.getXBool(xenv, "DrawAxes", true);
+		string environment_material_id = this.X.getXStringByName(xenv, "Environment", "air");
+		Scientrace.Vector cameraviewpoint = new Scientrace.Vector(0,0,1); // default viewpoint 0,0,1
+		Scientrace.Vector camrotationvec = null;
+		double camrotationangle = 0;
+		XElement camfrom = (xenv == null? null:xenv.Element("CameraFrom"));
+		XElement camrot = (xenv == null? null:xenv.Element("CameraRotation"));
+		if (camfrom !=null) {
+			cameraviewpoint = this.X.getXNzVector(camfrom);
+			Scientrace.Vector camdirvec = cameraviewpoint.negative();
+			Scientrace.NonzeroVector defvec = new Scientrace.NonzeroVector(0,0,-1);
+			camrotationangle = defvec.angleWith(camdirvec);
+			camrotationvec = defvec.crossProduct(camdirvec);
+			}
+		if (camrot != null) {
+			camrotationvec = this.X.getXVectorByName(camrot, "Vector");
+			camrotationangle = this.X.getXAngleByName(camrot, "Angle");
+			}
+		cameraviewpoint = this.X.getXVectorByName(xenv, "CameraViewpoint", cameraviewpoint);
+
+		Scientrace.MaterialProperties env_material = Scientrace.MaterialProperties.FromIdentifier(environment_material_id);
+		retenv = new Scientrace.Object3dEnvironment(env_material, env_radius, cameraviewpoint);
+			retenv.perishAtBorder = true;
+			retenv.labelaxes = drawaxes;
+			retenv.camrotationangle = camrotationangle;
+		if (camrotationvec != null)
+			retenv.camrotationvector = camrotationvec;
+			retenv.tag = this.X.getXStringByName(xenv, "Tag", "ScientraceXML_Setup");
+		
+		//Parsing lightsources
+		this.lp = new XMLLightSourceParser(retenv);
+		this.lp.parseLightsources(xenv, retenv);
+			
+		//ADDING UNDERLYING BODIES/OBJECTS
+		this.parseXObject3dCollectionContent(xenv, retenv);
+		
+		//return environment
+		return retenv;
+		}
+
+
+	public Scientrace.Object3dEnvironment old_parseXEnv(XElement xenv) {
 		//Create the collection itself with its properties first.
 		Scientrace.Object3dEnvironment retenv;
 		
 		// Creating "the entire object-space"
 		double env_radius = this.X.getXDouble(xenv.Attribute("Radius"), -1);
 		if (env_radius == -1) {
-			Console.WriteLine("Warning: ObjectEnvironment radius not set. Using 100 as a random default. You might want to change this.");
+			Console.WriteLine("Warning: ObjectEnvironment radius not set. Using 100 as an arbitrary default. You might want to change this.");
 			env_radius = 100;
 			}
 		bool drawaxes = this.X.getXBool(xenv.Attribute("DrawAxes"), true);
@@ -107,19 +162,14 @@ public class ScientraceXMLParser {
 		return retenv;
 		}
 
-	public void parseXObject3dCollectionContent(XElement xcol, 
-					Scientrace.Object3dCollection objectcollection) {
-
-		//XMLObject3dParser o3dp = new XMLObject3dParser(xcol, this.X, objectcollection);
+	public void parseXObject3dCollectionContent(XElement xcol, Scientrace.Object3dCollection objectcollection) {
+		if (xcol == null) return;
 		XMLObject3dParser o3dp = new XMLObject3dParser(objectcollection);
-			
 		ShadowClassConstruct shadowConstructor = new ShadowClassConstruct(objectcollection);
 			
 		//PARSE OBJECTS WITHIN COLLECTION HERE
-			foreach (XElement xel in xcol.Elements()) {
-				this.parseXObject3d(xel, objectcollection, o3dp, shadowConstructor);
-				
-				}
+		foreach (XElement xel in xcol.Elements())
+			this.parseXObject3d(xel, objectcollection, o3dp, shadowConstructor);
 		}
 
 

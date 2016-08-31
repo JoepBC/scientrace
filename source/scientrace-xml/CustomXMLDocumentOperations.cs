@@ -208,6 +208,7 @@ namespace ScientraceXMLParser {
 
 
 	public Scientrace.Vector getXVectorByName(XElement xe, string name, Scientrace.Vector defval) {
+		if (xe == null) return defval;
 		if (xe.Element(name) == null) {
 			return defval;
 			}
@@ -215,6 +216,8 @@ namespace ScientraceXMLParser {
 		}
 		
 	public Scientrace.Vector getXVectorByName(XElement xe, string name) {
+		if (xe == null) 
+			throw new XMLException("XVector element \""+name+"\" cannot be looked up in null Element.");
 		if (xe.Element(name) == null) {
 			throw new XMLException("XVector element \""+name+"\" does not exist for \""+xe.Name.ToString()+"\".");
 			}

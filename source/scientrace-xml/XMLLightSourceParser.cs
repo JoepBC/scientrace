@@ -13,6 +13,7 @@ public class XMLLightSourceParser : ScientraceXMLAbstractParser {
 		}
 
 	public void parseLightsources(XElement xenv, Scientrace.Object3dEnvironment env) {
+		if (xenv == null) return;
 		foreach (XElement xlight in xenv.Elements("LightSource")) {
 			this.parseXLight(xlight, env);
 			}
