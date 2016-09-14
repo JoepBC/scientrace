@@ -16,7 +16,7 @@ public class IntersectionTest {
 
 	[Test()]
 	public void TestIntersectionByVectorArray() {
-			Scientrace.Object3dEnvironment env = new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance,100, new Scientrace.Vector(0, -10, 75));
+			Scientrace.Object3dEnvironment env = new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance,100);
 			Scientrace.Line beam = new Scientrace.Line(10, 10, 10, -1, -1, 0);
 			Scientrace.LightSource light = new Scientrace.SingleRaySource(beam,
 			                                                             10, new Scientrace.AM15Spectrum(1), env);
@@ -39,7 +39,7 @@ public class IntersectionTest {
 
 	[Test()]
 	public void TestIntersectionByVectorArray2() {
-			Scientrace.Object3dEnvironment env = new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance,100, new Scientrace.Vector(0, -10, 75));
+			Scientrace.Object3dEnvironment env = new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance,100);
 			Scientrace.Line beam = new Scientrace.Line(10, 10, 10, -1, -1, 0);
 			Scientrace.LightSource light = new Scientrace.SingleRaySource(beam,
 			                                                             10, new Scientrace.AM15Spectrum(1), env);
@@ -58,7 +58,7 @@ public class IntersectionTest {
 
 	[Test()]
 	public void TestIntersectionByVectorArray3() {
-			Scientrace.Object3dEnvironment env = new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance, 100, new Scientrace.Vector(0, -10, 75));
+			Scientrace.Object3dEnvironment env = new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance, 100);
 			Scientrace.Line beam = new Scientrace.Line(10, 10, 10, -1, -1, 0);
 			Scientrace.LightSource light = new Scientrace.SingleRaySource(beam,
 			                                                             10, new Scientrace.AM15Spectrum(1), env);

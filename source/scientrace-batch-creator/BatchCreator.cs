@@ -37,7 +37,9 @@ public class BatchCreator {
 
 		if (xd.Element("BatchConfig").Attribute("ID") == null) { 
 			Console.WriteLine("No ID element found in "+this.configfile);
-			return;
+			xd.Element("BatchConfig").Add(new XAttribute("ID", "no_id"));
+			//Console.WriteLine("No ID element found in "+this.configfile);
+			//return;
 			}
 
 		if (xd.Element("BatchConfig").Attribute("XMLSource") == null) {

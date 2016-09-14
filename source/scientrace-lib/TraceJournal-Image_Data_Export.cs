@@ -17,6 +17,19 @@ namespace Scientrace {
 /// </summary>
 public partial class TraceJournal {
 
+	/// <summary>
+	/// In the 3d-view the environment can be drawn with axes labeled X, Y and Z if the labelaxes
+	/// boolean is set "true". If it's set false the axes will not be drawn at all.
+	/// </summary>
+	public bool labelaxes = true;
+
+	/// <summary>
+	/// The attributes below concern the viewpoint data from which the X3D is initially displayed. Formerly at the ObjectEnvironment, but refactured here.
+	/// </summary>
+	public Vector cameraviewpoint = new Scientrace.Vector(0,0,1);
+	public Vector camrotationvector = new Vector(1,0,0);
+	public double camrotationangle = 0;
+
 	/* Attributes concerning X3D export */
 	public bool drawInteractionPlanes = false;
 	public bool drawInteractionNormals = false;

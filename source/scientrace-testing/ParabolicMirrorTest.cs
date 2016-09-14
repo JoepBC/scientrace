@@ -16,7 +16,7 @@ public class ParabolicMirrorTest {
 
 	[Test()]
 	public void Testbaseintersection1() {
-		Scientrace.Object3dEnvironment env = new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance, 100, new Scientrace.Vector(0, -10, 75));
+		Scientrace.Object3dEnvironment env = new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance, 100);
 
 /*		Scientrace.CylindricalBorder cbord = new Scientrace.CylindricalBorder(
 											new Scientrace.Location(0,0,0),

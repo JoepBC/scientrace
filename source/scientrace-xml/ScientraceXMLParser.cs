@@ -70,34 +70,14 @@ public class ScientraceXMLParser {
 			Console.WriteLine("Warning: ObjectEnvironment radius not set. Using 100 as an arbitrary default. You might want to change this.");
 			env_radius = 100;
 			}
-		bool drawaxes = this.X.getXBool(xenv, "DrawAxes", true);
 		string environment_material_id = this.X.getXStringByName(xenv, "Environment", "air");
-		Scientrace.Vector cameraviewpoint = new Scientrace.Vector(0,0,1); // default viewpoint 0,0,1
-		Scientrace.Vector camrotationvec = null;
-		double camrotationangle = 0;
-		XElement camfrom = (xenv == null? null:xenv.Element("CameraFrom"));
-		XElement camrot = (xenv == null? null:xenv.Element("CameraRotation"));
-		if (camfrom !=null) {
-			cameraviewpoint = this.X.getXNzVector(camfrom);
-			Scientrace.Vector camdirvec = cameraviewpoint.negative();
-			Scientrace.NonzeroVector defvec = new Scientrace.NonzeroVector(0,0,-1);
-			camrotationangle = defvec.angleWith(camdirvec);
-			camrotationvec = defvec.crossProduct(camdirvec);
-			}
-		if (camrot != null) {
-			camrotationvec = this.X.getXVectorByName(camrot, "Vector");
-			camrotationangle = this.X.getXAngleByName(camrot, "Angle");
-			}
-		cameraviewpoint = this.X.getXVectorByName(xenv, "CameraViewpoint", cameraviewpoint);
+
+		ScientraceXMLParser.readCameraSettings(xenv);
 
 		Scientrace.MaterialProperties env_material = Scientrace.MaterialProperties.FromIdentifier(environment_material_id);
-		retenv = new Scientrace.Object3dEnvironment(env_material, env_radius, cameraviewpoint);
-			retenv.perishAtBorder = true;
-			retenv.labelaxes = drawaxes;
-			retenv.camrotationangle = camrotationangle;
-		if (camrotationvec != null)
-			retenv.camrotationvector = camrotationvec;
-			retenv.tag = this.X.getXStringByName(xenv, "Tag", "ScientraceXML_Setup");
+		retenv = new Scientrace.Object3dEnvironment(env_material, env_radius);
+		retenv.perishAtBorder = true;
+		retenv.tag = this.X.getXStringByName(xenv, "Tag", "ScientraceXML_Setup");
 		
 		//Parsing lightsources
 		this.lp = new XMLLightSourceParser(retenv);
@@ -110,57 +90,31 @@ public class ScientraceXMLParser {
 		return retenv;
 		}
 
-
-	public Scientrace.Object3dEnvironment old_parseXEnv(XElement xenv) {
-		//Create the collection itself with its properties first.
-		Scientrace.Object3dEnvironment retenv;
-		
-		// Creating "the entire object-space"
-		double env_radius = this.X.getXDouble(xenv.Attribute("Radius"), -1);
-		if (env_radius == -1) {
-			Console.WriteLine("Warning: ObjectEnvironment radius not set. Using 100 as an arbitrary default. You might want to change this.");
-			env_radius = 100;
-			}
-		bool drawaxes = this.X.getXBool(xenv.Attribute("DrawAxes"), true);
-		string environment_material_id = this.X.getXString(xenv.Attribute("Environment"), "air");
-		Scientrace.Vector cameraviewpoint = new Scientrace.Vector(0,0,1); // default viewpoint 0,0,1
-		Scientrace.Vector camrotationvec = null;
-		double camrotationangle = 0;
-		XElement camfrom = xenv.Element("CameraFrom");
+	public static void readCameraSettings(XElement x3d_or_xenv_element) {
+		CustomXMLDocumentOperations X = new CustomXMLDocumentOperations();
+		Scientrace.Vector cameraviewpoint = Scientrace.TraceJournal.Instance.cameraviewpoint;
+		Scientrace.Vector camrotationvec = Scientrace.TraceJournal.Instance.camrotationvector;
+		Scientrace.TraceJournal.Instance.labelaxes = X.getXBool(x3d_or_xenv_element, "DrawAxes", Scientrace.TraceJournal.Instance.labelaxes);
+		double camrotationangle = Scientrace.TraceJournal.Instance.camrotationangle;
+		XElement camfrom = (x3d_or_xenv_element == null? null:x3d_or_xenv_element.Element("CameraFrom"));
+		XElement camrot = (x3d_or_xenv_element == null? null:x3d_or_xenv_element.Element("CameraRotation"));
 		if (camfrom !=null) {
-			cameraviewpoint = this.X.getXNzVector(camfrom);
+			cameraviewpoint = X.getXNzVector(camfrom);
 			Scientrace.Vector camdirvec = cameraviewpoint.negative();
 			Scientrace.NonzeroVector defvec = new Scientrace.NonzeroVector(0,0,-1);
 			camrotationangle = defvec.angleWith(camdirvec);
 			camrotationvec = defvec.crossProduct(camdirvec);
 			}
-		XElement camrot = xenv.Element("CameraRotation");
 		if (camrot != null) {
-			camrotationvec = this.X.getXVectorByName(camrot, "Vector");
-			camrotationangle = this.X.getXAngleByName(camrot, "Angle");
+			camrotationvec = X.getXVectorByName(camrot, "Vector");
+			camrotationangle = X.getXAngleByName(camrot, "Angle");
 			}
-
-		cameraviewpoint = this.X.getXVector(xenv.Element("CameraViewpoint"), cameraviewpoint);
-
-		Scientrace.MaterialProperties env_material = Scientrace.MaterialProperties.FromIdentifier(environment_material_id);
-		retenv = new Scientrace.Object3dEnvironment(env_material, env_radius, cameraviewpoint);
-			retenv.perishAtBorder = true;
-			retenv.labelaxes = drawaxes;
-			retenv.camrotationangle = camrotationangle;
+		Scientrace.TraceJournal.Instance.cameraviewpoint = X.getXVectorByName(x3d_or_xenv_element, "CameraViewpoint", cameraviewpoint);
+		Scientrace.TraceJournal.Instance.camrotationangle = camrotationangle;
 		if (camrotationvec != null)
-			retenv.camrotationvector = camrotationvec;
-			retenv.tag = this.X.getXString(xenv.Attribute("Tag"), "ScientraceXML_Setup");
-		
-		//Parsing lightsources
-		this.lp = new XMLLightSourceParser(retenv);
-		this.lp.parseLightsources(xenv, retenv);
-			
-		//ADDING UNDERLYING BODIES/OBJECTS
-		this.parseXObject3dCollectionContent(xenv, retenv);
-		
-		//return environment
-		return retenv;
+			Scientrace.TraceJournal.Instance.camrotationvector = camrotationvec;
 		}
+
 
 	public void parseXObject3dCollectionContent(XElement xcol, Scientrace.Object3dCollection objectcollection) {
 		if (xcol == null) return;

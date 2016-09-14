@@ -98,28 +98,28 @@ namespace ScientraceXMLParser {
 
 	public bool? getXBool(XAttribute xe) {
 		if (xe == null) { return null; }
-		if ((xe.Value == "true") || (xe.Value == "yes") || (xe.Value == "1")) { return true; }
-		if ((xe.Value == "false") || (xe.Value == "no") || (xe.Value == "0")) { return false; }
+		if ((xe.Value.ToLower() == "true") || (xe.Value.ToLower() == "yes") || (xe.Value == "1")) { return true; }
+		if ((xe.Value.ToLower() == "false") || (xe.Value.ToLower() == "no") || (xe.Value == "0")) { return false; }
 		return null;
 		}
 
 	public bool? getXBool(XElement xe) {
 		if (xe == null) { return null; }
-		if ((xe.Value == "true") || (xe.Value == "yes") || (xe.Value == "1")) { return true; }
-		if ((xe.Value == "false") || (xe.Value == "no") || (xe.Value == "0")) { return false; }
+		if ((xe.Value.ToLower() == "true") || (xe.Value.ToLower() == "yes") || (xe.Value == "1")) { return true; }
+		if ((xe.Value.ToLower() == "false") || (xe.Value.ToLower() == "no") || (xe.Value == "0")) { return false; }
 		return null;
 		}
 
 	public bool getXBool(XAttribute xe, bool defval) {
 		if (xe == null) { return defval; }
-		if ((xe.Value == "true") || (xe.Value == "yes") || (xe.Value == "1")) { return true; }
-		if ((xe.Value == "false") || (xe.Value == "no") || (xe.Value == "0")) { return false; }
+		if ((xe.Value.ToLower() == "true") || (xe.Value == "yes".ToLower()) || (xe.Value == "1")) { return true; }
+		if ((xe.Value.ToLower() == "false") || (xe.Value == "no".ToLower()) || (xe.Value == "0")) { return false; }
 		return defval;
 		}
 	public bool getXBool(XElement xe, bool defval) {
 		if (xe == null) { return defval; }
-		if ((xe.Value == "true") || (xe.Value == "yes") || (xe.Value == "1")) { return true; }
-		if ((xe.Value == "false") || (xe.Value == "no") || (xe.Value == "0")) { return false; }
+		if ((xe.Value.ToLower() == "true") || (xe.Value.ToLower() == "yes") || (xe.Value == "1")) { return true; }
+		if ((xe.Value.ToLower() == "false") || (xe.Value.ToLower() == "no") || (xe.Value == "0")) { return false; }
 		return defval;
 		}
 
@@ -296,6 +296,29 @@ namespace ScientraceXMLParser {
 
 		public Scientrace.Vector modifyVectorForSubElements(Scientrace.Vector aVector, XElement xe) {
 		Scientrace.Vector retvec = aVector;
+
+		foreach (XAttribute xat in xe.Attributes()) {
+			string attributeName = xat.Name.ToString();
+			switch (attributeName) {
+				case "Multiply":
+					retvec = retvec*Convert.ToDouble(xat.Value);
+					break;
+				case "NewLength":
+					double newlength = Convert.ToDouble(xat.Value);
+					if (newlength == 0) {
+						retvec = retvec*0;
+						break;
+						}
+					retvec = retvec.normaliseIfNotZero()*newlength;
+					break;
+				case "Tag":
+					//do nothing
+					break;
+				default: 
+					//Console.WriteLine("WARNING: Unknown vector attribute modification {"+attributeName+"} detected.");
+					break;
+				}
+			}
 		foreach (XElement xel in xe.Elements()) {
 			string elementName = xel.Name.ToString();
 			switch (elementName) {

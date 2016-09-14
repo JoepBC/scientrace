@@ -19,15 +19,6 @@ public class Object3dEnvironment : Scientrace.Object3dCollection {
 	public double radius;
 	public bool perishAtBorder = true;
 		
-	/// <summary>
-	/// In the 3d-view the environment can be drawn with axes labeled X, Y and Z if the labelaxes
-	/// boolean is set "true". If it's set false the axes will not be drawn at all.
-	/// </summary>
-	public bool labelaxes = false;
-	public Vector cameraviewpoint;
-	public Vector camrotationvector = new Vector(1,0,0);
-	public double camrotationangle = 0;
-		
 	//An environment can have several lightsources
 	//Attributes
 	public ArrayList lightsources = new ArrayList();
@@ -37,17 +28,16 @@ public class Object3dEnvironment : Scientrace.Object3dCollection {
 	}
 		
 		
-	public Object3dEnvironment (MaterialProperties mp, double radius, Vector cameraviewpoint) : base(null, mp) {
-			this.radius = radius;
-			this.cameraviewpoint = cameraviewpoint;
-	}
+	public Object3dEnvironment (MaterialProperties mp, double radius) : base(null, mp) {
+		this.radius = radius;
+		}
 		
 	public override Scientrace.Object3dEnvironment getEnvironment() {
 		return this;
 		}
 
 	public static Object3dEnvironment dummy() {
-		return new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance, 1, Scientrace.Vector.ZeroVector());
+		return new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance, 1);
 		}
 
 	public Scientrace.Location traceLeavesEnvironment(Scientrace.Trace trace) {
@@ -93,7 +83,7 @@ public class Object3dEnvironment : Scientrace.Object3dCollection {
 		}
 
 	public string x3dShowCoordinates(double axislength) {
-			if (!this.labelaxes) {
+			if (!TraceJournal.Instance.labelaxes) {
 				return "";
 			}
 			return @" <Shape>
@@ -197,8 +187,8 @@ public class Object3dEnvironment : Scientrace.Object3dCollection {
 <!DOCTYPE X3D PUBLIC 'ISO//Web3D//DTD X3D 3.0//EN' 'http://www.web3d.org/specifications/x3d-3.0.dtd'>
 <X3D profile='Immersive' version='3.0' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.0.xsd'>
   <Scene>
-<Viewpoint description='LineSet cube close up' position='"+this.cameraviewpoint.trico()+
-	@"' orientation='"+this.camrotationvector.trico()+@" "+this.camrotationangle+@"'/>
+<Viewpoint description='LineSet cube close up' position='"+TraceJournal.Instance.cameraviewpoint.trico()+
+	@"' orientation='"+TraceJournal.Instance.camrotationvector.trico()+@" "+TraceJournal.Instance.camrotationangle+@"'/>
 " + this.x3dShowCoordinates()+
 	this.exportX3D(this) +
 	TraceJournal.Instance.exportX3D(this) +

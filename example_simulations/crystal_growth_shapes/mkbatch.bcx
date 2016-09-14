@@ -1,0 +1,26 @@
+<BatchConfig XMLSource="crystal_growth_shape.scx" Key="100-@SPEED_1A@_110-@SPEED_2A@_111-@SPEED_3A@">
+
+<SubBatch Tag="rays">
+	<ValueSet>
+		<Replace Key="SPEED_1A" Value="1" />
+		<Replace Key="SPEED_2A" Value="1" />
+		<Replace Key="SPEED_3A" Value="1" />
+	</ValueSet>
+	<ValueSet>
+		<Replace Key="SPEED_1A" Value="1" />
+		<Replace Key="SPEED_2A" Value="1.2" />
+		<Replace Key="SPEED_3A" Value="1" />
+	</ValueSet>
+	<ValueSet>
+		<Replace Key="SPEED_1A" Value="1.2" />
+		<Replace Key="SPEED_2A" Value="1" />
+		<Replace Key="SPEED_3A" Value="1.2" />
+	</ValueSet>
+	<ValueSet>
+		<Replace Key="SPEED_1A" Value="1" />
+		<Replace Key="SPEED_2A" Value="1" />
+		<Replace Key="SPEED_3A" Value="1.2" />
+	</ValueSet>
+</SubBatch>
+
+</BatchConfig>

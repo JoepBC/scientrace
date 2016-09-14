@@ -16,7 +16,7 @@ public class DummySources {
 	}
 
 	public static Scientrace.Object3dEnvironment dEnv() {
-		return new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance, 100, new Scientrace.Vector(0, -10, 75));
+		return new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance, 100);
 		}
 
 	public static Scientrace.Line dLine() {

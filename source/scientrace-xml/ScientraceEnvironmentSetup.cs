@@ -80,7 +80,9 @@ namespace ScientraceXMLParser{
 			XAttribute importfileatt = xe.Attribute("File");
 			string importvalue;
 			if (importfileatt == null) {
-				importvalue = String.Join("\n", xe.Element("Value").Nodes());
+				XElement importValueElements = xe.Element("Value");
+				
+				importvalue = String.Join("\n", importValueElements.Nodes());
 				/*System.Xml.XmlReader xr = xe.Element("Value").CreateReader();
 				xr.MoveToContent();
 				importvalue = xr.ReadInnerXml(); */

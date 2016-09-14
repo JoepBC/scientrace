@@ -12,8 +12,7 @@ public class DummyObjects {
 		}
 
 		public static Scientrace.Object3dEnvironment DummyEnv() {
-			return new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance, 1,
-					Scientrace.Vector.y1vector() );
+			return new Scientrace.Object3dEnvironment(Scientrace.AirProperties.Instance, 1);
 			}
 
 		public static Scientrace.Line DummyLine() {
