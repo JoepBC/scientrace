@@ -1,0 +1,3 @@
+The Wulff Construction (https://en.wikipedia.org/wiki/Wulff_construction) named after its discoverer George (Yuri Viktorovich) Wulff (https://en.wikipedia.org/wiki/George_Wulff) is a method to determine the equilibrium shape of a droplet or crystal of fixed volume inside a separate phase (usually its saturated solution or vapor). Energy minimization arguments are used to show that certain crystal planes are preferred over others, giving the crystal its shape. (cited from the Wikipedia entry)
+
+In the "xml/out" subdir, three bash-scripts are located that assist in converting X3D files into 2-dimensional PNG stills and to crop them all at once. In order for them to work, install the packages view3dscene and imagemagick.

@@ -8,6 +8,17 @@
 	</ValueSet>
 	<ValueSet>
 		<Replace Key="SPEED_1A" Value="1" />
+		<Replace Key="SPEED_2A" Value="0" />
+		<Replace Key="SPEED_3A" Value="1" />
+	</ValueSet>
+	<ValueSet>
+		<Replace Key="SPEED_1A" Value="1" />
+		<Replace Key="SPEED_2A" Value="2" />
+		<Replace Key="SPEED_3A" Value="0.8" />
+	</ValueSet>
+
+	<ValueSet>
+		<Replace Key="SPEED_1A" Value="1" />
 		<Replace Key="SPEED_2A" Value="1.2" />
 		<Replace Key="SPEED_3A" Value="1" />
 	</ValueSet>

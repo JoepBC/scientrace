@@ -1,0 +1,76 @@
+<ScientraceConfig>
+
+<!-- A basic example of a 3D Kinetic Wulf Plot for a cubic cell where 100 = 010 = 001 etc.; 110 = 101 = 011 = 1-10 = 10-1 ... etc. -->
+
+<PreProcess>
+
+	<!-- Define the directions of the HKL base vectors -->
+	<Replace Key="VEC_HX" Value="1" />
+	<Replace Key="VEC_HY" Value="0" />
+	<Replace Key="VEC_HZ" Value="0" />
+	<Replace Key="VEC_KX" Value="0" />
+	<Replace Key="VEC_KY" Value="1" />
+	<Replace Key="VEC_KZ" Value="0" />
+	<Replace Key="VEC_LX" Value="0" />
+	<Replace Key="VEC_LY" Value="0" />
+	<Replace Key="VEC_LZ" Value="1" />
+
+	<!-- The growth speed / kinetic vectors for the three distinct cubic orientations -->	
+	<Replace Key="SPEED_100" Value="1" />
+	<Replace Key="SPEED_110" Value="1" />
+	<Replace Key="SPEED_111" Value="1" />
+
+	<!-- Dyanmiccally define all planes -->
+	<Import Key="DYNAMIC_PLANES">
+		<For Key="Y_ROT" From="0" To="180" Step="90" />
+		<For Key="X_ROT" From="-90" To="180" Step="90" />
+		<Replace Key="VEC_MOD">
+			<Value>
+			<Rotate><Angle Degrees="@Y_ROT@" /><AboutAxis xyz="0;1;0" /></Rotate>
+			<Rotate><Angle Degrees="@X_ROT@" /><AboutAxis xyz="1;0;0" /></Rotate>
+
+			<!-- Perform a matrix multiplication for a base transformation -->
+			<Formula x="@VEC_HX@*x+@VEC_KX@*y+@VEC_LX@*z"
+				y="@VEC_HY@*x+@VEC_KY@*y+@VEC_LY@*z"
+				z="@VEC_HZ@*x+@VEC_KZ@*y+@VEC_LZ@*z" />
+			</Value>
+		</Replace>
+
+	<Value>
+		<Plane TAG="100_LIKE_PLANES">
+			<Location xyz="1;0;0" NewLength="1">@VEC_MOD@</Location>
+			<AllowedNormal xyz="1;0;0"><Multiply Factor="-1" />@VEC_MOD@</AllowedNormal>
+		</Plane>
+		<Plane TAG="110_LIKE_PLANES">
+			<Location xyz="1;1;0" NewLength="1">@VEC_MOD@</Location>
+			<AllowedNormal xyz="1;1;0"><Multiply Factor="-1" />@VEC_MOD@</AllowedNormal>
+		</Plane>
+		<Plane TAG="111_LIKE_PLANES">
+			<Location xyz="1;1;1" NewLength="1">@VEC_MOD@</Location>
+			<AllowedNormal xyz="1;1;1"><Multiply Factor="-1" />@VEC_MOD@</AllowedNormal>
+		</Plane>
+	</Value>
+	</Import>
+			
+</PreProcess>
+
+<!-- Some output settings -->
+<Output Path="./out">
+	<X3D DrawAxes="no">
+ 		<CameraFrom xyz="-7;0;0.4" />
+	</X3D>
+</Output>
+
+<ObjectEnvironment Radius="2">
+
+<!-- Create the crystal volume -->
+<BorderedVolume>
+    <Material Class="StaticNTransparent" RefractiveIndex="1.75" Reflects="True" />
+    <SubVolume Tag="A crystal shape is limited by growth speeds">
+		@DYNAMIC_PLANES@
+	</SubVolume>
+</BorderedVolume>
+
+</ObjectEnvironment>
+</ScientraceConfig>
+

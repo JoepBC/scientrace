@@ -14,13 +14,13 @@
 	<Replace Key="SPEED_3A" Value="1" />
 
 
-	<Replace Key="SPEED_100" Value="1.2" />
-	<Replace Key="SPEED_010" Value="1.2" />
-	<Replace Key="SPEED_001" Value="1.2" />
-	<Replace Key="SPEED_110" Value="1" />
-	<Replace Key="SPEED_101" Value="1" />
-	<Replace Key="SPEED_011" Value="1" />
-	<Replace Key="SPEED_111" Value="1.2" />
+	<Replace Key="SPEED_100" Value="@SPEED_1A@" />
+	<Replace Key="SPEED_010" Value="@SPEED_1A@" />
+	<Replace Key="SPEED_001" Value="@SPEED_1A@" />
+	<Replace Key="SPEED_110" Value="@SPEED_2A@" />
+	<Replace Key="SPEED_101" Value="@SPEED_2A@" />
+	<Replace Key="SPEED_011" Value="@SPEED_2A@" />
+	<Replace Key="SPEED_111" Value="@SPEED_3A@" />
 
 	<Import Key="PLANES">
 		<For Key="X_SIGN" From="-1" To="1" Step="2" />
@@ -40,18 +40,18 @@
 			<Location xyz="@DIR_001@" NewLength="@SPEED_001@"><Multiply x="@X_SIGN@" y="@Y_SIGN@" z="@Z_SIGN@" /></Location>
 			<AllowedNormal xyz="@DIR_001@"><Multiply Factor="-1" /><Multiply x="@X_SIGN@" y="@Y_SIGN@" z="@Z_SIGN@" /></AllowedNormal>
 		</Plane>
-		<Plane Tag="110_PLANE">
+		<!-- <Plane Tag="110_PLANE">
 			<Location xyz="@DIR_110@" NewLength="@SPEED_110@"><Multiply x="@X_SIGN@" y="@Y_SIGN@" z="@Z_SIGN@" /></Location>
 			<AllowedNormal xyz="@DIR_110@"><Multiply Factor="-1" /><Multiply x="@X_SIGN@" y="@Y_SIGN@" z="@Z_SIGN@" /></AllowedNormal>
 		</Plane>
-		<Plane Tag="101">
+		<Plane Tag="101_PLANE">
 			<Location xyz="@DIR_101@" NewLength="@SPEED_101@"><Multiply x="@X_SIGN@" y="@Y_SIGN@" z="@Z_SIGN@" /></Location>
 			<AllowedNormal xyz="@DIR_101@"><Multiply Factor="-1" /><Multiply x="@X_SIGN@" y="@Y_SIGN@" z="@Z_SIGN@" /></AllowedNormal>
 		</Plane>
 		<Plane Tag="011_PLANE">
 			<Location xyz="@DIR_011@" NewLength="@SPEED_011@"><Multiply x="@X_SIGN@" y="@Y_SIGN@" z="@Z_SIGN@" /></Location>
 			<AllowedNormal xyz="@DIR_011@"><Multiply Factor="-1" /><Multiply x="@X_SIGN@" y="@Y_SIGN@" z="@Z_SIGN@" /></AllowedNormal>
-		</Plane>
+		</Plane> -->
 		<Plane Tag="111_PLANE">
 			<Location xyz="@DIR_111@" NewLength="@SPEED_111@"><Multiply x="@X_SIGN@" y="@Y_SIGN@" z="@Z_SIGN@" /></Location>
 			<AllowedNormal xyz="@DIR_111@"><Multiply Factor="-1" /><Multiply x="@X_SIGN@" y="@Y_SIGN@" z="@Z_SIGN@" /></AllowedNormal>

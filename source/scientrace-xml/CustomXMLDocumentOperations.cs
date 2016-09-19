@@ -365,7 +365,7 @@ namespace ScientraceXMLParser {
 		f_x = this.getXStringByName(xformula, "x", f_x);
 		f_y = this.getXStringByName(xformula, "y", f_y);
 		f_z = this.getXStringByName(xformula, "z", f_z);
-		Dictionary<string, object> replace_vectors = new Dictionary<string, object>(){{"x", aVector.x}, {"y", aVector.y}, {"z", aVector.z} };
+		Dictionary<string, object> replace_vectors = new Dictionary<string, object>(){{"x", (decimal)aVector.x}, {"y", (decimal)aVector.y}, {"z", (decimal)aVector.z} };
 		return new Scientrace.Vector(
 			Scientrace.MathStrings.solveString(f_x, replace_vectors),  
 			Scientrace.MathStrings.solveString(f_y, replace_vectors),  

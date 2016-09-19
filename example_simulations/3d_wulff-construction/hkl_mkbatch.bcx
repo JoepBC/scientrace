@@ -1,0 +1,33 @@
+<BatchConfig XMLSource="crystal_growth_hkl.scx" Key="100-@SPEED_100@_110-@SPEED_110@_111-@SPEED_111@">
+
+<!-- A Batch Creator file for the basic example of a 3D Kinetic Wulf Plot for a cubic cell where 100 = 010 = 001 etc.; 110 = 101 = 011 = 1-10 = 10-1 ... etc. -->
+
+<SubBatch> 
+	<ValueSet>
+		<Replace Key="SPEED_100" Value="1" />
+		<Replace Key="SPEED_110" Value="1" />
+		<Replace Key="SPEED_111" Value="1" />
+	</ValueSet>
+
+	<ValueSet>
+		<Replace Key="SPEED_100" Value="1.2" />
+		<Replace Key="SPEED_110" Value="1" />
+		<Replace Key="SPEED_111" Value="1" />
+	</ValueSet>
+
+	<ValueSet>
+		<Replace Key="SPEED_100" Value="1" />
+		<Replace Key="SPEED_110" Value="1.2" />
+		<Replace Key="SPEED_111" Value="1" />
+	</ValueSet>
+
+	<ValueSet>
+		<Replace Key="SPEED_100" Value="1" />
+		<Replace Key="SPEED_110" Value="1" />
+		<Replace Key="SPEED_111" Value="1.2" />
+	</ValueSet>
+
+
+</SubBatch>
+
+</BatchConfig>
