@@ -112,7 +112,7 @@ public partial class PlaneBorderEnclosedVolume:EnclosedVolume {
 		return new Intersection(trace, ips.ToArray(), this);
 		}
 
-	public static PlaneBorderEnclosedVolume createToppedPyramid(
+	public static PlaneBorderEnclosedVolume createTruncatedPyramid(
 						Scientrace.Object3dCollection parent, Scientrace.MaterialProperties mprops,
 						List<Scientrace.Location> front_corners, Scientrace.Location pyramid_top_location, PlaneBorder topping_plane) {
 		/*// DEBUG INFO:
@@ -126,27 +126,27 @@ public partial class PlaneBorderEnclosedVolume:EnclosedVolume {
 		if (front_corners.Count<3) {
 			throw new IndexOutOfRangeException("(topped) pyramid must have -at least- 3 front_corners in list (="+front_corners.Count+").");
 			}
-		List<Scientrace.PlaneBorder> toppedPyramidBorders = new List<Scientrace.PlaneBorder>();
+		List<Scientrace.PlaneBorder> truncatedPyramidBorders = new List<Scientrace.PlaneBorder>();
 
-		toppedPyramidBorders.Add( //adding large (opening) plane
+		truncatedPyramidBorders.Add( //adding large (opening) plane
 			PlaneBorder.createBetween3LocationsPointingTo(front_corners[0], front_corners[1], front_corners[2], pyramid_top_location)
 			);
 			
 		int fcc = front_corners.Count;
 		for (int iBorder = 0; iBorder < fcc; iBorder++) { //adding side planes
-			Console.WriteLine("PLANE:"+
-			front_corners[iBorder].trico()+ front_corners[(iBorder+1)%fcc].trico()+ pyramid_top_location.trico()+" towards: "+front_corners[(iBorder+2)%fcc]);
-			toppedPyramidBorders.Add(
+			//Console.WriteLine("PLANE:"+
+			//front_corners[iBorder].trico()+ front_corners[(iBorder+1)%fcc].trico()+ pyramid_top_location.trico()+" towards: "+front_corners[(iBorder+2)%fcc]);
+			truncatedPyramidBorders.Add(
 			PlaneBorder.createBetween3LocationsPointingTo(
 				front_corners[iBorder], front_corners[(iBorder+1)%fcc], pyramid_top_location, front_corners[(iBorder+2)%fcc])
 				);
 			}
 		
-		toppedPyramidBorders.Add(topping_plane); //adding small (closing) plane
+		truncatedPyramidBorders.Add(topping_plane); //adding small (closing) plane
 		
 		return new PlaneBorderEnclosedVolume(parent, mprops,
-					toppedPyramidBorders);
-		} // end createToppedPyramid Factory Method
+					truncatedPyramidBorders);
+		} // end createTruncatedPyramid Factory Method
 
 
 	}}

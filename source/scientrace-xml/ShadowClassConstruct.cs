@@ -181,7 +181,7 @@ public class ShadowClassConstruct : ScientraceXMLAbstractParser{
 				new ShadowScientrace.ShadowObject3d(typeof(Scientrace.FresnelLensRing), this.parentcollection, //ClassName
 				this.getXMaterial(xel));
 		*/
-
+		Console.WriteLine("LENSRING ADDED");
 		shadowO3D.arguments.Add("lens_plano_center", this.X.getXLocation(xel, "LensPlanoCenter", null));
 		shadowO3D.arguments.Add("lens_sphere_location", this.X.getXLocation(xel, "LensSphereCenter", null));
 		shadowO3D.arguments.Add("lens_sphere_radius", this.X.getXNullDouble(xel, "LensSphereRadius")); 

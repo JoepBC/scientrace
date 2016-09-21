@@ -294,7 +294,7 @@ namespace ScientraceXMLParser {
 		}
 		
 
-		public Scientrace.Vector modifyVectorForSubElements(Scientrace.Vector aVector, XElement xe) {
+	public Scientrace.Vector modifyVectorForSubElements(Scientrace.Vector aVector, XElement xe) {
 		Scientrace.Vector retvec = aVector;
 
 		foreach (XAttribute xat in xe.Attributes()) {

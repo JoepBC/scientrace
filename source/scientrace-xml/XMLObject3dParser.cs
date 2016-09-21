@@ -2,6 +2,7 @@ using System;
 using System.Xml.Linq;
 using System.Collections.Generic;
 using ScientraceXMLParser;
+using Scientrace;
 
 namespace ScientraceXMLParser {
 	
@@ -102,33 +103,39 @@ public class XMLObject3dParser : ScientraceXMLAbstractParser {
 		return tRetBoxVol;
 		}				
 
-	public Scientrace.PlaneBorderEnclosedVolume parseXToppedPyramid(XElement xToppedPyramid) {
+	public Scientrace.PlaneBorderEnclosedVolume parseXTruncatedPyramid(XElement xTruncatedPyramid) {
 
 			// Replaced with below: Scientrace.MaterialProperties materialprops = this.getXMaterial(xToppedPyramid.Element("Material"));
-		Scientrace.MaterialProperties materialprops = this.getXMaterialForObject(xToppedPyramid);
+		Scientrace.MaterialProperties materialprops = this.getXMaterialForObject(xTruncatedPyramid);
 		
-		if (xToppedPyramid.Name.ToString() != "ToppedPyramid") {
-			throw new XMLException("ToppedPyramid does not match its name: "+xToppedPyramid.Name.ToString());
+		if ((xTruncatedPyramid.Name.ToString() != "TruncatedPyramid") && (xTruncatedPyramid.Name.ToString() != "ToppedPyramid")) {
+			throw new XMLException("TruncatedPyramid does not match its name: "+xTruncatedPyramid.Name.ToString());
 			}
 
 		List<Scientrace.Location> front_corners = new List<Scientrace.Location>();
-		foreach (XElement xFrontCorner in xToppedPyramid.Elements("Corner")) {
+		Scientrace.Vector loc_sum = new Scientrace.Vector(0,0,0);
+		foreach (XElement xFrontCorner in xTruncatedPyramid.Elements("Corner")) {
 			Scientrace.Location loc = this.X.getXLocation(xFrontCorner);
 			front_corners.Add(loc);
+			loc_sum = loc_sum + loc;
 			}
-		Scientrace.Location virtual_top = this.X.getXLocation(xToppedPyramid, "VirtualTop");
+		Scientrace.Vector loc_avg = loc_sum / front_corners.Count;
+		Scientrace.Location virtual_top = this.X.getXLocation(xTruncatedPyramid, "VirtualTop");
 		// parsing topping plane data:
-		XElement xTopPlane = xToppedPyramid.Element("TopPlane");
+		XElement xTopPlane = xTruncatedPyramid.Element("TopPlane");
 		if (xTopPlane==null) {
-			throw new XMLException("TopPlane element not found... "+xToppedPyramid.ToString());
+			throw new XMLException("TopPlane element not found... "+xTruncatedPyramid.ToString());
 			}
 		Scientrace.Location topPlaneLoc = this.X.getXLocation(xTopPlane, "Location");
 		Scientrace.NonzeroVector topPlaneNormal = this.X.getXNzVectorByName(xTopPlane, "Normal");
+		if (topPlaneNormal.dotProduct((topPlaneLoc-loc_avg))>0) {
+			topPlaneNormal = topPlaneNormal.negative();
+			}
 		Scientrace.PlaneBorder topping_plane = new Scientrace.PlaneBorder(topPlaneLoc, topPlaneNormal);
 
-		Scientrace.PlaneBorderEnclosedVolume tRetToppedPyramid  = Scientrace.PlaneBorderEnclosedVolume.createToppedPyramid(this.parentcollection, materialprops,
+		Scientrace.PlaneBorderEnclosedVolume tRetTruncatedPyramid  = Scientrace.PlaneBorderEnclosedVolume.createTruncatedPyramid(this.parentcollection, materialprops,
 			front_corners, virtual_top, topping_plane);
-		return tRetToppedPyramid;
+		return tRetTruncatedPyramid;
 		}				
 
 

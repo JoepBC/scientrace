@@ -67,8 +67,8 @@ public class ScientraceXMLParser {
 		// Creating "the entire object-space"
 		double env_radius = this.X.getXDouble(xenv, "Radius", -1);
 		if (env_radius == -1) {
-			Console.WriteLine("Warning: ObjectEnvironment radius not set. Using 100 as an arbitrary default. You might want to change this.");
-			env_radius = 100;
+			Console.WriteLine("Warning: ObjectEnvironment has no radius attribute. Using 16 as an arbitrary default. You might want to change this.");
+			env_radius = 16;
 			}
 		string environment_material_id = this.X.getXStringByName(xenv, "Environment", "air");
 
@@ -154,15 +154,15 @@ public class ScientraceXMLParser {
 			case "Sphere":
 				createdObject3d = o3dp.parseXSphere(xel);
 				break;
-			case "PlanoConvexLens":
-				createdObject3d = o3dp.parseXPlanoConvexLens(xel);
-				break;
 			case "FresnelLens":
 				createdObject3d = shadowConstructor.constructFresnelLens(xel);
-				break;		
+				break;
 			case "FresnelLensRing":
 				createdObject3d = shadowConstructor.constructFresnelLensRing(xel);
 				break;		
+			case "PlanoConvexLens":
+				createdObject3d = o3dp.parseXPlanoConvexLens(xel);
+				break;
 			case "DoubleConvexLens":
 				//createdObject3d = o3dp.parseXDoubleConvexLens(xel);
 				createdObject3d = shadowConstructor.constructDoubleConvexLens(xel);
@@ -171,7 +171,8 @@ public class ScientraceXMLParser {
 				createdObject3d = o3dp.parsXBorderedVolume(xel);
 				break;
 			case "ToppedPyramid":
-				createdObject3d = o3dp.parseXToppedPyramid(xel);
+			case "TruncatedPyramid":
+				createdObject3d = o3dp.parseXTruncatedPyramid(xel);
 				break;
 			case "CameraViewpoint": //fallthrough
 			case "CameraFrom": //fallthrough
