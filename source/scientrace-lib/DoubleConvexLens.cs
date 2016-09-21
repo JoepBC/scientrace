@@ -93,7 +93,8 @@ public class DoubleConvexLens : Scientrace.EnclosedVolume {
 		double lensDiameter = (double)shadowObject.getObject("lens_diameter");
 		
 		//Derived value from 1/f = (n-1)(1/r1+1/r2)
-		double sphereRadii = 2*focalLength*(shadowObject.materialprops.refractiveindex(600E-9)-1);
+		double focus_wavelength = shadowObject.getDouble("focus_wavelength", 600E-9);
+		double sphereRadii = 2*focalLength*(shadowObject.materialprops.refractiveindex(focus_wavelength)-1);
 		
 		//construct!
 		this.initWithLensDiameter(lensCenter, lensPlaneNormal, lensDiameter, sphereRadii, sphereRadii);

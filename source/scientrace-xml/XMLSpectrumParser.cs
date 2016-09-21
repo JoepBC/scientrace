@@ -27,7 +27,7 @@ public class XMLSpectrumParser : ScientraceXMLAbstractParser{
 
 		} //else { Console.WriteLine("NOT Setting new MOD for "+xspec.Name.ToString()); }
 		//Console.WriteLine(mod_multip+"MOD");
-		switch (spectrum_id) {
+		switch (spectrum_id.ToLower()) {
 			case "am15":
 				return new Scientrace.AM15Spectrum(mod_multip);
 				//break; //no need to break in unreachable code after return

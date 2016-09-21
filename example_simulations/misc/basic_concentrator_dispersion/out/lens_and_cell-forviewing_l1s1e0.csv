@@ -1,0 +1,3 @@
+unknown,Timestamp,Short-cpu time (s),Short-#traces,Short-intensity,Short-weighted_intensity,solarcell-1,Short-yield,Short-weighted_sum,Scientrace.Rectangle-yield,total light intensity,total revenue,total yield
+g1474462724,r_2016-09-21T14:58:44,Short-0.087428,Short-500,Short-500,Short-1400,Scientrace.Rectangle,0.901242760606849,1261.73986484959,0.901242760606849,500,450.621380303424,0.901242760606849
+g1474462794,r_2016-09-21T14:59:54,Short-0.072876,Short-256,Short-256,Short-1400,Scientrace.Rectangle,0.919943194117205,1287.92047176409,0.919943194117205,256,235.505457694005,0.919943194117205

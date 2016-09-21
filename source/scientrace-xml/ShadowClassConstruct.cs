@@ -204,6 +204,8 @@ public class ShadowClassConstruct : ScientraceXMLAbstractParser{
 		ShadowScientrace.ShadowObject3d shDCLens =  this.getShadowObject3dBase(xel, typeof(Scientrace.DoubleConvexLens));
 
 		shDCLens.arguments.Add("focal_length", this.X.getXNullDouble(xel, "FocalLength"));
+		shDCLens.arguments.Add("focus_wavelength", this.X.getXNullDouble(xel, "FocusWavelength")); 
+
 		shDCLens.arguments.Add("lens_diameter", this.X.getXNullDouble(xel, "LensDiameter"));
 		shDCLens.arguments.Add("sphere1_radius", this.X.getXNullDouble(xel, "Radius1"));
 		shDCLens.arguments.Add("sphere2_radius", this.X.getXNullDouble(xel, "Radius2"));

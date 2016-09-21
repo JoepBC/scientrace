@@ -1,0 +1,45 @@
+<ScientraceConfig>
+
+<Output Path="out">
+  <SVG SpotSizeFraction="0.003" />
+</Output>
+
+<ObjectEnvironment>
+
+<CameraFrom xyz="0;0;20" />
+
+<!-- <LightSource Class="Spiral" Diameter="1" RayCount="2500" Tag="Short">
+		<Spectrum Class="randomnmrange" From="400" To="660" />
+        <Location xyz="-5;0;0" />
+        <SpiralAxis xyz="1;0;0" />
+        <Direction x="1" y="0" z="0" />
+</LightSource>
+
+<LightSource Class="Spiral" Diameter="1" RayCount="2500" Tag="Middle">
+		<Spectrum Class="randomnmrange" From="660" To="880" />
+        <Location xyz="-5;0;0" />
+        <SpiralAxis xyz="1;0;0" />
+        <Direction x="1" y="0" z="0" />
+</LightSource> -->
+
+<LightSource Class="Spiral" Diameter="1" RayCount="2500" Tag="Long">
+		<Spectrum Class="randomnmrange" From="880" To="1800" />
+        <Location xyz="-5;0;0" />
+        <SpiralAxis xyz="1;0;0" />
+        <Direction x="1" y="0" z="0" />
+</LightSource>
+
+<DoubleConvexLens Material="bk7" FocalLength="10" LensDiameter="3" FocusWavelength="500E-9">
+  <Center xyz="0;0;0" />
+  <OpticalAxis xyz="1;0;0" />
+</DoubleConvexLens>
+
+<Rectangle Material="black" Register="yes" SideLength="0.04">
+  <Center xyz="10;0;0" />
+  <Normal xyz="1;0;0" />
+  <OrthogonalDirection xyz="0;1;0" />
+</Rectangle>
+
+</ObjectEnvironment>
+
+</ScientraceConfig>
