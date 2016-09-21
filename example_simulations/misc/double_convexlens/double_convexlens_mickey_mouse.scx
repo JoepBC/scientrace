@@ -1,0 +1,24 @@
+<ScientraceConfig> <ObjectEnvironment Radius="8">
+
+<CameraFrom xyz="-15;0;0" />
+
+<!-- FocalLength_and_Diameter example -->
+<DoubleConvexLens Material="bk7" FocalLength="10" LensDiameter="3">
+<Center xyz="0;0;5" />
+<OpticalAxis xyz="1;0;0" />
+</DoubleConvexLens>
+
+<!-- TwoRadii_and_Diameter example -->
+<DoubleConvexLens Material="bk7" LensDiameter="3" Radius1="5" Radius2="5">
+<Center xyz="0;5;0" />
+<OpticalAxis xyz="1;0;0" />
+</DoubleConvexLens>
+
+<!-- TwoRadii_and_Locations example -->
+<DoubleConvexLens Material="bk7" Radius1="5" Radius2="5">
+<Sphere1Center xyz="-3.5;0;0" />
+<Sphere2Center xyz="3.5;0;0" />
+</DoubleConvexLens>
+
+
+</ObjectEnvironment> </ScientraceConfig>
