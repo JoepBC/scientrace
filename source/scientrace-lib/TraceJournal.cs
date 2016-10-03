@@ -56,9 +56,9 @@ public partial class TraceJournal {
 	public bool xml_display_lightsource = false;
 	public bool xml_display_preprocessed = false;
 	public string xml_export_filename = "xml_%o_@READABLE_CONFIGKEY@.scx";
-	public bool xml_export_preprocessed = true;
+	public bool xml_export_preprocessed = false;
 	public string xml_export_preprocessed_string = "";
-	public bool xml_export_lightsources = true;
+	public bool xml_export_lightsources = false;
 
 
 	/// <summary>

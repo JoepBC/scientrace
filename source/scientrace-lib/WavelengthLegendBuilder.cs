@@ -122,7 +122,7 @@ public class WavelengthLegendBuilder : Scientrace.LegendBuilder {
 		//Console.WriteLine("Writing legend to "+fullfilename);
 		using (StreamWriter retstr = new StreamWriter(fullfilename)) {
 			retstr.WriteLine(this.getSVGHeader());
-			retstr.WriteLine(getSVGTagOpen(imagewidth, imageheight, 
+			retstr.WriteLine(this.getSVGTagOpen(imagewidth, imageheight, 
 				              legendSquare.getAbsMarginViewBox(fontSizeBasedMarginLeft,fontSizeBasedMarginTop,
 				                                                  fontSizeBasedMarginRight, fontSizeBasedMarginBottom,textheight)
 				              ));

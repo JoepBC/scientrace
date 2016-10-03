@@ -121,13 +121,13 @@ public partial class TraceJournal {
 			string tag_prefix = lightsource.tag+"-";
 			//this.safeAddToDict(retdict,"light source", lightsource.tag); // REPLACED LINE BELOW.
 			//retdict.Add("light source",lightsource.tag);
-			this.safeAddToDict(retdict,tag_prefix+"cpu time (s)", tag_prefix+lightsource.shine_duration.TotalSeconds.ToString()); // REPLACED LINE BELOW.
+			this.safeAddToDict(retdict,tag_prefix+"cpu time (s)",lightsource.shine_duration.TotalSeconds.ToString()); // REPLACED LINE BELOW.
 			//retdict.Add("cpu time (s)",lightsource.shine_duration.TotalSeconds.ToString());
-			this.safeAddToDict(retdict,tag_prefix+"#traces", tag_prefix+lightsource.traceCount().ToString()); // REPLACED LINE BELOW.
+			this.safeAddToDict(retdict,tag_prefix+"#traces", lightsource.traceCount().ToString()); // REPLACED LINE BELOW.
 			//retdict.Add("#traces",lightsource.traceCount().ToString());
-			this.safeAddToDict(retdict,tag_prefix+"intensity", tag_prefix+lightsource.total_lightsource_intensity.ToString()); // REPLACED LINE BELOW.
+			this.safeAddToDict(retdict,tag_prefix+"intensity", lightsource.total_lightsource_intensity.ToString()); // REPLACED LINE BELOW.
 			//retdict.Add("intensity",lightsource.total_lightsource_intensity.ToString());
-			this.safeAddToDict(retdict,tag_prefix+"weighted_intensity", tag_prefix+lightsource.weighted_intensity.ToString()); // REPLACED LINE BELOW.
+			this.safeAddToDict(retdict,tag_prefix+"weighted_intensity", lightsource.weighted_intensity.ToString()); // REPLACED LINE BELOW.
 			//retdict.Add("weighted_intensity",lightsource.weighted_intensity.ToString());
 			total_intensity = total_intensity + lightsource.total_lightsource_intensity;
 			total_shine_duration = total_shine_duration + lightsource.shine_duration.TotalSeconds;

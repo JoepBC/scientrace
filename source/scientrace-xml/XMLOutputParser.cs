@@ -77,15 +77,20 @@ public class XMLOutputParser : ScientraceXMLAbstractParser	{
 		Scientrace.TraceJournal tj = Scientrace.TraceJournal.Instance;
 		tj.xml_display_lightsource = this.X.getXBool(xxml, "DisplayCustomTraces", false);
 		tj.xml_display_preprocessed = this.X.getXBool(xxml, "DisplayPreProcessed", false);
-		tj.xml_export_lightsources = this.X.getXBool(xxml, "ExportCustomTraces", false);
-		tj.xml_export_preprocessed = this.X.getXBool(xxml, "ExportPreProcessed", false);
+
+		tj.xml_export_lightsources = this.X.getXBool(xxml, "Export", tj.xml_export_lightsources);
+		tj.xml_export_preprocessed = this.X.getXBool(xxml, "Export", tj.xml_export_preprocessed);
+
+		tj.xml_export_lightsources = this.X.getXBool(xxml, "ExportCustomTraces", tj.xml_export_lightsources);
+		tj.xml_export_preprocessed = this.X.getXBool(xxml, "ExportPreProcessed", tj.xml_export_preprocessed);
+
 		tj.xml_export_filename = this.X.getXStringByName(xxml, "Filename", "xml_%o_"+tj.getSourceFilenameNoExt()+".scx");
 		}
 
 
 	public void configPhotonDumpOutput(XElement xphotondump) {
 		Scientrace.TraceJournal tj = Scientrace.TraceJournal.Instance;
-		tj.exportphotondump = this.X.getXBool(xphotondump, "Export", true);
+		tj.exportphotondump = this.X.getXBool(xphotondump, "Export", false);
 		tj.photondumpfilename = this.X.getXStringByName(xphotondump, "Filename","dump_%o_"+tj.getSourceFilenameNoExt()+".csv");
 		}
 		

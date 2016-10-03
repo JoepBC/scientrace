@@ -3,22 +3,23 @@
   <MonoDevelop.Ide.DebuggingService>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService>
-  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-xml/CustomXMLDocumentOperations.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="scientrace-xml/XMLOutputParser.cs">
     <Files>
-      <File FileName="scientrace-xml/XMLOutputParser.cs" Line="1" Column="1" />
-      <File FileName="scientrace-xml/ScientraceXMLParser.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/TraceJournal-Image_Data_Export.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/ThickLens.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/DoubleConvexLens.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/FresnelLensRing.cs" Line="1" Column="1" />
-      <File FileName="scientrace-xml/ShadowClassConstruct.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/FresnelLens.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/MathStrings.cs" Line="1" Column="1" />
-      <File FileName="scientrace-xml/XMLObject3dParser.cs" Line="1" Column="1" />
-      <File FileName="scientrace-lib/RectangularPrism.cs" Line="1" Column="1" />
-      <File FileName="scientrace-xml/CustomXMLDocumentOperations.cs" Line="174" Column="5" />
-      <File FileName="scientrace-xml/ScientraceEnvironmentSetup.cs" Line="1" Column="1" />
-      <File FileName="scientrace-batch-creator/BatchCreator.cs" Line="1" Column="1" />
+      <File FileName="scientrace-xml/ScientraceXMLParser.cs" Line="97" Column="85" />
+      <File FileName="scientrace-xml/ShadowClassConstruct.cs" Line="207" Column="11" />
+      <File FileName="scientrace-xml/XMLObject3dParser.cs" Line="61" Column="27" />
+      <File FileName="scientrace-xml/XMLSpectrumParser.cs" Line="39" Column="13" />
+      <File FileName="scientrace-xml/XMLOutputParser.cs" Line="87" Column="116" />
+      <File FileName="scientrace-lib/Tracejournal-Textual_Data_Export.cs" Line="130" Column="64" />
+      <File FileName="scientrace-lib/DoubleConvexLens.cs" Line="97" Column="1" />
+      <File FileName="scientrace-lib/FresnelLens.cs" Line="167" Column="29" />
+      <File FileName="scientrace-lib/WavelengthLegendBuilder.cs" Line="28" Column="16" />
+      <File FileName="scientrace-lib/TraceJournal-Image_Data_Export.cs" Line="77" Column="35" />
+      <File FileName="scientrace-lib/TraceJournal.cs" Line="59" Column="45" />
+      <File FileName="scientrace-batch-creator/BatchCreator.cs" Line="21" Column="30" />
+      <File FileName="scientrace-lib/LightSource.cs" Line="153" Column="18" />
+      <File FileName="scientrace-lib/TraceModifier.cs" Line="9" Column="14" />
+      <File FileName="scientrace-lib/UniformTraceModifier.cs" Line="35" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
