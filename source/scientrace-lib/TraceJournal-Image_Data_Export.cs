@@ -406,7 +406,7 @@ xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
 
 				if (this.svg_export_photoncloud) {
 					retstr.Append(@"<g>
-<circle cx='"+loc2d.x+"' cy='"+(anObject.svgysize-loc2d.y)+"' r='"+(casualty.intensity*this.spotsize)+"' style='"+
+<circle cx='"+loc2d.x+"' cy='"+(anObject.svgysize-loc2d.y)+"' r='"+(Math.Sqrt(casualty.intensity)*this.spotsize)+"' style='"+
 "fill:"+this.getPhotonColourForPDPSource(casualty, pdpSource, anObject)
 +@";fill-opacity:0.3;stroke:none'>
 <title><!-- Tooltip -->"+this.spotDescriptor(casualty, anObject,true)+@"</title>
@@ -415,7 +415,7 @@ xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
 				} // end if draw photoncloud (to create the frogg-egg kinda image)
 				
 				centerSpots.Append(@"<g>
-<circle cx='"+loc2d.x+"' cy='"+(anObject.svgysize-loc2d.y)+"' r='"+(casualty.intensity*this.spotsize/(this.svg_export_photoncloud?4:1))+"' style='"+
+<circle cx='"+loc2d.x+"' cy='"+(anObject.svgysize-loc2d.y)+"' r='"+(Math.Sqrt(casualty.intensity)*this.spotsize/(this.svg_export_photoncloud?4:1))+"' style='"+
 "fill:"+this.getPhotonColourForPDPSource(casualty, pdpSource, anObject)
 +@";fill-opacity:8;stroke:none'>
 <title><!-- Tooltip -->"+this.spotDescriptor(casualty, anObject,false)+@"</title>
